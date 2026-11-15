@@ -101,9 +101,15 @@ them as proof. Verification now accepts only CV, case study, repo, code and revi
 **Where better retrieval did not translate into replies.** See section 7: letters that are fully
 grounded but short, or priced at the user's floor above the client's range, still lose in GigSim.
 
-**Judge calibration.** `evals/runners/judge_calibration.py` prepares 30 proposals and the LLM
-judge's labels; the human labels and Cohen's kappa are added by the author
-(`judge_calibration.json`).
+**Judge calibration.** I labelled 30 proposals (10 per persona) good or weak with the same rubric
+the judge (gpt-oss-120b) uses: agreement 0.7, Cohen's kappa 0.4255, which is moderate
+(`judge_calibration.json`). In 8 of the 9 disagreements I said good and the judge said weak: the
+proposals open specifically ("Your post mentions…") but cite a project that does not fit the job
+(a support chatbot offered for a T-shirt logo). I rewarded the opening; the judge penalised the
+mismatch, and on reflection the judge was right in most of them. The one reverse case was a data
+analyst proposal whose cited outlier analysis I judged irrelevant to JSON parsing. Because
+kappa is only moderate, judge scores are used for relative comparisons only, never as an
+absolute quality claim.
 
 ## 5. R&D question C: single agent vs prebuilt supervisor vs hand-built graph
 

@@ -1,0 +1,61 @@
+{
+  "n": 30,
+  "agreement": 0.7,
+  "cohens_kappa": 0.4255,
+  "disagreements": [
+    {
+      "id": "proposal:ai_ml:057",
+      "human": "good",
+      "judge": "weak",
+      "text": "You need logo design for t shirts. Last year I built a retrieval-augmented chatbot over 3,200 help-centre articles with source citations. I have 6 years of experience with Python, PyTorch, LangChain, LangGraph. Happy to share a short plan and timeline."
+    },
+    {
+      "id": "proposal:ai_ml:041",
+      "human": "good",
+      "judge": "weak",
+      "text": "I noticed you are struggling with crm system architect, which is close to what I fixed for a e-commerce client. I have 6 years of experience with Python, PyTorch, LangChain, LangGraph. Happy to share a short plan and timeline."
+    },
+    {
+      "id": "proposal:ai_ml:018",
+      "human": "good",
+      "judge": "weak",
+      "text": "Your post mentions dynamics crm help; I solved the same problem when support agents answered the same 400 questions every week. I have 6 years of experience with Python, PyTorch, LangChain, LangGraph. Happy to share a short plan and timeline."
+    },
+    {
+      "id": "proposal:ai_ml:028",
+      "human": "good",
+      "judge": "weak",
+      "text": "Your post mentions expert on webinars; I solved the same problem when support agents answered the same 400 questions every week. I have 6 years of experience with Python, PyTorch, LangChain, LangGraph. Happy to share a short plan and timeline."
+    },
+    {
+      "id": "proposal:ai_ml:063",
+      "human": "good",
+      "judge": "weak",
+      "text": "I noticed you are struggling with recharge subscription app help, which is close to what I fixed for a e-commerce client. I have 6 years of experience with Python, PyTorch, LangChain, LangGraph. Happy to share a short plan and timeline."
+    },
+    {
+      "id": "proposal:fullstack:063",
+      "human": "good",
+      "judge": "weak",
+      "text": "You need i need an mobile app developer. Last year I built a cross-platform app with workout plans, progress charts and push notifications. In that project I a cross-platform app with workout plans, progress charts and push notifications; it reached 4.7 stars on both stores with 6,000 installs. Happy to share a short plan and timeline."
+    },
+    {
+      "id": "proposal:fullstack:124",
+      "human": "good",
+      "judge": "weak",
+      "text": "Your post mentions software ai personal training studio; I solved the same problem when receptionists booked appointments by phone and paper. In that project I an online booking system with SMS reminders and a staff calendar; it no-shows dropped 35%. Happy to share a short plan and timeline."
+    },
+    {
+      "id": "proposal:fullstack:096",
+      "human": "good",
+      "judge": "weak",
+      "text": "I noticed you are struggling with business plan writer, which is close to what I fixed for a saas client. I have 7 years of experience with JavaScript, TypeScript, React, Next.js. Happy to share a short plan and timeline."
+    },
+    {
+      "id": "proposal:data_analyst:147",
+      "human": "weak",
+      "judge": "good",
+      "text": "I noticed you are struggling with parse json to csv, which is close to what I fixed for a healthcare client. In that project I an outlier analysis of 2.1 million claims by provider and procedure; it flagged 37 providers for review; $410k in overbilling confirmed. Happy to share a short plan and timeline."
+    }
+  ]
+}
