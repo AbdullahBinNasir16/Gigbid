@@ -1,4 +1,4 @@
-.PHONY: install dev api test lint eval seed demo graphs api-client update-snapshots eval-smoke
+.PHONY: install dev api test lint eval seed demo graphs api-client update-snapshots eval-smoke data data-inspect gigsim
 install:
 	python -m pip install -e ".[dev]"
 
@@ -34,3 +34,14 @@ update-snapshots:
 
 eval-smoke:
 	python -c "print('TODO: implement smoke evaluations')"
+
+data-inspect:
+	python scripts/data/inspect_raw.py
+
+# Rebuild real data from data/raw (about 10 minutes). Needs the Kaggle files, see docs/DATA_CARD.md.
+data:
+	python -m scripts.data.build_real_jobs
+	python -m scripts.data.build_priors
+
+gigsim:
+	uvicorn gigsim.app:app --reload --port 8081

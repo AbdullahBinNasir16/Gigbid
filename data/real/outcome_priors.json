@@ -1,0 +1,527 @@
+{
+ "generated_by": "scripts/data/build_priors.py",
+ "generated_at": "2026-11-15T08:45:05+00:00",
+ "provenance": "real",
+ "what_this_is": "Priors for GigSim client behaviour. No dataset has real proposal outcomes, so reply probability is a proxy: base_reply_rate = clip(reply_scale / applicants_mid). reply_scale lives in gigsim config. Only relative comparisons inside GigSim mean anything.",
+ "applicant_midpoints": {
+  "Less than 5": 3,
+  "5 to 10": 7.5,
+  "10 to 15": 12.5,
+  "15 to 20": 17.5,
+  "20 to 50": 35,
+  "50+": 60
+ },
+ "competition_by_category": {
+  "admin": {
+   "applicants_bucket_share": {
+    "20 to 50": 0.2268,
+    "Less than 5": 0.2215,
+    "5 to 10": 0.2149,
+    "10 to 15": 0.1432,
+    "15 to 20": 0.13,
+    "50+": 0.0637
+   },
+   "applicants_mid_mean": 18.1,
+   "n": 754
+  },
+  "ai_ml": {
+   "applicants_bucket_share": {
+    "20 to 50": 0.293,
+    "5 to 10": 0.2225,
+    "10 to 15": 0.1786,
+    "15 to 20": 0.1383,
+    "Less than 5": 0.13,
+    "50+": 0.0376
+   },
+   "applicants_mid_mean": 19.22,
+   "n": 1461
+  },
+  "data_analytics": {
+   "applicants_bucket_share": {
+    "20 to 50": 0.3417,
+    "5 to 10": 0.1752,
+    "10 to 15": 0.1466,
+    "15 to 20": 0.1313,
+    "Less than 5": 0.1091,
+    "50+": 0.0961
+   },
+   "applicants_mid_mean": 23.5,
+   "n": 3465
+  },
+  "design": {
+   "applicants_bucket_share": {
+    "20 to 50": 0.3582,
+    "5 to 10": 0.1627,
+    "10 to 15": 0.158,
+    "15 to 20": 0.1275,
+    "Less than 5": 0.1045,
+    "50+": 0.0891
+   },
+   "applicants_mid_mean": 23.62,
+   "n": 5600
+  },
+  "marketing": {
+   "applicants_bucket_share": {
+    "20 to 50": 0.2325,
+    "5 to 10": 0.2293,
+    "Less than 5": 0.228,
+    "10 to 15": 0.1565,
+    "15 to 20": 0.113,
+    "50+": 0.0407
+   },
+   "applicants_mid_mean": 16.92,
+   "n": 19449
+  },
+  "mobile_dev": {
+   "applicants_bucket_share": {
+    "20 to 50": 0.2448,
+    "Less than 5": 0.195,
+    "5 to 10": 0.1854,
+    "50+": 0.1484,
+    "10 to 15": 0.1337,
+    "15 to 20": 0.0927
+   },
+   "applicants_mid_mean": 22.74,
+   "n": 3538
+  },
+  "other": {
+   "applicants_bucket_share": {
+    "Less than 5": 0.2736,
+    "5 to 10": 0.2407,
+    "20 to 50": 0.1838,
+    "10 to 15": 0.1559,
+    "15 to 20": 0.1144,
+    "50+": 0.0316
+   },
+   "applicants_mid_mean": 14.9,
+   "n": 3041
+  },
+  "video": {
+   "applicants_bucket_share": {
+    "5 to 10": 0.3037,
+    "Less than 5": 0.2364,
+    "10 to 15": 0.1649,
+    "20 to 50": 0.1518,
+    "15 to 20": 0.128,
+    "50+": 0.0152
+   },
+   "applicants_mid_mean": 13.51,
+   "n": 461
+  },
+  "web_dev": {
+   "applicants_bucket_share": {
+    "20 to 50": 0.3114,
+    "5 to 10": 0.1671,
+    "10 to 15": 0.1471,
+    "50+": 0.1467,
+    "15 to 20": 0.1186,
+    "Less than 5": 0.1091
+   },
+   "applicants_mid_mean": 25.2,
+   "n": 19253
+  },
+  "writing": {
+   "applicants_bucket_share": {
+    "20 to 50": 0.3447,
+    "5 to 10": 0.1635,
+    "10 to 15": 0.1557,
+    "15 to 20": 0.1373,
+    "Less than 5": 0.1161,
+    "50+": 0.0828
+   },
+   "applicants_mid_mean": 22.95,
+   "n": 1413
+  }
+ },
+ "client_population": {
+  "payment_verified_rate": 0.6544,
+  "spend_usd": {
+   "p10": 0.0,
+   "p25": 0.0,
+   "p50": 90.0,
+   "p75": 4000.0,
+   "p90": 30000.0,
+   "n": 56966
+  },
+  "share_zero_spend": 0.4728,
+  "rating_if_rated": {
+   "p10": 4.525,
+   "p25": 4.844,
+   "p50": 4.977,
+   "p75": 5.0,
+   "p90": 5.0,
+   "n": 28166
+  },
+  "feedback_count": {
+   "p10": 0.0,
+   "p25": 0.0,
+   "p50": 0.0,
+   "p75": 10.0,
+   "p90": 45.0,
+   "n": 58435
+  },
+  "share_unrated": 0.5137,
+  "top_countries": {
+   "United States": 0.4237,
+   "India": 0.0864,
+   "United Kingdom": 0.069,
+   "Canada": 0.0521,
+   "Australia": 0.0445,
+   "Pakistan": 0.0267,
+   "Germany": 0.0207,
+   "United Arab Emirates": 0.0181,
+   "Netherlands": 0.0142,
+   "France": 0.0123
+  },
+  "source_dataset": "ahmedmyalo/upwork-freelance-jobs-60k"
+ },
+ "freelancer_side": {
+  "source_dataset": "sarveshchhetri/freelancer-success-earnings-and-churn-prediction",
+  "warning": "This dataset appears synthetic (smooth distributions, sequential ids). Use only as a weak prior.",
+  "rows": 12000,
+  "by_category": {
+   "admin": {
+    "job_success_rate_pct": {
+     "p10": 72.8,
+     "p25": 79.5,
+     "p50": 86.3,
+     "p75": 94.0,
+     "p90": 100.0,
+     "n": 1051
+    },
+    "repeat_client_rate": {
+     "p10": 0.195,
+     "p25": 0.256,
+     "p50": 0.328,
+     "p75": 0.397,
+     "p90": 0.47,
+     "n": 1073
+    },
+    "avg_response_time_hrs": {
+     "p10": 6.8,
+     "p25": 9.675,
+     "p50": 13.1,
+     "p75": 17.7,
+     "p90": 22.4,
+     "n": 1036
+    },
+    "hourly_rate_usd": {
+     "p10": 144.698,
+     "p25": 220.642,
+     "p50": 280.0,
+     "p75": 280.0,
+     "p90": 280.0,
+     "n": 1038
+    },
+    "n": 1123
+   },
+   "ai_ml": {
+    "job_success_rate_pct": {
+     "p10": 72.6,
+     "p25": 78.6,
+     "p50": 86.4,
+     "p75": 93.8,
+     "p90": 100.0,
+     "n": 1296
+    },
+    "repeat_client_rate": {
+     "p10": 0.199,
+     "p25": 0.255,
+     "p50": 0.329,
+     "p75": 0.405,
+     "p90": 0.473,
+     "n": 1322
+    },
+    "avg_response_time_hrs": {
+     "p10": 6.9,
+     "p25": 9.4,
+     "p50": 13.1,
+     "p75": 17.3,
+     "p90": 22.2,
+     "n": 1311
+    },
+    "hourly_rate_usd": {
+     "p10": 134.795,
+     "p25": 216.817,
+     "p50": 280.0,
+     "p75": 280.0,
+     "p90": 280.0,
+     "n": 1316
+    },
+    "n": 1403
+   },
+   "data_analytics": {
+    "job_success_rate_pct": {
+     "p10": 72.9,
+     "p25": 78.8,
+     "p50": 86.5,
+     "p75": 93.5,
+     "p90": 99.84,
+     "n": 974
+    },
+    "repeat_client_rate": {
+     "p10": 0.2,
+     "p25": 0.257,
+     "p50": 0.326,
+     "p75": 0.402,
+     "p90": 0.465,
+     "n": 992
+    },
+    "avg_response_time_hrs": {
+     "p10": 7.0,
+     "p25": 9.7,
+     "p50": 13.3,
+     "p75": 17.6,
+     "p90": 23.1,
+     "n": 997
+    },
+    "hourly_rate_usd": {
+     "p10": 140.374,
+     "p25": 216.31,
+     "p50": 280.0,
+     "p75": 280.0,
+     "p90": 280.0,
+     "n": 993
+    },
+    "n": 1063
+   },
+   "design": {
+    "job_success_rate_pct": {
+     "p10": 73.1,
+     "p25": 79.2,
+     "p50": 86.7,
+     "p75": 93.875,
+     "p90": 100.0,
+     "n": 1034
+    },
+    "repeat_client_rate": {
+     "p10": 0.193,
+     "p25": 0.254,
+     "p50": 0.327,
+     "p75": 0.396,
+     "p90": 0.462,
+     "n": 1029
+    },
+    "avg_response_time_hrs": {
+     "p10": 6.9,
+     "p25": 9.4,
+     "p50": 12.9,
+     "p75": 17.4,
+     "p90": 22.38,
+     "n": 1033
+    },
+    "hourly_rate_usd": {
+     "p10": 142.046,
+     "p25": 213.58,
+     "p50": 280.0,
+     "p75": 280.0,
+     "p90": 280.0,
+     "n": 1020
+    },
+    "n": 1104
+   },
+   "marketing": {
+    "job_success_rate_pct": {
+     "p10": 72.9,
+     "p25": 79.6,
+     "p50": 86.8,
+     "p75": 93.5,
+     "p90": 99.6,
+     "n": 1685
+    },
+    "repeat_client_rate": {
+     "p10": 0.203,
+     "p25": 0.26,
+     "p50": 0.328,
+     "p75": 0.398,
+     "p90": 0.46,
+     "n": 1680
+    },
+    "avg_response_time_hrs": {
+     "p10": 6.7,
+     "p25": 9.2,
+     "p50": 12.9,
+     "p75": 17.3,
+     "p90": 22.3,
+     "n": 1664
+    },
+    "hourly_rate_usd": {
+     "p10": 141.665,
+     "p25": 218.525,
+     "p50": 280.0,
+     "p75": 280.0,
+     "p90": 280.0,
+     "n": 1686
+    },
+    "n": 1796
+   },
+   "mobile_dev": {
+    "job_success_rate_pct": {
+     "p10": 72.0,
+     "p25": 78.8,
+     "p50": 86.2,
+     "p75": 93.2,
+     "p90": 100.0,
+     "n": 1201
+    },
+    "repeat_client_rate": {
+     "p10": 0.203,
+     "p25": 0.26,
+     "p50": 0.324,
+     "p75": 0.398,
+     "p90": 0.462,
+     "n": 1218
+    },
+    "avg_response_time_hrs": {
+     "p10": 7.0,
+     "p25": 9.7,
+     "p50": 13.2,
+     "p75": 17.4,
+     "p90": 22.1,
+     "n": 1203
+    },
+    "hourly_rate_usd": {
+     "p10": 133.49,
+     "p25": 213.903,
+     "p50": 280.0,
+     "p75": 280.0,
+     "p90": 280.0,
+     "n": 1200
+    },
+    "n": 1285
+   },
+   "video": {
+    "job_success_rate_pct": {
+     "p10": 72.76,
+     "p25": 79.1,
+     "p50": 86.9,
+     "p75": 93.3,
+     "p90": 99.64,
+     "n": 957
+    },
+    "repeat_client_rate": {
+     "p10": 0.192,
+     "p25": 0.262,
+     "p50": 0.326,
+     "p75": 0.393,
+     "p90": 0.465,
+     "n": 979
+    },
+    "avg_response_time_hrs": {
+     "p10": 6.5,
+     "p25": 9.1,
+     "p50": 12.9,
+     "p75": 17.6,
+     "p90": 22.3,
+     "n": 958
+    },
+    "hourly_rate_usd": {
+     "p10": 130.668,
+     "p25": 208.89,
+     "p50": 280.0,
+     "p75": 280.0,
+     "p90": 280.0,
+     "n": 965
+    },
+    "n": 1035
+   },
+   "web_dev": {
+    "job_success_rate_pct": {
+     "p10": 73.3,
+     "p25": 79.7,
+     "p50": 86.7,
+     "p75": 94.2,
+     "p90": 100.0,
+     "n": 1720
+    },
+    "repeat_client_rate": {
+     "p10": 0.202,
+     "p25": 0.258,
+     "p50": 0.331,
+     "p75": 0.403,
+     "p90": 0.468,
+     "n": 1715
+    },
+    "avg_response_time_hrs": {
+     "p10": 6.8,
+     "p25": 9.4,
+     "p50": 13.0,
+     "p75": 17.5,
+     "p90": 22.64,
+     "n": 1727
+    },
+    "hourly_rate_usd": {
+     "p10": 128.92,
+     "p25": 212.4,
+     "p50": 280.0,
+     "p75": 280.0,
+     "p90": 280.0,
+     "n": 1721
+    },
+    "n": 1859
+   },
+   "writing": {
+    "job_success_rate_pct": {
+     "p10": 73.4,
+     "p25": 79.6,
+     "p50": 86.8,
+     "p75": 93.3,
+     "p90": 100.0,
+     "n": 1238
+    },
+    "repeat_client_rate": {
+     "p10": 0.204,
+     "p25": 0.266,
+     "p50": 0.331,
+     "p75": 0.408,
+     "p90": 0.474,
+     "n": 1246
+    },
+    "avg_response_time_hrs": {
+     "p10": 6.65,
+     "p25": 9.3,
+     "p50": 12.9,
+     "p75": 17.325,
+     "p90": 22.35,
+     "n": 1236
+    },
+    "hourly_rate_usd": {
+     "p10": 137.446,
+     "p25": 206.825,
+     "p50": 280.0,
+     "p75": 280.0,
+     "p90": 280.0,
+     "n": 1235
+    },
+    "n": 1332
+   }
+  },
+  "portfolio_effect": {
+   "success_score_with_portfolio": 83.63,
+   "success_score_without_portfolio": 83.35
+  }
+ },
+ "contracts": {
+  "source_dataset": "asaniczka/freelance-contracts-dataset-1-3-million-entries",
+  "rows": 1292791,
+  "share_open_contracts": 0.3067,
+  "share_hourly": 0.3837,
+  "total_hours": {
+   "p10": 0.0,
+   "p25": 0.0,
+   "p50": 0.0,
+   "p75": 11.667,
+   "p90": 75.833,
+   "n": 1292791
+  },
+  "total_paid_usd_if_paid": {
+   "p10": 21.0,
+   "p25": 55.5,
+   "p50": 191.67,
+   "p75": 670.0,
+   "p90": 2500.0,
+   "n": 1066373
+  },
+  "share_zero_paid": 0.1751
+ }
+}

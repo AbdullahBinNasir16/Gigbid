@@ -15,3 +15,7 @@ build/
 data/processed/
 /data/raw/*
 !/data/raw/README.md
+# Real data: only scripts, aggregates and a small sample are committed (see docs/DATA_CARD.md).
+data/real/*.parquet
+data/heldout/
+# Parquet files over 5 MB are not allowed in git anywhere.

@@ -1,0 +1,81 @@
+# Category taxonomy and sampling rules for the real job pipeline.
+# Used by scripts/data/build_real_jobs.py. Edit here, not in Python.
+# A job gets the category with the highest weighted keyword score:
+#   title hit x3, skill hit x2, description hit x1. Score 0 -> "other".
+
+weights: {title: 3, skill: 2, description: 1}
+
+categories:
+  ai_ml:
+    label: AI & Machine Learning
+    keywords: [machine learning, deep learning, llm, large language model, langchain, rag,
+               retrieval augmented, openai, gpt, chatbot, nlp, natural language, computer vision,
+               pytorch, tensorflow, hugging face, huggingface, fine-tune, fine tuning, neural network,
+               generative ai, ai agent, ai model, prompt engineering, vector database, embeddings,
+               object detection, yolo, scikit-learn, mlops, langgraph, ai engineer]
+  data_analytics:
+    label: Data Science & Analytics
+    keywords: [data analysis, data analyst, data analytics, power bi, tableau, excel dashboard,
+               dashboard, data visualization, sql, data science, statistics, statistical, pandas,
+               looker, bigquery, dbt, etl, data pipeline, data engineer, data cleaning, google sheets,
+               spreadsheet, analytics report, kpi, forecasting, regression, data mining,
+               web scraping, data scraping]
+  web_dev:
+    label: Web Development
+    keywords: [web development, web developer, full stack, full-stack, frontend, front-end, backend,
+               back-end, react, next.js, nextjs, vue, angular, node.js, nodejs, django, flask,
+               fastapi, laravel, php, wordpress, shopify, webflow, html, css, javascript, typescript,
+               website, web app, web application, rest api, api integration, saas, landing page,
+               ruby on rails, mern, bubble.io]
+  mobile_dev:
+    label: Mobile App Development
+    keywords: [mobile app, android, ios, flutter, react native, swift, kotlin, app store,
+               play store, mobile application]
+  design:
+    label: Design & 3D
+    keywords: [3d, 3d modeling, 3d rendering, blender, autocad, sketchup, revit, graphic design,
+               logo, illustration, figma, ui design, ux design, ui/ux, photoshop, illustrator,
+               branding, brand identity, animation, character design]
+  marketing:
+    label: Digital Marketing & SEO
+    keywords: [marketing, seo, search engine optimization, social media, facebook ads, google ads,
+               instagram, tiktok, lead generation, email marketing, ppc, media buyer, influencer,
+               marketing strategy, cold calling, sales, appointment setter, amazon ppc]
+  writing:
+    label: Writing & Content
+    keywords: [content writing, copywriting, copywriter, blog, article, writer, ghostwriter,
+               proofreading, editing, translation, translator, technical writing, script writing]
+  video:
+    label: Video & Audio
+    keywords: [video editing, video editor, youtube, premiere pro, after effects, motion graphics,
+               podcast, voice over, voiceover, audio editing]
+  admin:
+    label: Admin & Virtual Assistance
+    keywords: [virtual assistant, data entry, admin, administrative, customer service, customer support,
+               bookkeeping, accounting, quickbooks, project manager, executive assistant]
+
+# Persona categories (used to keep enough relevant jobs in the stream).
+persona_categories:
+  ai_ml_engineer: [ai_ml]
+  fullstack_developer: [web_dev]
+  data_analyst: [data_analytics]
+
+stream:
+  size: 1500
+  seed: 4016
+  # Persona categories get a floor so each persona has enough relevant jobs.
+  # Remaining slots are split proportionally to the cleaned data, with a minimum per category.
+  persona_floor: 220
+  other_min: 40
+
+skills:
+  min_frequency: 20        # a skill enters the vocabulary if it appears in >= N jobs in the 60k set
+  min_length: 3            # shorter names are too ambiguous to match in free text...
+  short_whitelist: [AI, UI, UX, QA, Go, R]   # ...except these, matched case sensitively
+  max_vocab: 1500
+
+cleaning:
+  min_description_chars: 60
+  fixed_budget_usd: {min: 5, max: 100000}
+  hourly_rate_usd: {min: 3, max: 300}
+  near_duplicate_prefix_chars: 300

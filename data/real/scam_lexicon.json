@@ -1,0 +1,372 @@
+{
+ "source_dataset": "adityammantri/trial-1",
+ "provenance": "real",
+ "warning": "Fraudulent rows in this dataset follow one template ('earn 5000week immediate hiring contact now at ...'). The lexicon is narrow; planted scams in the dev set use a wider, hand written set of patterns.",
+ "documents": {
+  "fraudulent": 10693,
+  "legitimate": 14224,
+  "duplicates_dropped": 19125
+ },
+ "phrases": [
+  {
+   "phrase": "hiring contact",
+   "log_odds": 9.496,
+   "fraud_docs": 10000,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "earn 5000week",
+   "log_odds": 9.496,
+   "fraud_docs": 10000,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "contact now",
+   "log_odds": 9.496,
+   "fraud_docs": 10000,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "5000week immediate",
+   "log_odds": 9.496,
+   "fraud_docs": 10000,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "5000week",
+   "log_odds": 9.496,
+   "fraud_docs": 10000,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "immediate hiring",
+   "log_odds": 8.397,
+   "fraud_docs": 10000,
+   "legit_docs": 2
+  },
+  {
+   "phrase": "now at",
+   "log_odds": 7.299,
+   "fraud_docs": 10000,
+   "legit_docs": 8
+  },
+  {
+   "phrase": "earn",
+   "log_odds": 4.729,
+   "fraud_docs": 10042,
+   "legit_docs": 117
+  },
+  {
+   "phrase": "suddenly",
+   "log_odds": 4.589,
+   "fraud_docs": 73,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "brother",
+   "log_odds": 4.444,
+   "fraud_docs": 63,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "wife",
+   "log_odds": 4.412,
+   "fraud_docs": 61,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "democrat",
+   "log_odds": 4.412,
+   "fraud_docs": 61,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "daughter",
+   "log_odds": 4.363,
+   "fraud_docs": 58,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "republican",
+   "log_odds": 4.328,
+   "fraud_docs": 56,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "mrs",
+   "log_odds": 4.293,
+   "fraud_docs": 54,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "election",
+   "log_odds": 4.293,
+   "fraud_docs": 54,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "democratic",
+   "log_odds": 4.256,
+   "fraud_docs": 52,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "marriage",
+   "log_odds": 4.237,
+   "fraud_docs": 51,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "husband",
+   "log_odds": 4.237,
+   "fraud_docs": 51,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "using below",
+   "log_odds": 3.974,
+   "fraud_docs": 39,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "technology bring",
+   "log_odds": 3.949,
+   "fraud_docs": 38,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "recovery from",
+   "log_odds": 3.949,
+   "fraud_docs": 38,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "petroleum field",
+   "log_odds": 3.949,
+   "fraud_docs": 38,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "maximize recovery",
+   "log_odds": 3.949,
+   "fraud_docs": 38,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "employ approximately",
+   "log_odds": 3.949,
+   "fraud_docs": 38,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "each petroleum",
+   "log_odds": 3.949,
+   "fraud_docs": 38,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "discoveries into",
+   "log_odds": 3.949,
+   "fraud_docs": 38,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "countries go",
+   "log_odds": 3.949,
+   "fraud_docs": 38,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "bring discoveries",
+   "log_odds": 3.949,
+   "fraud_docs": 38,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "about countries",
+   "log_odds": 3.949,
+   "fraud_docs": 38,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "overviewaker solutions",
+   "log_odds": 3.923,
+   "fraud_docs": 37,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "overviewaker",
+   "log_odds": 3.923,
+   "fraud_docs": 37,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "corporate overviewaker",
+   "log_odds": 3.923,
+   "fraud_docs": 37,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "aker solutions",
+   "log_odds": 3.841,
+   "fraud_docs": 34,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "aker",
+   "log_odds": 3.841,
+   "fraud_docs": 34,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "immediate",
+   "log_odds": 3.808,
+   "fraud_docs": 10025,
+   "legit_docs": 295
+  },
+  {
+   "phrase": "within aker",
+   "log_odds": 3.751,
+   "fraud_docs": 31,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "to extra",
+   "log_odds": 3.751,
+   "fraud_docs": 31,
+   "legit_docs": 0
+  },
+  {
+   "phrase": "sing",
+   "log_odds": 3.703,
+   "fraud_docs": 60,
+   "legit_docs": 1
+  },
+  {
+   "phrase": "leg",
+   "log_odds": 3.617,
+   "fraud_docs": 55,
+   "legit_docs": 1
+  },
+  {
+   "phrase": "suffer",
+   "log_odds": 3.599,
+   "fraud_docs": 54,
+   "legit_docs": 1
+  },
+  {
+   "phrase": "soldier",
+   "log_odds": 3.599,
+   "fraud_docs": 54,
+   "legit_docs": 1
+  },
+  {
+   "phrase": "professor",
+   "log_odds": 3.435,
+   "fraud_docs": 69,
+   "legit_docs": 2
+  },
+  {
+   "phrase": "wind",
+   "log_odds": 3.346,
+   "fraud_docs": 63,
+   "legit_docs": 2
+  },
+  {
+   "phrase": "father",
+   "log_odds": 3.346,
+   "fraud_docs": 63,
+   "legit_docs": 2
+  },
+  {
+   "phrase": "discoveries",
+   "log_odds": 3.256,
+   "fraud_docs": 38,
+   "legit_docs": 1
+  },
+  {
+   "phrase": "approximately people",
+   "log_odds": 3.256,
+   "fraud_docs": 38,
+   "legit_docs": 1
+  },
+  {
+   "phrase": "myself",
+   "log_odds": 3.247,
+   "fraud_docs": 57,
+   "legit_docs": 2
+  },
+  {
+   "phrase": "linkurl",
+   "log_odds": 3.23,
+   "fraud_docs": 37,
+   "legit_docs": 1
+  },
+  {
+   "phrase": "below linkurl",
+   "log_odds": 3.203,
+   "fraud_docs": 36,
+   "legit_docs": 1
+  },
+  {
+   "phrase": "vote",
+   "log_odds": 3.176,
+   "fraud_docs": 53,
+   "legit_docs": 2
+  },
+  {
+   "phrase": "hiring",
+   "log_odds": 3.164,
+   "fraud_docs": 10032,
+   "legit_docs": 563
+  },
+  {
+   "phrase": "war",
+   "log_odds": 3.099,
+   "fraud_docs": 49,
+   "legit_docs": 2
+  },
+  {
+   "phrase": "kid",
+   "log_odds": 3.073,
+   "fraud_docs": 64,
+   "legit_docs": 3
+  },
+  {
+   "phrase": "tonight",
+   "log_odds": 3.058,
+   "fraud_docs": 63,
+   "legit_docs": 3
+  },
+  {
+   "phrase": "religious",
+   "log_odds": 3.058,
+   "fraud_docs": 63,
+   "legit_docs": 3
+  },
+  {
+   "phrase": "admit",
+   "log_odds": 3.01,
+   "fraud_docs": 60,
+   "legit_docs": 3
+  },
+  {
+   "phrase": "boy",
+   "log_odds": 2.993,
+   "fraud_docs": 59,
+   "legit_docs": 3
+  },
+  {
+   "phrase": "argue",
+   "log_odds": 2.924,
+   "fraud_docs": 55,
+   "legit_docs": 3
+  },
+  {
+   "phrase": "son",
+   "log_odds": 2.869,
+   "fraud_docs": 52,
+   "legit_docs": 3
+  }
+ ]
+}

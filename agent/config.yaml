@@ -40,19 +40,22 @@ models:
       api_key_env: PAID_MODEL_API_KEY
 
   # Small models for cheap, frequent nodes. Strongest model for writer and critic.
+  # open runs on a laptop CPU (tested machine: 8 cores, 2 GB GPU): qwen2.5 3b and 7b via a local
+  # model server. Pull first: `ollama pull qwen2.5:3b qwen2.5:7b qwen2.5:1.5b`.
+  # For full eval runs use open_hosted (same open weight families, hosted, much faster).
   profiles:
     open:
-      scout:             {provider: ollama, model: "qwen3:4b",  temperature: 0.0, max_tokens: 1024}
-      analyst:           {provider: ollama, model: "qwen3:8b",  temperature: 0.0, max_tokens: 2048}
-      risk:              {provider: ollama, model: "qwen3:4b",  temperature: 0.0, max_tokens: 1024}
-      matcher:           {provider: ollama, model: "qwen3:8b",  temperature: 0.0, max_tokens: 2048}
-      pricing:           {provider: ollama, model: "qwen3:8b",  temperature: 0.0, max_tokens: 1024}
-      writer:            {provider: ollama, model: "qwen3:14b", temperature: 0.4, max_tokens: 2048}
-      verifier:          {provider: ollama, model: "qwen3:8b",  temperature: 0.0, max_tokens: 2048}
-      critic:            {provider: ollama, model: "qwen3:14b", temperature: 0.0, max_tokens: 1536}
-      compliance:        {provider: ollama, model: "qwen3:4b",  temperature: 0.0, max_tokens: 1024}
-      liaison:           {provider: ollama, model: "qwen3:8b",  temperature: 0.3, max_tokens: 1536}
-      intent_classifier: {provider: ollama, model: "qwen3:4b",  temperature: 0.0, max_tokens: 256}
+      scout:             {provider: ollama, model: "qwen2.5:3b", temperature: 0.0, max_tokens: 1024}
+      analyst:           {provider: ollama, model: "qwen2.5:7b", temperature: 0.0, max_tokens: 2048}
+      risk:              {provider: ollama, model: "qwen2.5:3b", temperature: 0.0, max_tokens: 1024}
+      matcher:           {provider: ollama, model: "qwen2.5:7b", temperature: 0.0, max_tokens: 2048}
+      pricing:           {provider: ollama, model: "qwen2.5:7b", temperature: 0.0, max_tokens: 1024}
+      writer:            {provider: ollama, model: "qwen2.5:7b", temperature: 0.4, max_tokens: 2048}
+      verifier:          {provider: ollama, model: "qwen2.5:7b", temperature: 0.0, max_tokens: 2048}
+      critic:            {provider: ollama, model: "qwen2.5:7b", temperature: 0.0, max_tokens: 1536}
+      compliance:        {provider: ollama, model: "qwen2.5:3b", temperature: 0.0, max_tokens: 1024}
+      liaison:           {provider: ollama, model: "qwen2.5:7b", temperature: 0.3, max_tokens: 1536}
+      intent_classifier: {provider: ollama, model: "qwen2.5:3b", temperature: 0.0, max_tokens: 256}
     paid:
       scout:             {provider: paid, model: "gpt-5-mini", temperature: 0.0, max_tokens: 1024}
       analyst:           {provider: paid, model: "gpt-5-mini", temperature: 0.0, max_tokens: 2048}
@@ -82,10 +85,10 @@ models:
   # Used when the primary model of a cheap node fails or times out.
   fallback_models:
     open:
-      scout:             {provider: ollama, model: "qwen3:1.7b", temperature: 0.0, max_tokens: 1024}
-      risk:              {provider: ollama, model: "qwen3:1.7b", temperature: 0.0, max_tokens: 1024}
-      compliance:        {provider: ollama, model: "qwen3:1.7b", temperature: 0.0, max_tokens: 1024}
-      intent_classifier: {provider: ollama, model: "qwen3:1.7b", temperature: 0.0, max_tokens: 256}
+      scout:             {provider: ollama, model: "qwen2.5:1.5b", temperature: 0.0, max_tokens: 1024}
+      risk:              {provider: ollama, model: "qwen2.5:1.5b", temperature: 0.0, max_tokens: 1024}
+      compliance:        {provider: ollama, model: "qwen2.5:1.5b", temperature: 0.0, max_tokens: 1024}
+      intent_classifier: {provider: ollama, model: "qwen2.5:1.5b", temperature: 0.0, max_tokens: 256}
     open_hosted:
       scout:             {provider: hosted_open, model: "gemma2-9b-it", temperature: 0.0, max_tokens: 1024}
       risk:              {provider: hosted_open, model: "gemma2-9b-it", temperature: 0.0, max_tokens: 1024}
