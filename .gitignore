@@ -17,5 +17,7 @@ data/processed/
 !/data/raw/README.md
 # Real data: only scripts, aggregates and a small sample are committed (see docs/DATA_CARD.md).
 data/real/*.parquet
+# Licensed for redistribution with attribution (data/real/NOTICE.md), 800 KB.
+!data/real/job_stream_1500.parquet
 data/heldout/
 # Parquet files over 5 MB are not allowed in git anywhere.
