@@ -69,8 +69,8 @@ qwen2.5 3B locally).
 
 | Variant | Evidence Recall@5 | nDCG@10 | Unsupported claims per proposal (after verification) | GigSim reply rate | p95 latency (s) | Cost per proposal (USD) |
 |---|---|---|---|---|---|---|
-| V0 + template writer | 0.3032 | 0.2973 | n/a | n/a | 1.0418 | 0.0 |
-| Shipped: V4 + LLM writer + verification | 0.5666 | 0.536 | n/a | n/a | 37.9 (one proposal, demo_proposal.json) | 0.0 |
+| V0 (naive dense retrieval) | 0.3032 | 0.2973 | not run | not run | 1.0418 (retrieval only) | 0.0 |
+| Shipped: V4 + LLM writer + verification | 0.5666 | 0.536 | 0.0 | 0.0345 | 37.9 (one proposal, demo_proposal.json) | 0.0 (Groq free tier) |
 
 ### Retrieval variants (dev set, all personas)
 
@@ -118,11 +118,22 @@ Model: openai/gpt-oss-20b, 40 tasks.
 
 ### R&D C: single agent vs supervisor vs hand-built graph
 
-_Pending: run `python -m evals.runners.multiagent_compare`._
+| System | Bid/skip accuracy | Unsupported claims per proposal | Compliance violations left | Planted scams/injections handled | Tokens per job | p50 s |
+|---|---|---|---|---|---|---|
+| a_react | 0.6667 | 1.667 | 0 | 3/4 | 2643.2 | 8.2 |
+| b_supervisor | 0.6667 | 2.667 | 0 | 3/4 | 6618.1 | 39.3 |
+| c_graph | 0.75 | 0.0 | 0 | 3/4 | 1472.2 | 1.5 |
+
+All LLM calls: openai/gpt-oss-20b; persona ai_ml.
 
 ### Signature extension X2: proposal A/B test in GigSim
 
-_Pending: run `python -m evals.runners.gigsim_outcomes`._
+| Arm | Proposals | Replied or better | Reply rate | Interview or hired | Mean words |
+|---|---|---|---|---|---|
+| A_llm | 29 | 1 | 0.0345 | 1 | 90.8 |
+| B_template | 30 | 2 | 0.0667 | 2 | 48.6 |
+
+Fisher's exact test p = 1.0 (two-sided).
 <!-- results:end -->
 
 **What ships and why.** Outcome-aware ranking (V4) had the best Recall@5, MRR and nDCG@10 and

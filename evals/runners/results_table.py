@@ -50,8 +50,8 @@ def decision_table() -> str:
     d = load("decisions.json")
     if not d:
         return ""
-    out = ["| Persona | Bid/skip F1 | Scam precision | Scam recall | Injection detection recall | "
-           "Price in fair band | p95 s per job analysed |", "|---|---|---|---|---|---|---|"]
+    out = [("| Persona | Bid/skip F1 | Scam precision | Scam recall | Injection detection recall | "
+           "Price in fair band | p95 s per job analysed |"), "|---|---|---|---|---|---|---|"]
     for p, r in d["results"].items():
         out.append(f"| {p} | {r['bid']['f1']} | {r['scam']['precision']} | {r['scam']['recall']} "
                    f"| {r['injection_detection']['recall']} | {r['price_in_fair_band']} | "
@@ -64,17 +64,15 @@ def headline_table() -> str:
     v0 = rag["results"]["V0 naive"]["all"] if rag else {}
     v4 = rag["results"]["V4 outcome"]["all"] if rag else {}
     a = (xp or {}).get("summary", {}).get("A_llm", {})
-    b = (xp or {}).get("summary", {}).get("B_template", {})
     lat = demo["seconds"] if demo else "n/a"
-    out = ["| Variant | Evidence Recall@5 | nDCG@10 | Unsupported claims per proposal (after verification) "
-           "| GigSim reply rate | p95 latency (s) | Cost per proposal (USD) |",
+    out = [("| Variant | Evidence Recall@5 | nDCG@10 | Unsupported claims per proposal (after verification) "
+           "| GigSim reply rate | p95 latency (s) | Cost per proposal (USD) |"),
            "|---|---|---|---|---|---|---|",
-           f"| V0 + template writer | {v0.get('recall@5')} | {v0.get('ndcg@10')} | "
-           f"{b.get('unsupported_claim_rate_after_verification', 'n/a')} | {b.get('reply_rate', 'n/a')} "
-           f"| {v0.get('p95_latency_s')} | 0.0 |",
-           f"| Shipped: V4 + LLM writer + verification | {v4.get('recall@5')} | {v4.get('ndcg@10')} "
+           (f"| V0 (naive dense retrieval) | {v0.get('recall@5')} | {v0.get('ndcg@10')} | "
+           f"not run | not run | {v0.get('p95_latency_s')} (retrieval only) | 0.0 |"),
+           (f"| Shipped: V4 + LLM writer + verification | {v4.get('recall@5')} | {v4.get('ndcg@10')} "
            f"| {a.get('unsupported_claim_rate_after_verification', 'n/a')} | {a.get('reply_rate', 'n/a')} "
-           f"| {lat} (one proposal, demo_proposal.json) | 0.0 |"]
+           f"| {lat} (one proposal, demo_proposal.json) | 0.0 (Groq free tier) |")]
     return "\n".join(out)
 
 
@@ -94,8 +92,8 @@ def multiagent_table() -> str:
     d = load("multiagent_compare.json")
     if not d:
         return "_Pending: run `python -m evals.runners.multiagent_compare`._"
-    out = ["| System | Bid/skip accuracy | Unsupported claims per proposal | Compliance violations "
-           "left | Planted scams/injections handled | Tokens per job | p50 s |",
+    out = [("| System | Bid/skip accuracy | Unsupported claims per proposal | Compliance violations "
+           "left | Planted scams/injections handled | Tokens per job | p50 s |"),
            "|---|---|---|---|---|---|---|"]
     for k, v in d["results"].items():
         out.append(f"| {k} | {v['bid_skip_accuracy']} | {v['unsupported_claims_per_proposal']} | "
@@ -118,14 +116,7 @@ def xp_table() -> str:
 
 
 def main() -> None:
-    block = "\n\n".join([
-        "### Headline (B5)", headline_table(),
-        "### Retrieval variants (dev set, all personas)", rag_table(),
-        "### By persona", persona_table(),
-        "### Decisions (dev set, shipped config)", decision_table(),
-        "### R&D A: tool granularity", tools_table(),
-        "### R&D C: single agent vs supervisor vs hand-built graph", multiagent_table(),
-        "### Signature extension X2: proposal A/B test in GigSim", xp_table()])
+    block = f"### Headline (B5)\n\n{headline_table()}\n\n### Retrieval variants (dev set, all personas)\n\n{rag_table()}\n\n### By persona\n\n{persona_table()}\n\n### Decisions (dev set, shipped config)\n\n{decision_table()}\n\n### R&D A: tool granularity\n\n{tools_table()}\n\n### R&D C: single agent vs supervisor vs hand-built graph\n\n{multiagent_table()}\n\n### Signature extension X2: proposal A/B test in GigSim\n\n{xp_table()}"
     readme = ROOT / "README.md"
     text = readme.read_text(encoding="utf-8")
     start, end = "<!-- results:start -->", "<!-- results:end -->"

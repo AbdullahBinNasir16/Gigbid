@@ -139,14 +139,23 @@ the Compliance Guard reads `data/policy_pack/banned_phrases.txt`
 ## 7. Signature extension: X2 proposal experiments
 
 Same GigSim jobs and price, two arms from separate users, one simulated week, Fisher's exact test
-(`docs/EXTENSION.md`, `gigsim_outcomes.json`): the grounded LLM writer got 1 reply of 30 (one
-hire) vs 0 of 30 for the evidence-only template; p = 1.0, not significant. Both rates are far
-below GigSim's own calibration for specific letters, which points to two causes we can see in the
-rows: letters shortened by claim removal (101.7 and 31.8 mean words; GigSim penalises letters
-under 40 words) and quotes raised to the freelancer's floor above the client's range. Honest
-reading: grounding and replies trade off when the portfolio is thin; the next step is to quote
-within the range or skip, and to have the writer fill removed claims with job-specific questions
-rather than leaving the letter short.
+(`docs/EXTENSION.md`). Two runs:
+
+| Run | Arm A (grounded LLM) replied | Arm B (template) replied | Fisher p |
+|---|---|---|---|
+| writer prompt v3 (`gigsim_outcomes_v3prompt.json`) | 1 of 30 | 0 of 30 | 1.0 |
+| writer prompt v4 (`gigsim_outcomes.json`) | 1 of 29 | 2 of 30 | 1.0 |
+
+**Negative result.** Neither difference is significant, and both arms sit near 3–7%, far below
+GigSim's calibration for specific letters (`gigsim_sanity.json`, reply rate 0.325). Diagnosis so
+far: only 5 of 30 quotes exceeded the client's maximum, and letters were long enough (90.8 and
+48.6 mean words in v4; GigSim penalises under 40), so neither explains the gap. Prompt v4 (name the
+client's listed skills, quote a real number, reuse the title) did not move the rate either. The
+remaining suspects are (1) the hidden must-have skills, which a grounded letter names only when
+the portfolio evidences them, and (2) quotes in the upper part of the client's range against a
+hidden ceiling. Claim verification cut unsupported claims per LLM proposal from 0.2069 to 0.0 at
+no measurable cost in replies. This is the main place where better retrieval did not translate
+into a better reply rate.
 
 ## 8. Failure analysis
 
