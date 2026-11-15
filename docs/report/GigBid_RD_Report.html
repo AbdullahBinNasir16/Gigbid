@@ -1,0 +1,391 @@
+<!doctype html><html><head><meta charset="utf-8"><title>GigBid R&amp;D report</title>
+<style>
+@page { size: A4; margin: 16mm 15mm 16mm 15mm; }
+* { box-sizing: border-box; }
+body { font: 10.2pt/1.45 "Segoe UI", Inter, Arial, sans-serif; color: #24141b; margin: 0; }
+h1 { font-size: 17pt; color: #7a1e3a; margin: 0 0 4mm; }
+h2 { font-size: 12.5pt; color: #7a1e3a; margin: 6mm 0 2mm; padding-bottom: 1mm; border-bottom: 1.5px solid #efd3dc; break-after: avoid; }
+h3 { font-size: 11pt; margin: 4mm 0 1.5mm; }
+p { margin: 1.4mm 0 2mm; text-align: justify; }
+ul, ol { margin: 1mm 0 2mm 5mm; padding-left: 3mm; }
+li { margin: .6mm 0; }
+code { font: 8.8pt Consolas, monospace; background: #f8eef2; padding: 0 1mm; border-radius: 2px; }
+table { border-collapse: collapse; width: 100%; margin: 2mm 0 3mm; font-size: 8.9pt; break-inside: avoid; }
+th { background: #7a1e3a; color: #fff; text-align: left; padding: 1.4mm 1.8mm; font-weight: 600; }
+td { padding: 1.2mm 1.8mm; border-bottom: 1px solid #eee3e7; vertical-align: top; }
+tr:nth-child(even) td { background: #fcf7f9; }
+strong { color: #3d0f1f; }
+.cover { height: 262mm; display: flex; flex-direction: column; justify-content: space-between; break-after: page;
+  background: linear-gradient(140deg, #4a0f22 0%, #7a1e3a 55%, #a8325a 100%); color: #fff; padding: 22mm 18mm; margin: -16mm -15mm 0; }
+.cover h1 { color: #fff; font-size: 30pt; margin: 0; letter-spacing: -.5px; }
+.cover .sub { font-size: 14pt; opacity: .9; margin-top: 4mm; }
+.cover .meta { font-size: 11pt; line-height: 1.8; }
+.cover .tag { display: inline-block; padding: 1mm 3mm; border: 1px solid rgba(255,255,255,.5); border-radius: 10px; font-size: 9pt; margin-right: 2mm; }
+.figure { border: 1px solid #eee3e7; border-radius: 6px; padding: 3mm; margin: 2mm 0 3mm; break-inside: avoid; text-align: center; }
+.figure .cap { font-size: 8.5pt; color: #6e5a63; margin-top: 1.5mm; }
+.mermaid svg { max-width: 100%; height: auto; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad: true, theme: "base", themeVariables: {
+  primaryColor: "#f8e9ee", primaryBorderColor: "#7a1e3a", primaryTextColor: "#24141b",
+  lineColor: "#7a1e3a", fontSize: "13px" }});</script>
+</head><body>
+<section class="cover">
+  <div><span class="tag">AI-4016</span><span class="tag">R&amp;D report</span></div>
+  <div>
+    <h1>GigBid</h1>
+    <div class="sub">A multi-agent freelancer copilot: LangGraph agents, advanced RAG,
+    MCP tools and a human approval gate. Engineering design review.</div>
+  </div>
+  <div class="meta">
+    <b>Student name</b><br/>Roll number<br/>FAST School of Computing, FAST-NUCES Islamabad<br/>
+    Instructor: Muhammad Owais Idrees<br/>15 November 2026<br/>
+    Repository: github.com/AbdullahBinNasir16/Gigbid
+  </div>
+</section><p>AI-4016 · GigBid · every number below cites a file in <code>evals/results/</code> or a test.</p>
+<h2>1. Problem and constraints</h2>
+<p>Freelancers lose hours scanning feeds, spend Connects on unwinnable jobs, send generic
+proposals and meet scams. GigBid automates discovery, assessment and drafting; the human makes
+every outbound decision.</p>
+<p><strong>Never automated:</strong> submitting a proposal, sending a message, spending Connects, accepting
+off-platform contact or payment, or claiming experience the portfolio does not show. Each is
+enforced in code: a LangGraph <code>interrupt()</code> before every write, idempotency keys on every write,
+the Compliance Guard, and claim verification.</p>
+<p><strong>Budgets (declared in <code>agent/config.yaml</code>):</strong> p95 20 s per job analysed and 90 s per proposal;
+$0.002 per job analysed and $0.02 per proposal; 30 steps and 12,000 tokens per thread.</p>
+<p><strong>Hardware:</strong> CPU laptop (8 cores, 16 GB RAM, 2 GB GPU). qwen2.5:7b does not fit next to the
+stack and qwen2.5:3b writes at about 1.2 tokens/s (<code>llm_speed.json</code>). The deployed profile
+therefore uses open-weight models on a hosted provider (gpt-oss-120b and gpt-oss-20b on Groq).</p>
+<h2>2. Architecture</h2>
+<div class="figure"><pre class="mermaid">
+graph LR;
+  scout([Scout]) --> intake
+  intake -. Send .-> analyst[Job Analyst] & risk[Risk Assessor] & matcher[Fit Matcher]
+  analyst --> decide{Bid / skip}
+  risk --> decide
+  matcher --> decide
+  decide -- bid --> pricing[Pricing] --> writer[Writer] --> verifier[Claim verifier] --> critic[Critic]
+  critic -. revise, max 2 .-> writer
+  critic --> compliance[Compliance] --> approval{{Human approval<br/>interrupt}} --> submit[(Submit once)]
+</pre><div class="cap">Figure 1. The bid graph (rendered from the same structure as agent/graphs/bid_graph.py).
+Analyst, Risk and Matcher run in parallel; nothing is submitted without the approval interrupt.</div></div>
+
+<p>Two hand-written StateGraphs (<code>agent/graphs/</code>), one marketplace port with three adapters, three
+MCP servers of our own plus two third-party ones, a durable checkpointer and a LangGraph store
+(diagram and node rationale: <code>docs/ARCHITECTURE.md</code>).</p>
+<ul>
+<li><strong>Bid graph:</strong> intake fans out with <code>Send</code> to Job Analyst, Risk Assessor and Fit Matcher
+  (reducers merge their writes) → decide (skip, watch or bid) → pricing → writer → claim verifier →
+  Critic (at most 2 loops) → Compliance → approval interrupt → exactly-once submit.</li>
+<li><strong>Conversation graph:</strong> read → classify intent → slots (Workspace MCP) → draft → compliance →
+  approval interrupt → send and tentative hold.</li>
+<li><strong>State, trace and memory are separate:</strong> typed thread state; an append-only trace plus the MCP
+  audit log; long-term style and outcome memory written only by <code>agent/memory/promotion_rules.py</code>
+  (3 distinct proposals for a style rule; 10 outcomes and a 0.05 reply-rate gap for an outcome
+  lesson).</li>
+<li><strong>Rules first for frequent nodes</strong> (ADR 0001): Scout, Risk, Analyst, Pricing and Compliance are
+  deterministic and configured in YAML; a job is analysed in about 2 s at no model cost
+  (<code>decisions.json</code>).</li>
+</ul>
+<h2>3. R&amp;D question A: tool granularity</h2>
+<p><strong>Hypothesis.</strong> A medium set of well-described tools beats both many narrow tools (the choice is
+harder) and a few multiplexed tools (the right <code>action</code> value is easy to get wrong).</p>
+<p><strong>Setup.</strong> 40 tasks with known correct capabilities and arguments; three tool sets offered to the
+router model (gpt-oss-20b): fine (26 tools), coarse (3 tools with an <code>action</code> argument), best
+(our 11 MCP tools with their rewritten descriptions) (<code>tool_granularity.json</code>).</p>
+<p><strong>Results.</strong> Tool-selection and argument accuracy: best 0.975, fine 0.9, coarse 0.85. Tokens per
+task: 679.9, 736.8 and 418.7 respectively.</p>
+<p><strong>Conclusion.</strong> Supported. Coarse tools are about 40% cheaper per task but misroute portfolio
+searches to the marketplace tool; fine tools split one intent across near-synonyms
+(<code>get_case_study</code> vs <code>search_case_studies</code>). The shipped set keeps one tool per intent, with
+descriptions that say when to use it.</p>
+<h2>4. R&amp;D question B: retrieval, claim verification and what ships</h2>
+<p><strong>Hypothesis (stated before running).</strong> Requirement decomposition plus hybrid search raises
+Recall@5 by at least 10 points over naive dense retrieval (V0).</p>
+<p><strong>Setup.</strong> Personas built to defeat naive RAG: each project described three ways, skills implied
+only in code, and past proposals with outcomes. Project-level relevance against rule-derived gold
+projects, about 60 scored jobs per persona (<code>rag_variants.json</code>, <code>rag_followup.json</code>).</p>
+<p><strong>Results</strong> (all personas):</p>
+<table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>Recall@5</th>
+<th>nDCG@10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V0 naive dense</td>
+<td>0.3032</td>
+<td>0.2973</td>
+</tr>
+<tr>
+<td>V1 decomposition</td>
+<td>0.2756</td>
+<td>0.2928</td>
+</tr>
+<tr>
+<td>V2 hybrid BM25 + dense</td>
+<td>0.347</td>
+<td>0.3471</td>
+</tr>
+<tr>
+<td>V3 cross-encoder rerank</td>
+<td>0.3766</td>
+<td>0.3495</td>
+</tr>
+<tr>
+<td>V4 outcome-aware</td>
+<td>0.5666</td>
+<td>0.536</td>
+</tr>
+<tr>
+<td>V1+V2</td>
+<td>0.3129</td>
+<td>0.3214</td>
+</tr>
+<tr>
+<td>V2+V4</td>
+<td>0.4681</td>
+<td>0.4903</td>
+</tr>
+<tr>
+<td>V8 corrective</td>
+<td>0.0349</td>
+<td>0.032</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The hypothesis is <strong>rejected</strong>: decomposition alone lowered Recall@5, and V1+V2 gained only about
+  1 point. Rule-extracted requirements are short skill tokens, so their queries mostly return the
+  same few projects.</li>
+<li><strong>Ablation</strong> (one component at a time around V4): removing V4 from the four-way composite
+  dropped Recall@5 from 0.366 to 0.3258 (V1+V2+V3); adding V2 to V4 lowered it from 0.5666 to
+  0.4681; adding V1 and V2 gave 0.4734. Every addition to V4 hurt, so V4 alone ships (ADR 0002).
+  The other single-drop runs (V2+V3+V4, V1+V3+V4) were not run and are listed as future work.</li>
+<li><strong>By persona</strong> (README table): V4 raises Recall@5 for every persona, from 0.2021 to 0.4385
+  (ai_ml), 0.2972 to 0.6255 (fullstack) and 0.3957 to 0.6172 (data_analyst).</li>
+<li><strong>V8 negative result:</strong> the cross-encoder grade does not separate relevant from irrelevant
+  evidence (median 0.002 vs 0.0132, <code>v8_calibration.json</code>), so the corrective loop refused almost
+  every job. A domain-tuned grader is needed before a grade gate can work.</li>
+</ul>
+<p><strong>Claim verification.</strong> Each sentence that asserts experience becomes a claim; it is supported
+only if the cross-encoder matches proof evidence and every number and tool in it appears in that
+evidence. Unsupported claims are removed before the Critic. In the GigSim run, unsupported claims
+per LLM proposal fell from 0.2333 before verification to 0.0 after (<code>gigsim_outcomes.json</code>).
+Better retrieval created a new risk: V4 ranks winning past proposals highly and the writer cited
+them as proof. Verification now accepts only CV, case study, repo, code and review evidence.</p>
+<p><strong>Where better retrieval did not translate into replies.</strong> See section 7: Recall@5 nearly doubled
+and unsupported claims fell to zero, yet GigSim reply rates stayed near 3–7% for both writers,
+so retrieval quality was not the bottleneck for replies in this simulator.</p>
+<p><strong>Judge calibration.</strong> I labelled 30 proposals (10 per persona) good or weak with the same rubric
+the judge (gpt-oss-120b) uses: agreement 0.7, Cohen's kappa 0.4255, which is moderate
+(<code>judge_calibration.json</code>). In 8 of the 9 disagreements I said good and the judge said weak: the
+proposals open specifically ("Your post mentions…") but cite a project that does not fit the job
+(a support chatbot offered for a T-shirt logo). I rewarded the opening; the judge penalised the
+mismatch, and on reflection the judge was right in most of them. The one reverse case was a data
+analyst proposal whose cited outlier analysis I judged irrelevant to JSON parsing. Because
+kappa is only moderate, judge scores are used for relative comparisons only, never as an
+absolute quality claim.</p>
+<h2>5. R&amp;D question C: single agent vs prebuilt supervisor vs hand-built graph</h2>
+<p><strong>Setup.</strong> 12 ai_ml dev jobs (bids, skips, planted scams and injections); every LLM call in all
+three systems uses gpt-oss-20b; the same reference evidence scores claims; the same compliance
+check counts violations (<code>multiagent_compare.json</code>, README table).</p>
+<p><strong>Results.</strong></p>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Bid/skip accuracy</th>
+<th>Unsupported claims / proposal</th>
+<th>Violations left</th>
+<th>Scams skipped</th>
+<th>Tokens / job</th>
+<th>p50 s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(a) ReAct, all tools</td>
+<td>0.6667</td>
+<td>1.667</td>
+<td>0</td>
+<td>2/2</td>
+<td>2643.2</td>
+<td>8.2</td>
+</tr>
+<tr>
+<td>(b) prebuilt supervisor</td>
+<td>0.6667</td>
+<td>2.667</td>
+<td>0</td>
+<td>2/2</td>
+<td>6618.1</td>
+<td>39.3</td>
+</tr>
+<tr>
+<td>(c) hand-built graph</td>
+<td>0.75</td>
+<td>0.0</td>
+<td>0</td>
+<td>2/2</td>
+<td>1472.2</td>
+<td>1.5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Discussion.</strong> The graph is the most accurate, the cheapest (about 2.5x fewer tokens than the
+ReAct agent and 4.5x fewer than the supervisor) and the only design with zero unsupported claims,
+because verification is a node, not an instruction. The supervisor failed 4 of 12 jobs with
+tool-call format errors from the 20B model (more hand-offs, more chances to break). The single
+agent was never wrong on scams and is simple; it lost by skipping real bids (3 wrong skips),
+because it judged fit from a few searches instead of a requirement-by-requirement matrix. The
+graph's errors were two "watch" verdicts on gold bids and one bid on a gold skip: threshold
+errors, visible in its trace. We would not ship (a): its approval and grounding rules exist only
+in a prompt, and the sample (12 jobs) is small.</p>
+<h2>6. The change request</h2>
+<p>A policy update (Connects cost doubled, a new banned phrase) is absorbed with <strong>zero code
+changes</strong>: pricing reads the live cost from each GigSim job, the config tiers can be edited, and
+the Compliance Guard reads <code>data/policy_pack/banned_phrases.txt</code>
+(<code>tests/unit/test_change_request.py</code>). Edit size: one line in a data file, or one block of YAML.</p>
+<h2>7. Signature extension: X2 proposal experiments</h2>
+<p>Same GigSim jobs and price, two arms from separate users, one simulated week, Fisher's exact test
+(<code>docs/EXTENSION.md</code>). Two runs:</p>
+<table>
+<thead>
+<tr>
+<th>Run</th>
+<th>Arm A (grounded LLM) replied</th>
+<th>Arm B (template) replied</th>
+<th>Fisher p</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>writer prompt v3 (<code>gigsim_outcomes_v3prompt.json</code>)</td>
+<td>1 of 30</td>
+<td>0 of 30</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>writer prompt v4 (<code>gigsim_outcomes.json</code>)</td>
+<td>1 of 29</td>
+<td>2 of 30</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Negative result.</strong> Neither difference is significant, and both arms sit near 3–7%, far below
+GigSim's calibration for specific letters (<code>gigsim_sanity.json</code>, reply rate 0.325). Diagnosis so
+far: only 5 of 30 quotes exceeded the client's maximum, and letters were long enough (90.8 and
+48.6 mean words in v4; GigSim penalises under 40), so neither explains the gap. Prompt v4 (name the
+client's listed skills, quote a real number, reuse the title) did not move the rate either. The
+remaining suspects are (1) the hidden must-have skills, which a grounded letter names only when
+the portfolio evidences them, and (2) quotes in the upper part of the client's range against a
+hidden ceiling. Claim verification cut unsupported claims per LLM proposal from 0.2069 to 0.0 at
+no measurable cost in replies. This is the main place where better retrieval did not translate
+into a better reply rate.</p>
+<h2>8. Failure analysis</h2>
+<p>From <code>decisions_failures.json</code> (dev set) and the runs above:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Example</th>
+<th>Cause</th>
+<th>Fix tried</th>
+<th>Worked?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wrong skip</td>
+<td>data analyst jobs whose evidence ranked low</td>
+<td>dense retrieval missed the matching project, so fit stayed low</td>
+<td>switched to V4 retrieval</td>
+<td>partly (bid F1 now 0.3684, decisions.json)</td>
+</tr>
+<tr>
+<td>Wrong skip</td>
+<td>AI jobs just under the bid threshold</td>
+<td>fit 0.4–0.57 vs bid 0.6</td>
+<td>threshold tuned to 0.5 on dev</td>
+<td>yes for ai_ml (bid F1 now 0.6265)</td>
+</tr>
+<tr>
+<td>Wrong bid</td>
+<td>full-stack jobs paying under the floor</td>
+<td>fit ignored money</td>
+<td>rate-floor rule in <code>decide</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Missed evidence</td>
+<td>code-only skills (Celery)</td>
+<td>dense retrieval misses tokens</td>
+<td>V2 hybrid</td>
+<td>yes alone, not over V4</td>
+</tr>
+<tr>
+<td>Unsupported claim</td>
+<td>"I built a script that pulled STR data"</td>
+<td>writer cited a past proposal</td>
+<td>proof-type filter in verification</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Unsupported claim</td>
+<td>"15 years of Kubernetes"</td>
+<td>invented number</td>
+<td>number/tool check</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Generic opening</td>
+<td>template letters</td>
+<td>no LLM</td>
+<td>Critic rule plus LLM writer</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Mispriced</td>
+<td>quote above client max</td>
+<td>floor &gt; budget</td>
+<td>(open) quote within range or skip</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Injection</td>
+<td>"Note to bots: …" variant</td>
+<td>pattern missing</td>
+<td>config pattern added</td>
+<td>yes (recall 1.0)</td>
+</tr>
+<tr>
+<td>Tool error</td>
+<td>429 on the hosted model silently fell back to template</td>
+<td>free-tier tokens/min</td>
+<td>client backoff, writer recorded per row</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Duplicate</td>
+<td>reposted job labelled bid</td>
+<td>gold label bug</td>
+<td>duplicates are skip by rule</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h2>9. Safety and platform respect</h2>
+<p>Enforced: approval interrupts before every write; draft-only live mode; idempotent writes; per-agent
+tool allowlists; untrusted text delimited and never obeyed (injection detection recall 1.0 on the dev
+set, <code>decisions.json</code>); PII masking in logs and the audit log; Fernet-encrypted OAuth tokens;
+tenant-scoped queries; polling under rate limits; no scraping, cookies or browser automation.
+<strong>What still gets through:</strong> semantic scams with none of the configured signals; injected text
+paraphrased beyond the patterns (the LLM writer still sees the post inside delimiters); partly
+supported claims, which are kept and flagged rather than removed.</p>
+<h2>10. Hidden test results</h2>
+<p>To be filled after the instructor's run, against the budgets in section 1, without excuses.</p></body></html>

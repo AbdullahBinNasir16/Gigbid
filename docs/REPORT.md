@@ -98,8 +98,9 @@ per LLM proposal fell from 0.2333 before verification to 0.0 after (`gigsim_outc
 Better retrieval created a new risk: V4 ranks winning past proposals highly and the writer cited
 them as proof. Verification now accepts only CV, case study, repo, code and review evidence.
 
-**Where better retrieval did not translate into replies.** See section 7: letters that are fully
-grounded but short, or priced at the user's floor above the client's range, still lose in GigSim.
+**Where better retrieval did not translate into replies.** See section 7: Recall@5 nearly doubled
+and unsupported claims fell to zero, yet GigSim reply rates stayed near 3–7% for both writers,
+so retrieval quality was not the bottleneck for replies in this simulator.
 
 **Judge calibration.** I labelled 30 proposals (10 per persona) good or weak with the same rubric
 the judge (gpt-oss-120b) uses: agreement 0.7, Cohen's kappa 0.4255, which is moderate
