@@ -4,20 +4,48 @@ version = "0.1.0"
 description = "Student scaffold for the AI-4016 GigBid assignment"
 requires-python = ">=3.11"
 dependencies = [
-  "fastapi",
-  "uvicorn[standard]",
-  "pydantic",
-  "pyyaml",
-  "langgraph",
-  "langchain",
-  "langchain-mcp-adapters",
-  "mcp",
-  "httpx",
-  "python-dotenv",
+  "fastapi==0.163.0",
+  "uvicorn[standard]==0.54.0",
+  "pydantic==2.14.3",
+  "pyyaml==6.0.3",
+  "langgraph==1.2.22",
+  "langchain==1.5.0",
+  "langchain-mcp-adapters==0.3.2",
+  "mcp==1.30.0",
+  "httpx==0.28.1",
+  "python-dotenv==1.2.4",
+  "langgraph-checkpoint-postgres==3.2.1",
+  "psycopg[binary]==3.3.9",
+  "sqlalchemy==2.1.8",
+  "redis==5.3.1",
+  "arq==0.28.0",
+  "qdrant-client==1.20.0",
+  "rank-bm25==0.2.2",
+  "sentence-transformers==6.3.0",
+  "scikit-learn==1.9.1",
+  "pandas==3.1.1",
+  "pyarrow==26.0.1",
+  "cryptography==50.0.2",
+  "structlog==26.1.0",
+  "langfuse==5.2.0",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "pytest-asyncio", "ruff", "mypy"]
+dev = ["pytest==9.2.0", "pytest-asyncio==1.5.0", "ruff==0.17.5", "mypy==2.4.1"]
 
 [tool.ruff]
 line-length = 100
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agent*", "rag*", "apps*", "mcp_servers*", "worker*", "evals*"]
+namespaces = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+warn_unused_configs = true

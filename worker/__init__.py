@@ -1,0 +1,1 @@
+"""GigBid background worker package."""
