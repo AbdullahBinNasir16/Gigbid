@@ -1,0 +1,29 @@
+{
+  "hardware": "Intel laptop CPU, 8 cores, 16 GB RAM, MX130 2 GB (CPU inference)",
+  "server": "http://localhost:11434/v1",
+  "models": {
+    "qwen2.5:3b": {
+      "runs": [
+        {
+          "seconds": 157.6,
+          "completion_tokens": 209,
+          "prompt_tokens": 408,
+          "tokens_per_s": 1.33
+        },
+        {
+          "seconds": 121.9,
+          "completion_tokens": 121,
+          "prompt_tokens": 408,
+          "tokens_per_s": 0.99
+        }
+      ],
+      "mean_tokens_per_s": 1.16,
+      "mean_seconds": 139.8
+    },
+    "qwen2.5:7b": {
+      "runs": [],
+      "error": "llama-server out-of-memory at load: could not allocate a 4.29 GB buffer with the API, GigSim and indexes running (2.9 GB RAM free of 16 GB)",
+      "decision": "not usable locally on this laptop; writer/critic run on qwen2.5:3b locally and on hosted open models (open_hosted) for deployment"
+    }
+  }
+}

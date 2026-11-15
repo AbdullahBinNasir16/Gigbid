@@ -22,7 +22,11 @@ export default function RunViewer() {
       if (ev.type === "run_end" || ev.type === "interrupt") loadTrace();
     };
     loadTrace();
-    return () => es.close();
+    const poll = setInterval(loadTrace, 4000); // runs executed by the worker update the trace
+    return () => {
+      es.close();
+      clearInterval(poll);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [thread]);
 

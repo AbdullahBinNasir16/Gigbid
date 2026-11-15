@@ -40,21 +40,22 @@ models:
       api_key_env: PAID_MODEL_API_KEY
 
   # Small models for cheap, frequent nodes. Strongest model for writer and critic.
-  # open runs on a laptop CPU (tested machine: 8 cores, 2 GB GPU): qwen2.5 3b and 7b via a local
-  # model server. Pull first: `ollama pull qwen2.5:3b qwen2.5:7b qwen2.5:1.5b`.
+  # open runs on a laptop CPU (tested: 8 cores, 16 GB RAM, 2 GB GPU). qwen2.5:7b ran out of
+  # memory next to the stack (evals/results/llm_speed.json), so every LLM node uses qwen2.5:3b
+  # locally. Pull first: `ollama pull qwen2.5:3b qwen2.5:1.5b`.
   # For full eval runs use open_hosted (same open weight families, hosted, much faster).
   profiles:
     open:
       scout:             {provider: ollama, model: "qwen2.5:3b", temperature: 0.0, max_tokens: 1024}
-      analyst:           {provider: ollama, model: "qwen2.5:7b", temperature: 0.0, max_tokens: 2048}
+      analyst:           {provider: ollama, model: "qwen2.5:3b", temperature: 0.0, max_tokens: 2048}
       risk:              {provider: ollama, model: "qwen2.5:3b", temperature: 0.0, max_tokens: 1024}
-      matcher:           {provider: ollama, model: "qwen2.5:7b", temperature: 0.0, max_tokens: 2048}
-      pricing:           {provider: ollama, model: "qwen2.5:7b", temperature: 0.0, max_tokens: 1024}
-      writer:            {provider: ollama, model: "qwen2.5:7b", temperature: 0.4, max_tokens: 2048}
-      verifier:          {provider: ollama, model: "qwen2.5:7b", temperature: 0.0, max_tokens: 2048}
-      critic:            {provider: ollama, model: "qwen2.5:7b", temperature: 0.0, max_tokens: 1536}
+      matcher:           {provider: ollama, model: "qwen2.5:3b", temperature: 0.0, max_tokens: 2048}
+      pricing:           {provider: ollama, model: "qwen2.5:3b", temperature: 0.0, max_tokens: 1024}
+      writer:            {provider: ollama, model: "qwen2.5:3b", temperature: 0.4, max_tokens: 2048}
+      verifier:          {provider: ollama, model: "qwen2.5:3b", temperature: 0.0, max_tokens: 2048}
+      critic:            {provider: ollama, model: "qwen2.5:3b", temperature: 0.0, max_tokens: 1536}
       compliance:        {provider: ollama, model: "qwen2.5:3b", temperature: 0.0, max_tokens: 1024}
-      liaison:           {provider: ollama, model: "qwen2.5:7b", temperature: 0.3, max_tokens: 1536}
+      liaison:           {provider: ollama, model: "qwen2.5:3b", temperature: 0.3, max_tokens: 1536}
       intent_classifier: {provider: ollama, model: "qwen2.5:3b", temperature: 0.0, max_tokens: 256}
     paid:
       scout:             {provider: paid, model: "gpt-5-mini", temperature: 0.0, max_tokens: 1024}
@@ -115,8 +116,8 @@ budgets:
   max_steps_per_thread: 30
   max_tokens_per_thread: 12000
   critic_max_loops: 2
-  node_timeout_seconds: 60
-  node_max_retries: 2
+  node_timeout_seconds: 240        # local CPU writer needs ~140 s (evals/results/llm_speed.json)
+  node_max_retries: 1
   p95_latency_seconds:
     job_analysed: 20
     proposal: 90
