@@ -1,5 +1,10 @@
 # Deploying the public URL (free)
 
+**Deployed:** https://gigbid-fbdh.onrender.com (API + web app) and
+https://gigbid-gigsim-77yp.onrender.com (GigSim), from `render.yaml` on Render's free plan.
+The API uses the lite runtime (`EMBED_BACKEND=onnx`, same models through ONNX Runtime).
+The Hugging Face route below remains an alternative.
+
 Target: a Hugging Face Space, Docker SDK, "CPU basic" hardware (free: 2 vCPU, 16 GB RAM).
 One container runs GigSim (localhost only), the API, the in-process MCP servers and the built
 web app. LLM calls go to hosted open-weight models (`MODEL_PROFILE=open_hosted`, Groq).

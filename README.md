@@ -8,7 +8,7 @@ port, against Upwork's official MCP server.
 ![GigBid demo: an injected instruction is flagged and ignored, then an evidence-backed proposal is reviewed](docs/images/demo.gif)
 
 > 3-minute demo video: _add the YouTube/Drive link here_ (recorded with `node apps/web/scripts/record_demo.mjs`)
-> Live app: _add the Hugging Face Space URL here_ · reviewer login is shared privately
+> **Live app: https://gigbid-fbdh.onrender.com** · reviewer login is shared privately · free hosting sleeps when idle, so the first load can take about a minute
 > Public traces: _add three LangSmith/Langfuse share links here (scam skipped, approved
 > proposal with a Critic loop, crash-and-resume)_
 
