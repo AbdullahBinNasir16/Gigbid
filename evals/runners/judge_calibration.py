@@ -31,10 +31,6 @@ RUBRIC = ("Label this freelance proposal 'good' or 'weak'. good = specific openi
 def prepare() -> None:
     rng = random.Random(4016)
     items = []
-    outcomes = ROOT / "evals/results/gigsim_outcomes.json"
-    if outcomes.exists():
-        for r in json.loads(outcomes.read_text(encoding="utf-8"))["rows"][:0]:
-            items.append(r)
     for persona in ("ai_ml", "fullstack", "data_analyst"):
         rows = [json.loads(x) for x in (ROOT / f"data/personas/{persona}/proposals.jsonl")
                 .read_text(encoding="utf-8").splitlines()]

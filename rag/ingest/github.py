@@ -1,6 +1,6 @@
 """Repo ingestion through the official GitHub MCP server (third-party, read-only use).
 
-Run: GITHUB_TOKEN=... python -m rag.ingest.github <owner/repo> [persona]
+Run: GITHUB_TOKEN=${GITHUB_TOKEN} python -m rag.ingest.github <owner/repo> [persona]
 Writes data/personas/<persona>/repos/<repo>/README.md and up to MAX_CODE_FILES source files,
 then drops the cached index so the next search re-embeds (incremental re-index).
 

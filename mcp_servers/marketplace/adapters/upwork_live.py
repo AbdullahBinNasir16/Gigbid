@@ -47,9 +47,9 @@ UPWORK_TOOL_HINTS: dict[str, tuple[str, ...]] = {
 
 
 class UpworkLiveMarketplace(MarketplacePort):
-    def __init__(self, user_id: str = "default", access_token: str | None = None) -> None:
+    def __init__(self, user_id: str = "default", oauth: str | None = None) -> None:
         self.user_id = user_id
-        self.token = access_token or self._load_token()
+        self.token = oauth or self._load_token()
         self._client: Any = None
         self._tools: dict[str, str] = {}
         self._drafts: dict[str, str] = {}

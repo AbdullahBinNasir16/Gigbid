@@ -15,7 +15,7 @@ Langfuse: http://localhost:3001 (traces) · MCP servers: :8101 marketplace, :810
 ```bash
 python -m venv .venv && .venv/Scripts/pip install -e ".[dev,data]"
 uvicorn gigsim.app:app --port 8081                       # terminal 1
-GIGSIM_API_TOKEN=dev-gigsim-token uvicorn apps.api.main:app --port 8000   # terminal 2
+GIGSIM_API_TOKEN=${GIGSIM_API_TOKEN} uvicorn apps.api.main:app --port 8000   # terminal 2
 cd apps/web && npm ci && npm run dev                      # terminal 3 -> http://localhost:5173
 arq worker.main.WorkerSettings                            # optional, needs Redis
 ```

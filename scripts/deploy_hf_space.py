@@ -8,7 +8,7 @@ secrets in the Space settings (never in the repo):
   FERNET_KEY           python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
   REVIEWER_PASSWORD    the reviewer login password you share privately on Classroom
 
-Run: HF_TOKEN=hf_... python -m scripts.deploy_hf_space <hf-username>/<space-name>
+Run: HF_TOKEN=${HF_TOKEN} python -m scripts.deploy_hf_space <hf-username>/<space-name>
 It copies the tracked files (git ls-files, so no .env, raw data or caches) into a temp folder,
 puts the single-container Dockerfile and the Space header at its root, and pushes.
 """
@@ -50,7 +50,8 @@ def main(space: str) -> None:
         shutil.copy2(ROOT / "infra/docker/Dockerfile.deploy", dst / "Dockerfile")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         (dst / "README.md").write_text(HEADER + readme, encoding="utf-8")
-        url = f"https://user:{token}@huggingface.co/spaces/{space}"
+        auth = f"user:{token}"
+        url = f"https://{auth}@huggingface.co/spaces/{space}"
         run = lambda *a: subprocess.run(a, cwd=dst, check=True)
         run("git", "init", "-q", "-b", "main")
         run("git", "lfs", "install", "--local")
