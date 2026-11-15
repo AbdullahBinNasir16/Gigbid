@@ -1,33 +1,33 @@
 /* GigBid design system: tokens first, then layout, then components. */
 :root {
-  --brand-1: #6366f1; --brand-2: #8b5cf6;
-  --bg: #f5f6fb; --surface: #ffffff; --surface-2: #f8f9fd; --border: #e6e8f0; --track: #eceef5;
-  --text: #171a2b; --muted: #5d6478; --muted-2: #98a0b3;
-  --accent: #5b5bd6; --accent-soft: #ececfd; --accent-text: #ffffff;
-  --ok: #16a34a; --ok-soft: #e7f7ee; --warn: #c27c0e; --warn-soft: #fdf4e3;
-  --danger: #dc3545; --danger-soft: #fdecee; --flag-soft: #eff1f7;
-  --shadow-sm: 0 1px 2px rgba(23,26,43,.05);
-  --shadow: 0 1px 2px rgba(23,26,43,.04), 0 8px 24px -12px rgba(23,26,43,.12);
+  --brand-1: #7a1e3a; --brand-2: #a8325a;
+  --bg: #faf6f7; --surface: #ffffff; --surface-2: #fcf8f9; --border: #eee3e7; --track: #f3e9ed;
+  --text: #24141b; --muted: #6e5a63; --muted-2: #a8949d;
+  --accent: #8f2447; --accent-soft: #f8e9ee; --accent-text: #ffffff;
+  --ok: #15803d; --ok-soft: #e8f6ed; --warn: #b8730a; --warn-soft: #fdf3e2;
+  --danger: #c8102e; --danger-soft: #fdebee; --flag-soft: #f5eef1;
+  --shadow-sm: 0 1px 2px rgba(60,20,35,.05);
+  --shadow: 0 1px 2px rgba(60,20,35,.04), 0 8px 24px -12px rgba(60,20,35,.14);
   --radius: 14px; --radius-sm: 10px;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0d0f1a; --surface: #151827; --surface-2: #1a1e30; --border: #262b40; --track: #252a3e;
-    --text: #e8eaf3; --muted: #9aa1b8; --muted-2: #6b7290;
-    --accent: #8b8cf8; --accent-soft: #23244a; --accent-text: #0d0f1a;
+    --bg: #130c0f; --surface: #1c1317; --surface-2: #22171c; --border: #33232a; --track: #2e2027;
+    --text: #f2e8ec; --muted: #b39ea7; --muted-2: #7c6670;
+    --accent: #e88aa8; --accent-soft: #3a1c27; --accent-text: #130c0f;
     --ok: #4ade80; --ok-soft: #14301f; --warn: #f5b84a; --warn-soft: #33270f;
-    --danger: #ff7a85; --danger-soft: #3a1820; --flag-soft: #1f2336;
+    --danger: #ff7a8a; --danger-soft: #3d1820; --flag-soft: #2a1d23;
     --shadow-sm: none; --shadow: 0 1px 0 rgba(255,255,255,.03), 0 12px 30px -16px rgba(0,0,0,.6);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0d0f1a; --surface: #151827; --surface-2: #1a1e30; --border: #262b40; --track: #252a3e;
-  --text: #e8eaf3; --muted: #9aa1b8; --muted-2: #6b7290;
-  --accent: #8b8cf8; --accent-soft: #23244a; --accent-text: #0d0f1a;
-  --ok: #4ade80; --ok-soft: #14301f; --warn: #f5b84a; --warn-soft: #33270f;
-  --danger: #ff7a85; --danger-soft: #3a1820; --flag-soft: #1f2336; color-scheme: dark;
+  --bg: #130c0f; --surface: #1c1317; --surface-2: #22171c; --border: #33232a; --track: #2e2027;
+    --text: #f2e8ec; --muted: #b39ea7; --muted-2: #7c6670;
+    --accent: #e88aa8; --accent-soft: #3a1c27; --accent-text: #130c0f;
+    --ok: #4ade80; --ok-soft: #14301f; --warn: #f5b84a; --warn-soft: #33270f;
+    --danger: #ff7a8a; --danger-soft: #3d1820; --flag-soft: #2a1d23; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -146,7 +146,7 @@ button:disabled { opacity: .6; cursor: progress; }
 /* ---------- inbox ---------- */
 .cards { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; }
 .job { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start; border-left: 4px solid var(--border); transition: box-shadow .15s, transform .15s; }
-.job:hover { transform: translateY(-1px); box-shadow: 0 2px 4px rgba(23,26,43,.05), 0 14px 30px -16px rgba(23,26,43,.25); }
+.job:hover { transform: translateY(-1px); box-shadow: 0 2px 4px rgba(60,20,35,.05), 0 14px 30px -16px rgba(60,20,35,.28); }
 .job.bid { border-left-color: var(--ok); } .job.watch { border-left-color: var(--warn); } .job.skip { border-left-color: var(--danger); opacity: .92; }
 .job-body { min-width: 0; }
 .job .title { font-weight: 650; color: var(--text); font-size: 1.02rem; }
@@ -206,7 +206,7 @@ button:disabled { opacity: .6; cursor: progress; }
 .auth { min-height: 100vh; display: grid; grid-template-columns: 1.05fr 1fr; }
 .auth-hero {
   position: relative; overflow: hidden; color: #fff; padding: 2.4rem 3rem; display: flex; flex-direction: column; gap: 1.4rem; justify-content: center;
-  background: radial-gradient(1200px 600px at -10% -20%, #a78bfa 0%, transparent 55%), linear-gradient(140deg, #4f46e5 0%, #7c3aed 55%, #9333ea 100%);
+  background: radial-gradient(1100px 600px at -10% -20%, #c2557a 0%, transparent 55%), linear-gradient(140deg, #4a0f22 0%, #7a1e3a 50%, #a8325a 100%);
 }
 .auth-hero h2 { font-size: 2rem; line-height: 1.15; max-width: 22ch; font-weight: 750; letter-spacing: -.02em; }
 .hero-art { width: 100%; max-width: 440px; }

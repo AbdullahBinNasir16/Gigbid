@@ -11,19 +11,19 @@ function HeroArt() {
       <rect x="38" y="44" width="110" height="10" rx="5" fill="rgba(255,255,255,.85)" />
       <rect x="38" y="64" width="160" height="8" rx="4" fill="rgba(255,255,255,.35)" />
       <rect x="38" y="80" width="140" height="8" rx="4" fill="rgba(255,255,255,.35)" />
-      <rect x="38" y="104" width="64" height="22" rx="11" fill="rgba(52,211,153,.9)" />
+      <rect x="38" y="104" width="64" height="22" rx="11" fill="rgba(134,239,172,.95)" />
       <text x="70" y="119" textAnchor="middle" fontSize="11" fontWeight="700" fill="#053b2b">BID</text>
-      <rect x="110" y="104" width="78" height="22" rx="11" fill="rgba(255,255,255,.18)" />
-      <text x="149" y="119" textAnchor="middle" fontSize="11" fill="#fff">fit 82%</text>
+      <rect x="108" y="104" width="46" height="22" rx="11" fill="rgba(255,255,255,.18)" />
+      <text x="131" y="119" textAnchor="middle" fontSize="11" fill="#fff">82%</text>
       <rect x="38" y="140" width="120" height="8" rx="4" fill="rgba(255,255,255,.25)" />
       <rect x="160" y="96" width="180" height="112" rx="16" fill="#fff" />
-      <circle cx="186" cy="122" r="12" fill="#eef2ff" />
-      <path d="m180 122 4 4 8-8" stroke="#4f46e5" strokeWidth="2.6" fill="none" strokeLinecap="round" />
-      <rect x="206" y="114" width="110" height="8" rx="4" fill="#c7d2fe" />
-      <rect x="206" y="128" width="80" height="7" rx="3.5" fill="#e0e7ff" />
+      <circle cx="186" cy="122" r="12" fill="#f8e9ee" />
+      <path d="m180 122 4 4 8-8" stroke="#8f2447" strokeWidth="2.6" fill="none" strokeLinecap="round" />
+      <rect x="206" y="114" width="110" height="8" rx="4" fill="#efcbd7" />
+      <rect x="206" y="128" width="80" height="7" rx="3.5" fill="#f6e1e8" />
       <rect x="178" y="150" width="144" height="7" rx="3.5" fill="#e5e7eb" />
       <rect x="178" y="164" width="120" height="7" rx="3.5" fill="#e5e7eb" />
-      <rect x="248" y="182" width="74" height="16" rx="8" fill="#4f46e5" />
+      <rect x="248" y="182" width="74" height="16" rx="8" fill="#8f2447" />
       <text x="285" y="193.5" textAnchor="middle" fontSize="9" fontWeight="700" fill="#fff">APPROVE</text>
       <circle cx="318" cy="40" r="22" fill="rgba(255,255,255,.12)" />
       <circle cx="318" cy="40" r="9" fill="rgba(255,255,255,.35)" />
