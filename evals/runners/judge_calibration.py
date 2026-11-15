@@ -4,6 +4,7 @@ and we report Cohen's kappa. Human labels must come from the student, never from
 Step 1  python -m evals.runners.judge_calibration prepare
         -> evals/datasets/judge_items.jsonl (30 proposals: GigSim run drafts + past proposals)
            evals/datasets/judge_labels.csv  (fill the `human` column: good | weak)
+Step 1b python -m evals.runners.judge_calibration label   (keyboard labelling, g / w)
 Step 2  MODEL_PROFILE=open_hosted python -m evals.runners.judge_calibration judge
         -> adds the judge's label per item (evals/datasets/judge_items.jsonl)
 Step 3  python -m evals.runners.judge_calibration kappa
@@ -47,6 +48,31 @@ def prepare() -> None:
     print(f"wrote {ITEMS} and {LABELS}; fill the human column with good or weak")
 
 
+def label() -> None:
+    """Fast keyboard labelling in the terminal: g = good, w = weak, b = back, q = save and quit."""
+    with LABELS.open(encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    i = next((k for k, r in enumerate(rows) if not r["human"].strip()), len(rows))
+    print(__doc__.split("Rubric")[1].strip())
+    while i < len(rows):
+        r = rows[i]
+        print(f"\n[{i + 1}/{len(rows)}] Job: {r['job']}\n\n{r['text']}\n")
+        k = input("good (g) / weak (w) / back (b) / quit (q): ").strip().lower()[:1]
+        if k == "q":
+            break
+        if k == "b":
+            i = max(0, i - 1)
+            continue
+        if k in ("g", "w"):
+            r["human"] = "good" if k == "g" else "weak"
+            i += 1
+    with LABELS.open("w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=["id", "job", "text", "human"])
+        w.writeheader()
+        w.writerows(rows)
+    print(f"saved: {sum(bool(r['human']) for r in rows)}/{len(rows)} labelled")
+
+
 def judge() -> None:
     from langchain_core.messages import HumanMessage, SystemMessage
 
@@ -86,5 +112,5 @@ def kappa() -> None:
 
 
 if __name__ == "__main__":
-    {"prepare": prepare, "judge": judge, "kappa": kappa}[sys.argv[1] if len(sys.argv) > 1
+    {"prepare": prepare, "label": label, "judge": judge, "kappa": kappa}[sys.argv[1] if len(sys.argv) > 1
                                                        else "prepare"]()
