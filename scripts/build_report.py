@@ -18,73 +18,52 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs" / "report"
 
 CSS = """
-@page { size: A4; margin: 16mm 15mm 16mm 15mm; }
+@page { size: A4; margin: 20mm 20mm 20mm 20mm; }
 * { box-sizing: border-box; }
-body { font: 10.2pt/1.45 "Segoe UI", Inter, Arial, sans-serif; color: #24141b; margin: 0; }
-h1 { font-size: 17pt; color: #7a1e3a; margin: 0 0 4mm; }
-h2 { font-size: 12.5pt; color: #7a1e3a; margin: 6mm 0 2mm; padding-bottom: 1mm; border-bottom: 1.5px solid #efd3dc; break-after: avoid; }
-h3 { font-size: 11pt; margin: 4mm 0 1.5mm; }
+body { font: 11.5pt/1.4 "EB Garamond", Garamond, "Times New Roman", serif; color: #000; margin: 0; }
+h1 { font-size: 18pt; font-weight: 600; margin: 0 0 4mm; }
+h2 { font-size: 13.5pt; font-weight: 600; margin: 6mm 0 2mm; break-after: avoid; }
+h3 { font-size: 12pt; font-weight: 600; margin: 4mm 0 1.5mm; }
 p { margin: 1.4mm 0 2mm; text-align: justify; }
 ul, ol { margin: 1mm 0 2mm 5mm; padding-left: 3mm; }
-li { margin: .6mm 0; }
-code { font: 8.8pt Consolas, monospace; background: #f8eef2; padding: 0 1mm; border-radius: 2px; }
-table { border-collapse: collapse; width: 100%; margin: 2mm 0 3mm; font-size: 8.9pt; break-inside: avoid; }
-th { background: #7a1e3a; color: #fff; text-align: left; padding: 1.4mm 1.8mm; font-weight: 600; }
-td { padding: 1.2mm 1.8mm; border-bottom: 1px solid #eee3e7; vertical-align: top; }
-tr:nth-child(even) td { background: #fcf7f9; }
-strong { color: #3d0f1f; }
-.cover { height: 262mm; display: flex; flex-direction: column; justify-content: space-between; break-after: page;
-  background: linear-gradient(140deg, #4a0f22 0%, #7a1e3a 55%, #a8325a 100%); color: #fff; padding: 22mm 18mm; margin: -16mm -15mm 0; }
-.cover h1 { color: #fff; font-size: 30pt; margin: 0; letter-spacing: -.5px; }
-.cover .sub { font-size: 14pt; opacity: .9; margin-top: 4mm; }
-.cover .meta { font-size: 11pt; line-height: 1.8; }
-.cover .tag { display: inline-block; padding: 1mm 3mm; border: 1px solid rgba(255,255,255,.5); border-radius: 10px; font-size: 9pt; margin-right: 2mm; }
-.figure { border: 1px solid #eee3e7; border-radius: 6px; padding: 3mm; margin: 2mm 0 3mm; break-inside: avoid; text-align: center; }
-.figure .cap { font-size: 8.5pt; color: #6e5a63; margin-top: 1.5mm; }
-.mermaid svg { max-width: 100%; height: auto; }
+li { margin: .5mm 0; }
+code { font: 9.5pt Consolas, "Courier New", monospace; }
+table { border-collapse: collapse; width: 100%; margin: 2mm 0 3mm; font-size: 10pt; break-inside: avoid; }
+th, td { border: 0.6pt solid #000; padding: 1.2mm 1.8mm; text-align: left; vertical-align: top; }
+th { font-weight: 600; }
+strong { font-weight: 600; }
+.cover { height: 250mm; display: flex; flex-direction: column; justify-content: center; text-align: center; break-after: page; }
+.cover h1 { font-size: 26pt; margin: 0 0 4mm; }
+.cover .sub { font-size: 14pt; margin-bottom: 18mm; }
+.cover .meta { font-size: 13pt; line-height: 1.7; }
+.figure { margin: 2mm 0 3mm; break-inside: avoid; text-align: center; }
+.figure .cap { font-size: 10pt; margin-top: 1.5mm; }
 """
 
 DIAGRAM = """
-<div class="figure"><pre class="mermaid">
-graph LR;
-  scout([Scout]) --> intake
-  intake -. Send .-> analyst[Job Analyst] & risk[Risk Assessor] & matcher[Fit Matcher]
-  analyst --> decide{Bid / skip}
-  risk --> decide
-  matcher --> decide
-  decide -- bid --> pricing[Pricing] --> writer[Writer] --> verifier[Claim verifier] --> critic[Critic]
-  critic -. revise, max 2 .-> writer
-  critic --> compliance[Compliance] --> approval{{Human approval<br/>interrupt}} --> submit[(Submit once)]
-</pre><div class="cap">Figure 1. The bid graph (rendered from the same structure as agent/graphs/bid_graph.py).
-Analyst, Risk and Matcher run in parallel; nothing is submitted without the approval interrupt.</div></div>
+<div class="figure"><svg viewBox="0 0 880 158" width="100%" font-family="EB Garamond, Garamond, serif" font-size="12"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#000"/></marker></defs><line x1="58" y1="76" x2="78" y2="76" stroke="#000" marker-end="url(#a)" /><line x1="132" y1="76" x2="160" y2="28" stroke="#000" marker-end="url(#a)" stroke-dasharray="3 2"/><line x1="132" y1="76" x2="160" y2="76" stroke="#000" marker-end="url(#a)" stroke-dasharray="3 2"/><line x1="132" y1="76" x2="160" y2="124" stroke="#000" marker-end="url(#a)" stroke-dasharray="3 2"/><line x1="248" y1="28" x2="286" y2="66" stroke="#000" marker-end="url(#a)" /><line x1="248" y1="76" x2="270" y2="76" stroke="#000" marker-end="url(#a)" /><line x1="248" y1="124" x2="286" y2="86" stroke="#000" marker-end="url(#a)" /><line x1="340" y1="76" x2="360" y2="76" stroke="#000" marker-end="url(#a)" /><line x1="418" y1="76" x2="430" y2="76" stroke="#000" marker-end="url(#a)" /><line x1="488" y1="76" x2="500" y2="76" stroke="#000" marker-end="url(#a)" /><line x1="570" y1="76" x2="590" y2="76" stroke="#000" marker-end="url(#a)" /><line x1="640" y1="76" x2="650" y2="76" stroke="#000" marker-end="url(#a)" /><line x1="722" y1="76" x2="730" y2="76" stroke="#000" marker-end="url(#a)" /><line x1="796" y1="76" x2="810" y2="76" stroke="#000" marker-end="url(#a)" /><rect x="4" y="62" width="54" height="28" rx="14" fill="#fff" stroke="#000"/><text x="31.0" y="80" text-anchor="middle">Scout</text><rect x="78" y="62" width="54" height="28" rx="2" fill="#fff" stroke="#000"/><text x="105.0" y="80" text-anchor="middle">Intake</text><rect x="160" y="14" width="88" height="28" rx="2" fill="#fff" stroke="#000"/><text x="204.0" y="32" text-anchor="middle">Job Analyst</text><rect x="160" y="62" width="88" height="28" rx="2" fill="#fff" stroke="#000"/><text x="204.0" y="80" text-anchor="middle">Risk Assessor</text><rect x="160" y="110" width="88" height="28" rx="2" fill="#fff" stroke="#000"/><text x="204.0" y="128" text-anchor="middle">Fit Matcher</text><polygon points="305.0,54 340,76 305.0,98 270,76" fill="#fff" stroke="#000"/><text x="305.0" y="80" text-anchor="middle">Bid/skip</text><rect x="360" y="62" width="58" height="28" rx="2" fill="#fff" stroke="#000"/><text x="389.0" y="80" text-anchor="middle">Pricing</text><rect x="430" y="62" width="58" height="28" rx="2" fill="#fff" stroke="#000"/><text x="459.0" y="80" text-anchor="middle">Writer</text><rect x="500" y="62" width="70" height="28" rx="2" fill="#fff" stroke="#000"/><text x="535.0" y="80" text-anchor="middle">Verifier</text><rect x="590" y="62" width="50" height="28" rx="2" fill="#fff" stroke="#000"/><text x="615.0" y="80" text-anchor="middle">Critic</text><rect x="650" y="62" width="72" height="28" rx="2" fill="#fff" stroke="#000"/><text x="686.0" y="80" text-anchor="middle">Compliance</text><rect x="730" y="62" width="66" height="28" rx="2" fill="#fff" stroke="#000"/><text x="763.0" y="80" text-anchor="middle">Approval</text><rect x="810" y="62" width="62" height="28" rx="14" fill="#fff" stroke="#000"/><text x="841.0" y="80" text-anchor="middle">Submit</text><path d="M615 90 C615 118, 459 118, 459 92" fill="none" stroke="#000" stroke-dasharray="3 2" marker-end="url(#a)"/><text x="537" y="126" text-anchor="middle" font-size="10">revise, at most 2</text><text x="146" y="150" text-anchor="middle" font-size="10">parallel (Send)</text><text x="763" y="108" text-anchor="middle" font-size="10">interrupt()</text></svg><div class="cap">Figure 1. The bid graph (agent/graphs/bid_graph.py). Job Analyst, Risk Assessor and Fit Matcher run in parallel; nothing is submitted without the human approval interrupt.</div></div>
 """
 
 
-def build(name: str, roll: str) -> Path:
+def build(name: str, roll: str, section: str) -> Path:
     md = (ROOT / "docs" / "REPORT.md").read_text(encoding="utf-8")
     md = re.sub(r"^# .*\n", "", md, count=1)  # title goes on the cover
     body = markdown.markdown(md, extensions=["tables", "sane_lists"])
     body = body.replace("<h2>2. Architecture</h2>", "<h2>2. Architecture</h2>" + DIAGRAM, 1)
     cover = f"""
 <section class="cover">
-  <div><span class="tag">AI-4016</span><span class="tag">R&amp;D report</span></div>
-  <div>
-    <h1>GigBid</h1>
-    <div class="sub">A multi-agent freelancer copilot: LangGraph agents, advanced RAG,
-    MCP tools and a human approval gate. Engineering design review.</div>
-  </div>
+  <h1>GigBid: A Multi-Agent Freelancer Copilot</h1>
+  <div class="sub">R&amp;D Report, AI-4016</div>
   <div class="meta">
-    <b>{name}</b><br/>{roll}<br/>FAST School of Computing, FAST-NUCES Islamabad<br/>
-    Instructor: Muhammad Owais Idrees<br/>{date.today():%d %B %Y}<br/>
-    Repository: github.com/AbdullahBinNasir16/Gigbid
+    {name}<br/>{roll} · {section}<br/><br/>
+    FAST School of Computing, FAST-NUCES Islamabad<br/>
+    Instructor: Muhammad Owais Idrees<br/>{date.today():%d %B %Y}<br/><br/>
+    github.com/AbdullahBinNasir16/Gigbid
   </div>
 </section>"""
     html = f"""<!doctype html><html><head><meta charset="utf-8"><title>GigBid R&amp;D report</title>
 <style>{CSS}</style>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({{startOnLoad: true, theme: "base", themeVariables: {{
-  primaryColor: "#f8e9ee", primaryBorderColor: "#7a1e3a", primaryTextColor: "#24141b",
-  lineColor: "#7a1e3a", fontSize: "13px" }}}});</script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
 </head><body>{cover}{body}</body></html>"""
     OUT.mkdir(parents=True, exist_ok=True)
     path = OUT / "GigBid_RD_Report.html"
@@ -94,10 +73,11 @@ def build(name: str, roll: str) -> Path:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--name", default="Student name")
-    ap.add_argument("--roll", default="Roll number")
+    ap.add_argument("--name", default="Abdullah Bin Nasir")
+    ap.add_argument("--roll", default="23-0803")
+    ap.add_argument("--section", default="CS-A")
     a = ap.parse_args()
-    html = build(a.name, a.roll)
+    html = build(a.name, a.roll, a.section)
     pdf = html.with_suffix(".pdf")
     subprocess.run(["node", "scripts/html_to_pdf.mjs", str(html), str(pdf)],
                    cwd=ROOT / "apps" / "web", check=True)

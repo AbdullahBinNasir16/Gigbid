@@ -9,5 +9,5 @@ await page.goto(pathToFileURL(src).href, { waitUntil: "networkidle" });
 await page.waitForFunction(() => !document.querySelector("pre.mermaid:not([data-processed])"), null, { timeout: 15000 }).catch(() => {});
 await page.pdf({ path: out, format: "A4", printBackground: true, preferCSSPageSize: true,
   displayHeaderFooter: true, headerTemplate: "<span></span>",
-  footerTemplate: '<div style="font-size:8px;width:100%;text-align:center;color:#8a7680">GigBid · AI-4016 R&D report · <span class="pageNumber"></span> / <span class="totalPages"></span></div>' });
+  footerTemplate: '<div style="font-size:9px;width:100%;text-align:center;color:#000;font-family:Garamond,serif"><span class="pageNumber"></span></div>' });
 await browser.close();
