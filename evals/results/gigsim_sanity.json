@@ -1,0 +1,27 @@
+{
+ "generated_by": "scripts/gigsim_sanity.py",
+ "generated_at": "2026-11-15T08:47:21+00:00",
+ "seed": 4016,
+ "decision_mode": "rule",
+ "note": "Same jobs, same simulated clients, one proposal per job per style. Price = posted budget. Relative comparison inside GigSim only.",
+ "results": {
+  "specific": {
+   "n": 400,
+   "viewed_rate": 0.8825,
+   "reply_rate": 0.325,
+   "hire_rate": 0.0625
+  },
+  "generic": {
+   "n": 400,
+   "viewed_rate": 0.405,
+   "reply_rate": 0.0325,
+   "hire_rate": 0.0
+  },
+  "generic_padded": {
+   "n": 400,
+   "viewed_rate": 0.3775,
+   "reply_rate": 0.0325,
+   "hire_rate": 0.0
+  }
+ }
+}

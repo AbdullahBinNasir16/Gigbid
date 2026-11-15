@@ -1,0 +1,93 @@
+# GigSim configuration. Student built simulator, see gigsim/README.md.
+# Secrets (API token, admin token, LLM key) come from env, never from this file.
+
+seed: 4016
+
+data:
+  # Searched in order; the first existing file is used. Paths are relative to GIGSIM_DATA_DIR
+  # (default: <repo>/data).
+  job_stream: [real/job_stream_1500.parquet, real/job_stream_sample.json]
+  outcome_priors: real/outcome_priors.json
+  extra_job_files: []          # e.g. ["../evals/datasets/dev_jobs_gigsim.json"]; JSON lists of jobs
+  history_days: 30             # historical jobs are spread over the last N simulated days
+
+clock:
+  speed: 60                    # simulated seconds per real second (1 real second = 1 sim minute)
+
+connects:
+  starting_balance: 120
+  weekly_budget: 80
+  cost_per_proposal: 6         # flat default; tiers below override when they match
+  cost_by_budget_usd:
+    - {min_budget: 0,    cost: 4}
+    - {min_budget: 500,  cost: 6}
+    - {min_budget: 2000, cost: 10}
+
+policy:
+  banned_phrases: []           # submit is rejected (422) if the cover letter contains one
+  max_cover_letter_words: 600
+
+clients:
+  count: 600                   # clients in the population; several jobs may share one client
+  scam_client_share: 0.03
+  dislike_generic_share: 0.7
+  must_have_skills: [1, 3]     # hidden must-have skills per job, drawn from the job's own skills
+
+decision:
+  mode: rule                   # rule | llm  (rule is used in tests and CI)
+  reply_scale: 0.8             # base reply = reply_scale / applicants_mid (from outcome priors)
+  default_applicants_mid: 17.5
+  max_reply_probability: 0.8
+  weights:                     # multiplier on base reply probability = exp(sum of terms)
+    skill_coverage: 1.2        # share of hidden must-have skills named in the letter
+    evidence: 0.6              # cites concrete past work (verb + number or named project)
+    generic_opening: -1.4      # applied only if the client dislikes generic openings
+    mirrors_problem: 0.4       # opening reuses words from the job title
+    over_budget: -1.5          # scaled by how far the price is above the hidden ceiling
+    too_long: -1.0             # over long_letter_words; grows with extra length (up to x2)
+    too_short: -0.6            # under short_letter_words (kept smaller than too_long so padding never pays)
+  long_letter_words: 320
+  short_letter_words: 40
+  generic_openings:
+    - dear hiring manager
+    - dear sir
+    - hello sir
+    - to whom it may concern
+    - i am writing to
+    - i am interested in your job
+    - i have read your job
+    - i have gone through your job
+    - i am the perfect
+    - i am a passionate
+    - i can do this
+    - i am an expert in
+  evidence_verbs: [built, shipped, delivered, led, designed, deployed, migrated, automated, reduced, increased, launched, created]
+  timing_minutes:              # when outcomes become visible after submit
+    viewed: [10, 240]
+    replied: [60, 1440]
+    interview: [1440, 2880]
+    hired: [2880, 5760]
+    lost: [7200, 7200]
+  interview_given_reply: [0.35, 0.3]   # base + bonus * skill_coverage
+  hire_given_interview: 0.5
+  llm:
+    base_url_env: GIGSIM_LLM_BASE_URL
+    api_key_env: GIGSIM_LLM_API_KEY
+    model_env: GIGSIM_LLM_MODEL
+    timeout_seconds: 30
+
+limits:
+  requests_per_minute: 120     # token bucket per user; 429 with Retry-After when empty
+  burst: 30
+
+chaos:
+  error_rate: 0.0              # share of requests answered with 503 (set >0 to test retries)
+
+live:
+  enabled: false               # true in docker compose for demos
+  interval_seconds: 30
+  mix:                         # what a live tick adds
+    fresh: 0.6                 # a historical job re-posted now
+    duplicate: 0.15            # near copy of a recent job
+    scam: 0.15                 # scam pattern
+    injection: 0.10            # job text with an injected instruction

@@ -112,11 +112,34 @@ services:
   #     context: ..
   #     dockerfile: infra/docker/Dockerfile.mcp_workspace
 
-  # TODO Phase 0B: GigSim does not exist yet. Add its service and Dockerfile then.
-  # gigsim:
-  #   build:
-  #     context: ../gigsim
-  #     dockerfile: Dockerfile
+  # Student built marketplace simulator (Phase 0B). Agents never call it directly:
+  # only mcp_servers/marketplace/adapters/gigsim.py talks to it over HTTP.
+  gigsim:
+    build:
+      context: ..
+      dockerfile: infra/docker/Dockerfile.gigsim
+    restart: unless-stopped
+    environment:
+      GIGSIM_API_TOKEN: ${GIGSIM_API_TOKEN:?Set GIGSIM_API_TOKEN in .env}
+      GIGSIM_ADMIN_TOKEN: ${GIGSIM_ADMIN_TOKEN:?Set GIGSIM_ADMIN_TOKEN in .env}
+      GIGSIM_LLM_BASE_URL: ${GIGSIM_LLM_BASE_URL:-}
+      GIGSIM_LLM_API_KEY: ${GIGSIM_LLM_API_KEY:-}
+      GIGSIM_LLM_MODEL: ${GIGSIM_LLM_MODEL:-}
+    volumes:
+      - ../data:/app/data:ro
+      - gigsim_state:/state
+    ports:
+      - "127.0.0.1:8081:8081"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "from urllib.request import urlopen; urlopen('http://127.0.0.1:8081/health', timeout=2).read()"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
 
   postgres:
     image: postgres:17-alpine
@@ -277,3 +300,4 @@ volumes:
   clickhouse_data:
   clickhouse_logs:
   minio_data:
+  gigsim_state:
