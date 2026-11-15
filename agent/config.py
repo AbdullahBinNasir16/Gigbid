@@ -277,6 +277,9 @@ class EnvOverrides(BaseSettings):
 
 def load_config(path: Path | str | None = None, *, apply_env: bool = True) -> AppConfig:
     """Read and validate the YAML config, applying env switches."""
+    from dotenv import load_dotenv
+
+    load_dotenv(CONFIG_PATH.parents[1] / ".env", override=False)  # secrets for providers
     raw = yaml.safe_load(Path(path or CONFIG_PATH).read_text(encoding="utf-8"))
     if apply_env:
         env = EnvOverrides()

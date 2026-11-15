@@ -38,6 +38,8 @@ CONFIGS: dict[str, list[str]] = {
     "V1+V2+V3": ["v1_decomposition", "v2_hybrid", "v3_rerank"],
     "V1+V2+V3+V4": ["v1_decomposition", "v2_hybrid", "v3_rerank", "v4_outcome_aware"],
     "V2+V3": ["v2_hybrid", "v3_rerank"],
+    "V2+V4": ["v2_hybrid", "v4_outcome_aware"],
+    "V1+V2+V4": ["v1_decomposition", "v2_hybrid", "v4_outcome_aware"],
 }
 
 

@@ -1,0 +1,8 @@
+{
+  "question": "Can the cross-encoder grade gate V8 (corrective RAG) on this corpus?",
+  "method": "ai_ml dev jobs with gold evidence (25 jobs), top-10 hybrid candidates each, sigmoid(cross-encoder logit) of (job post, chunk)",
+  "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+  "relevant": {"n": 63, "p10": 0.0001, "p50": 0.002, "p90": 0.1096},
+  "other": {"n": 187, "p10": 0.0001, "p50": 0.0132, "p90": 0.3116},
+  "finding": "Grades do not separate relevant from irrelevant evidence (relevant median below other median). With min_evidence_score 0.35, V8 refused 96% of jobs (Recall@5 0.035, rag_variants.json). V8 is not shipped; the grade gate needs a domain-tuned grader."
+}
