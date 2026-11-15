@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api, streamUrl } from "../lib/api/client";
 import { Empty, PageHead } from "../components/Layout";
+import { GraphMap } from "../components/Charts";
 
 type Ev = { type: string; node?: string; summary?: string; at?: number; status?: string; trace_id?: string };
 type Trace = { node: string; kind: string; tool?: string | null; result_summary?: string | null; duration_ms?: number | null; tokens?: number };
@@ -36,10 +37,17 @@ export default function RunViewer() {
   }
 
   const waiting = events.some((e) => e.type === "interrupt");
+  const visited = new Set<string>([...trace.map((t) => t.node), ...events.filter((e) => e.type === "node" && e.node).map((e) => e.node as string)]);
+  if (waiting) visited.add("approval");
+  const lastNode = [...events].reverse().find((e) => e.node)?.node;
   return (
     <>
     <PageHead title="Agent run" sub="Live, node by node, with the full trace below." />
     <section className="grid">
+      <div className="card span2">
+        <h3>Where this job is</h3>
+        <GraphMap visited={visited} active={waiting ? "approval" : lastNode} />
+      </div>
       <div className="card span2">
         <div className="row between">
           <h2>Live progress</h2>

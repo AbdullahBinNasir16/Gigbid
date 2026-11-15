@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { api, type ApprovalItem } from "../lib/api/client";
 import { Badge, Empty, ErrorNote, Loading, PageHead } from "../components/Layout";
 import { EvidenceHover, type EvidenceItem } from "../components/EvidenceHover";
+import { SupportBar } from "../components/Charts";
 
 type Claim = { text: string; evidence_ids: string[]; support: string };
 
@@ -54,6 +55,9 @@ export default function Studio() {
         <label htmlFor="draft">Draft (edit freely; edits are re-checked by Compliance and teach your style memory)</label>
         <textarea id="draft" data-testid="draft-editor" value={text} onChange={(e) => setText(e.target.value)} rows={12} />
         <h3>Claims and their evidence</h3>
+        <SupportBar supported={claims.filter((c) => c.support === "supported").length}
+          partly={claims.filter((c) => c.support === "partly_supported").length}
+          unsupported={claims.filter((c) => c.support === "unsupported").length} />
         {claims.length === 0 ? <p className="muted">No experience claims detected.</p> : (
           <ul className="claims">
             {claims.map((c) => (

@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { api, type JobDetail } from "../lib/api/client";
 import { Badge, ErrorNote, Loading } from "../components/Layout";
 import { Ring } from "../components/Icons";
+import { Gauge, Strength } from "../components/Charts";
 
 type Ev = { id: string; type: string; project?: string | null; text: string; source: string };
 
@@ -65,7 +66,7 @@ export default function JobPage() {
 
       {risk && (
         <div className="card">
-          <h3>Risk report</h3>
+          <div className="row between top"><h3>Risk report</h3><Gauge value={risk.score} /></div>
           <p>{risk.explanation}</p>
           <div className="row">{risk.flags.map((f: string) => <Badge key={f} kind="flag">{f.replace(/_/g, " ")}</Badge>)}</div>
           {risk.injection_detected && <p className="warn">Instructions aimed at AI assistants were found in this post and ignored.</p>}
@@ -100,8 +101,8 @@ export default function JobPage() {
               {fit.requirement_matches.map((m: any) => (
                 <tr key={m.requirement}>
                   <td>{m.requirement}</td>
-                  <td>{m.evidence_ids.length ? m.evidence_ids.map((i: string) => <span key={i} className="chip-ev" title={byId[i]?.text}>{byId[i]?.project ?? i}</span>) : <span className="muted">no evidence</span>}</td>
-                  <td>{(m.strength * 100).toFixed(0)}%</td>
+                  <td>{m.evidence_ids.length ? [...new Map(m.evidence_ids.map((i: string) => [byId[i]?.project ?? i, i])).entries()].map(([proj, i]) => <span key={proj} className="chip-ev" title={byId[i]?.text}>{proj}</span>) : <span className="muted">no evidence</span>}</td>
+                  <td className="strength-cell"><Strength value={m.strength} /> <span className="small muted">{(m.strength * 100).toFixed(0)}%</span></td>
                 </tr>
               ))}
             </tbody>

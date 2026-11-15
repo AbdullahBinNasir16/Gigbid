@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "../lib/api/client";
 import { Empty, Loading, PageHead, Stat } from "../components/Layout";
 import { IconBolt, IconChart, IconCheck, IconCoins } from "../components/Icons";
+import { Donut } from "../components/Charts";
 
 /** Horizontal stacked bar per category: bid / watch / skip. */
 function CategoryBars({ rows }: { rows: [string, Record<string, number>][] }) {
@@ -53,6 +54,14 @@ export default function Analytics() {
           {cats.length ? <CategoryBars rows={cats} /> : <Empty title="No jobs analysed yet" />}
         </div>
         <div className="card">
+          <h3>All decisions</h3>
+          <Donut label="jobs" data={[
+            { label: "Bid", value: cats.reduce((n, [, v]) => n + (v.bid ?? 0), 0), color: "var(--ok)" },
+            { label: "Watch", value: cats.reduce((n, [, v]) => n + (v.watch ?? 0), 0), color: "var(--warn)" },
+            { label: "Skip", value: cats.reduce((n, [, v]) => n + (v.skip ?? 0), 0), color: "var(--muted-2)" },
+          ]} />
+        </div>
+        <div className="card span2">
           <h3>Top skip reasons</h3>
           {(a.top_skip_reasons ?? []).length === 0 ? <p className="muted">No skips yet.</p> : (
             <ul className="list">

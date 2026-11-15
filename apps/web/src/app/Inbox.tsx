@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api, type JobCard } from "../lib/api/client";
 import { Badge, Empty, ErrorNote, Loading, PageHead, Stat } from "../components/Layout";
+import { Donut, WelcomeArt } from "../components/Charts";
 import { IconArrow, IconBolt, IconChart, IconCheck, IconSearch, IconShield, Ring } from "../components/Icons";
 
 function money(c: JobCard) {
@@ -66,6 +67,24 @@ export default function Inbox() {
           <IconSearch size={16} /> {scouting ? "Scouting…" : "Scout now"}
         </button>
       </PageHead>
+
+      <div className="welcome">
+        <div className="welcome-text">
+          <span className="eyebrow">Today</span>
+          <h2>{count("bid") ? `${count("bid")} job${count("bid") > 1 ? "s" : ""} worth a bid` : "Let's find your next client"}</h2>
+          <p>{all.filter((j) => j.status === "awaiting_approval").length
+            ? `${all.filter((j) => j.status === "awaiting_approval").length} proposal draft(s) are ready for your review.`
+            : "GigBid checks every post for fit, price and scams before drafting anything."}</p>
+        </div>
+        <WelcomeArt />
+        <div className="welcome-chart">
+          <Donut size={120} label="jobs" data={[
+            { label: "Bid", value: count("bid"), color: "var(--ok)" },
+            { label: "Watch", value: count("watch"), color: "var(--warn)" },
+            { label: "Skip", value: count("skip"), color: "var(--muted-2)" },
+          ]} />
+        </div>
+      </div>
 
       <div className="stats">
         <Stat label="Recommended bids" value={count("bid")} icon={<IconBolt size={16} />} />
