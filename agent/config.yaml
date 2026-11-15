@@ -1,26 +1,188 @@
+# GigBid runtime configuration.
+# Every model, threshold, budget, fee and platform rule lives here, never in Python.
+# Env overrides: MODEL_PROFILE -> models.profile, MARKETPLACE_MODE -> marketplace.mode.
+
 marketplace:
-  mode: gigsim
-  max_requests_per_minute: 20
+  mode: gigsim                     # gigsim | upwork_live | fake  (kit key, kept)
+  max_requests_per_minute: 20      # kit key, kept. Our own limiter stays under GigSim's limit.
+  polling_interval_seconds: 300    # scheduled scouting in gigsim mode
+  live_polling_interval_seconds: 1800  # conservative schedule for the official Upwork server
+  adapters:                        # mode -> "module:Class". Graph code never imports these.
+    fake: mcp_servers.marketplace.adapters.fake:FakeMarketplace
+    gigsim: mcp_servers.marketplace.adapters.gigsim:GigSimMarketplace
+    upwork_live: mcp_servers.marketplace.adapters.upwork_live:UpworkLiveMarketplace
+  request_timeout_seconds: 10
+  retry:
+    max_attempts: 3
+    base_delay_seconds: 0.5
+    max_delay_seconds: 8
+  circuit_breaker:
+    failure_threshold: 5
+    cooldown_seconds: 30
 
 models:
-  profile: open
-  nodes:
-    scout: qwen3-4b
-    analyst: qwen3-4b
-    risk_assessor: qwen3-4b
-    fit_matcher: qwen3-4b
-    pricing: qwen3-4b
-    writer: configure-your-model
-    critic: configure-your-model
-    client_liaison: configure-your-model
-  embeddings: nomic-embed-text
-  reranker: bge-reranker-v2-m3
+  profile: open                    # kit key, kept. open is required, paid is optional.
+  providers:                       # provider -> how to reach it. Secrets come from env only.
+    ollama:
+      kind: openai_compatible
+      base_url_env: OLLAMA_BASE_URL
+      default_base_url: http://localhost:11434/v1
+      api_key_env: null
+    hosted_open:                   # Groq, OpenRouter or Together (open weight models only)
+      kind: openai_compatible
+      base_url_env: OPEN_MODEL_BASE_URL
+      default_base_url: https://api.groq.com/openai/v1
+      api_key_env: OPEN_MODEL_API_KEY
+    paid:
+      kind: openai_compatible
+      base_url_env: PAID_MODEL_BASE_URL
+      default_base_url: https://api.openai.com/v1
+      api_key_env: PAID_MODEL_API_KEY
+
+  # Small models for cheap, frequent nodes. Strongest model for writer and critic.
+  profiles:
+    open:
+      scout:             {provider: ollama, model: "qwen3:4b",  temperature: 0.0, max_tokens: 1024}
+      analyst:           {provider: ollama, model: "qwen3:8b",  temperature: 0.0, max_tokens: 2048}
+      risk:              {provider: ollama, model: "qwen3:4b",  temperature: 0.0, max_tokens: 1024}
+      matcher:           {provider: ollama, model: "qwen3:8b",  temperature: 0.0, max_tokens: 2048}
+      pricing:           {provider: ollama, model: "qwen3:8b",  temperature: 0.0, max_tokens: 1024}
+      writer:            {provider: ollama, model: "qwen3:14b", temperature: 0.4, max_tokens: 2048}
+      verifier:          {provider: ollama, model: "qwen3:8b",  temperature: 0.0, max_tokens: 2048}
+      critic:            {provider: ollama, model: "qwen3:14b", temperature: 0.0, max_tokens: 1536}
+      compliance:        {provider: ollama, model: "qwen3:4b",  temperature: 0.0, max_tokens: 1024}
+      liaison:           {provider: ollama, model: "qwen3:8b",  temperature: 0.3, max_tokens: 1536}
+      intent_classifier: {provider: ollama, model: "qwen3:4b",  temperature: 0.0, max_tokens: 256}
+    paid:
+      scout:             {provider: paid, model: "gpt-5-mini", temperature: 0.0, max_tokens: 1024}
+      analyst:           {provider: paid, model: "gpt-5-mini", temperature: 0.0, max_tokens: 2048}
+      risk:              {provider: paid, model: "gpt-5-mini", temperature: 0.0, max_tokens: 1024}
+      matcher:           {provider: paid, model: "gpt-5-mini", temperature: 0.0, max_tokens: 2048}
+      pricing:           {provider: paid, model: "gpt-5-mini", temperature: 0.0, max_tokens: 1024}
+      writer:            {provider: paid, model: "gpt-5",      temperature: 0.4, max_tokens: 2048}
+      verifier:          {provider: paid, model: "gpt-5-mini", temperature: 0.0, max_tokens: 2048}
+      critic:            {provider: paid, model: "gpt-5",      temperature: 0.0, max_tokens: 1536}
+      compliance:        {provider: paid, model: "gpt-5-mini", temperature: 0.0, max_tokens: 1024}
+      liaison:           {provider: paid, model: "gpt-5-mini", temperature: 0.3, max_tokens: 1536}
+      intent_classifier: {provider: paid, model: "gpt-5-mini", temperature: 0.0, max_tokens: 256}
+    # Deployed profile: open weight models on a hosted provider (free hosts have no GPU).
+    open_hosted:
+      scout:             {provider: hosted_open, model: "llama-3.1-8b-instant",    temperature: 0.0, max_tokens: 1024}
+      analyst:           {provider: hosted_open, model: "llama-3.1-8b-instant",    temperature: 0.0, max_tokens: 2048}
+      risk:              {provider: hosted_open, model: "llama-3.1-8b-instant",    temperature: 0.0, max_tokens: 1024}
+      matcher:           {provider: hosted_open, model: "llama-3.3-70b-versatile", temperature: 0.0, max_tokens: 2048}
+      pricing:           {provider: hosted_open, model: "llama-3.1-8b-instant",    temperature: 0.0, max_tokens: 1024}
+      writer:            {provider: hosted_open, model: "llama-3.3-70b-versatile", temperature: 0.4, max_tokens: 2048}
+      verifier:          {provider: hosted_open, model: "llama-3.3-70b-versatile", temperature: 0.0, max_tokens: 2048}
+      critic:            {provider: hosted_open, model: "llama-3.3-70b-versatile", temperature: 0.0, max_tokens: 1536}
+      compliance:        {provider: hosted_open, model: "llama-3.1-8b-instant",    temperature: 0.0, max_tokens: 1024}
+      liaison:           {provider: hosted_open, model: "llama-3.1-8b-instant",    temperature: 0.3, max_tokens: 1536}
+      intent_classifier: {provider: hosted_open, model: "llama-3.1-8b-instant",    temperature: 0.0, max_tokens: 256}
+
+  # Used when the primary model of a cheap node fails or times out.
+  fallback_models:
+    open:
+      scout:             {provider: ollama, model: "qwen3:1.7b", temperature: 0.0, max_tokens: 1024}
+      risk:              {provider: ollama, model: "qwen3:1.7b", temperature: 0.0, max_tokens: 1024}
+      compliance:        {provider: ollama, model: "qwen3:1.7b", temperature: 0.0, max_tokens: 1024}
+      intent_classifier: {provider: ollama, model: "qwen3:1.7b", temperature: 0.0, max_tokens: 256}
+    open_hosted:
+      scout:             {provider: hosted_open, model: "gemma2-9b-it", temperature: 0.0, max_tokens: 1024}
+      risk:              {provider: hosted_open, model: "gemma2-9b-it", temperature: 0.0, max_tokens: 1024}
+      compliance:        {provider: hosted_open, model: "gemma2-9b-it", temperature: 0.0, max_tokens: 1024}
+      intent_classifier: {provider: hosted_open, model: "gemma2-9b-it", temperature: 0.0, max_tokens: 256}
+    paid: {}
+
+  # Open models in every profile, CPU friendly.
+  embeddings:
+    model: nomic-ai/nomic-embed-text-v1.5
+    dimension: 768
+    query_prefix: "search_query: "
+    document_prefix: "search_document: "
+  reranker:
+    model: BAAI/bge-reranker-v2-m3
+    top_n: 20                      # rerank only the top 20 candidates on CPU
 
 budgets:
-  max_graph_steps: 30
-  max_revisions: 2
-  max_tokens_per_job: 12000
+  max_graph_steps: 30              # kit key, kept (alias of max_steps_per_thread)
+  max_revisions: 2                 # kit key, kept (alias of critic_max_loops)
+  max_tokens_per_job: 12000        # kit key, kept (alias of max_tokens_per_thread)
+  max_steps_per_thread: 30
+  max_tokens_per_thread: 12000
+  critic_max_loops: 2
+  node_timeout_seconds: 60
+  node_max_retries: 2
+  p95_latency_seconds:
+    job_analysed: 20
+    proposal: 90
+  cost_usd:
+    job_analysed: 0.002
+    proposal: 0.02
 
 thresholds:
-  minimum_fit_score: 0.60
-  maximum_risk_score: 0.70
+  minimum_fit_score: 0.60          # kit key, kept (bid cutoff)
+  maximum_risk_score: 0.70         # kit key, kept (scam cutoff)
+  fit:
+    bid: 0.60                      # fit >= bid and risk < scam -> bid
+    watch: 0.40                    # watch <= fit < bid -> watch
+  scam_risk: 0.70                  # risk >= this -> skip
+  price:
+    floor_hourly_usd: 25           # never quote under the user's floor
+    floor_fixed_usd: 100
+    band_low_percentile: p25
+    band_high_percentile: p75
+    min_expected_value_per_connect_usd: 1.0   # worth_it rule for Connects spend
+  autonomy:
+    auto_skip_below_fit: 0.25      # used only when the user enables auto skip. Never auto sends.
+
+platform_rules:
+  connects:
+    cost_per_proposal: 6
+    cost_by_budget_usd:            # optional tiers; the highest matching tier wins
+      - {min_budget: 0,    cost: 4}
+      - {min_budget: 500,  cost: 6}
+      - {min_budget: 2000, cost: 10}
+    weekly_budget: 80
+  fees:
+    service_fee_percent: 10
+  policy_pack_dir: data/policy_pack
+  banned_phrases_file: data/policy_pack/banned_phrases.txt
+  off_platform_terms:
+    - whatsapp
+    - telegram
+    - skype
+    - pay outside
+    - paypal me
+    - wire transfer
+    - western union
+
+memory:
+  style:
+    min_edits_to_promote: 3        # an edit pattern must appear in N distinct proposals
+    max_items: 50
+  outcome:
+    min_samples_to_promote: 10     # per job category
+    min_reply_rate_delta: 0.05
+
+tool_allowlists:
+  scout:      [search_jobs, get_job, get_client_history, get_connects_balance]
+  risk:       [get_job, get_client_history]
+  pricing:    [get_job, get_client_history, get_connects_balance]
+  matcher:    [search_evidence, get_case_study, list_skills]
+  writer:     [search_evidence, get_case_study, list_skills]
+  critic:     [search_evidence, get_case_study, list_skills]
+  analyst:    []
+  compliance: []
+  liaison:
+    read: [list_messages, get_client_history, get_free_slots]
+    after_approval: [send_message, create_tentative_hold, create_email_draft]
+
+retrieval:
+  variant: v0_naive                # v0_naive | v1_decomposition | v2_hybrid | v3_rerank | v4_outcome_aware | v8_corrective
+  compose: []                      # e.g. [v1_decomposition, v2_hybrid, v3_rerank]
+  outcome_boost_weight: 0.15
+  corrective_max_requeries: 2
+  min_evidence_score: 0.35
+
+seeds:
+  global: 4016
