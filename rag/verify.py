@@ -30,7 +30,8 @@ _CLAIM_CUES = re.compile(
     r"\b(I|I've|I have|I'm|my|we|our)\b.*\b(built|build|delivered|developed|created|designed|"
     r"led|shipped|cut|reduced|raised|increased|improved|saved|migrated|deployed|trained|"
     r"fine-tuned|automated|worked|experience|years|helped|launched|implemented|wrote|ran|"
-    r"analy[sz]ed|reached|achieved|managed|handled|fixed|solved)\b",
+    r"analy[sz]ed|reached|achieved|managed|handled|fixed|solved|used|includes?|engaged|"
+    r"specializ\w*|skilled|expert)\b",
     re.IGNORECASE,
 )
 _TOOL = re.compile(r"\b([A-Z][a-zA-Z0-9+#]*(?:\.[a-z]+)?|[a-z]+\.js|dbt|scikit-learn)\b")
@@ -60,9 +61,13 @@ def split_sentences(text: str) -> list[tuple[int, str]]:
     return out
 
 
+_FUTURE = re.compile(r"^\s*(I will|I'll|I can|I could|I would|I'd|I am happy to|I'm happy to|"
+                     r"I plan to|We will|We can)\b", re.IGNORECASE)
+
+
 def is_claim(sentence: str) -> bool:
-    if sentence.endswith("?"):
-        return False
+    if sentence.endswith("?") or _FUTURE.search(sentence):
+        return False  # questions and offers about future work are not experience claims
     return bool(_CLAIM_CUES.search(sentence)) or bool(_NUM.search(sentence) and "I" in sentence)
 
 
@@ -101,7 +106,12 @@ def _scores(pairs: list[tuple[str, str]]) -> list[float]:
         return out
 
 
+PROOF_TYPES = {"cv", "case_study", "repo", "code", "review"}
+
+
 def check_claims(text: str, evidence: list[Evidence]) -> list[Claim]:
+    # Past proposals show how work was pitched, not that it was done: never proof.
+    evidence = [e for e in evidence if e.type.value in PROOF_TYPES]
     sents = [(p, s) for p, s in split_sentences(text) if is_claim(s)]
     if not sents:
         return []

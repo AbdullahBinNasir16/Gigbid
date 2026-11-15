@@ -24,8 +24,9 @@ def evidence_block(evidence: list[Evidence]) -> str:
     lines = []
     for i, e in enumerate(evidence, 1):
         meta = f"{e.type.value}, project {e.project or '-'}"
-        if e.outcome:
-            meta += f", past proposal outcome {e.outcome.value}"
+        if e.type.value == "proposal":
+            meta = (f"PAST PROPOSAL, outcome {e.outcome.value if e.outcome else '?'}: phrasing "
+                    "reference only, NOT proof of experience, never cite it")
         lines.append(f"[E{i}] ({meta}) {e.text[:700]}")
     return "\n".join(lines) or "(no evidence found)"
 
@@ -80,7 +81,11 @@ def template_letter(job: dict, evidence: list[Evidence], spec_reqs: list[str]) -
 
 def writer(state: dict) -> dict:
     cfg = get_config().generation
-    job, evidence = state["job"], state.get("evidence", [])[: int(cfg.get("evidence_k", 6))]
+    k = int(cfg.get("evidence_k", 6))
+    pool = state.get("evidence", [])
+    proof = [e for e in pool if e.type.value != "proposal"]
+    phrasing = [e for e in pool if e.type.value == "proposal"][:2]
+    job, evidence = state["job"], (proof[: k - len(phrasing[:2])] + phrasing)[:k]
     spec = state.get("analyses", {}).get("job_spec")
     price = state.get("price")
     critiques = state.get("critiques", [])
