@@ -22,7 +22,7 @@ services:
     healthCheckPath: /health
     envVars:
       - key: GIGSIM_BASE_URL
-        value: https://gigbid-gigsim.onrender.com   # change if Render gives the GigSim service another URL
+        value: https://gigbid-gigsim-77yp.onrender.com   # the URL Render assigned to the GigSim service
       - key: GIGSIM_API_TOKEN
         fromService:
           type: web
