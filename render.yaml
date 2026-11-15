@@ -1,0 +1,36 @@
+# Render Blueprint: New -> Blueprint -> pick this repo. Two free web services.
+services:
+  - type: web
+    name: gigbid-gigsim
+    runtime: docker
+    plan: free
+    dockerfilePath: ./infra/docker/Dockerfile.render-gigsim
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: GIGSIM_API_TOKEN
+        generateValue: true
+      - key: GIGSIM_ADMIN_TOKEN
+        generateValue: true
+
+  - type: web
+    name: gigbid
+    runtime: docker
+    plan: free
+    dockerfilePath: ./infra/docker/Dockerfile.render-api
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: GIGSIM_BASE_URL
+        value: https://gigbid-gigsim.onrender.com   # change if Render gives the GigSim service another URL
+      - key: GIGSIM_API_TOKEN
+        fromService:
+          type: web
+          name: gigbid-gigsim
+          envVarKey: GIGSIM_API_TOKEN
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: OPEN_MODEL_API_KEY
+        sync: false      # paste your Groq key when Render asks
+      - key: REVIEWER_PASSWORD
+        sync: false      # choose the reviewer password when Render asks

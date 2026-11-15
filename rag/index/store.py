@@ -29,8 +29,48 @@ def tokenize(text: str) -> list[str]:
     return [t.strip(".-") for t in _TOKEN.findall(text.lower()) if t.strip(".-")]
 
 
+# EMBED_BACKEND=onnx runs the SAME two models through ONNX Runtime (fastembed) instead of
+# PyTorch, so a small free host (512 MB) can serve them. Default: PyTorch (as evaluated).
+ONNX_CROSS_ENCODERS = {"cross-encoder/ms-marco-MiniLM-L-6-v2": "Xenova/ms-marco-MiniLM-L-6-v2"}
+
+
+class _OnnxEmbedder:
+    def __init__(self, model_name: str) -> None:
+        from fastembed import TextEmbedding
+
+        # one thread and small batches keep peak memory low on a 512 MB host
+        self.model = TextEmbedding(model_name, threads=int(os.environ.get("ONNX_THREADS", "1")))
+
+    def encode(self, texts: list[str], batch_size: int = 32, normalize_embeddings: bool = True,
+               show_progress_bar: bool = False) -> np.ndarray:
+        vecs = np.asarray(list(self.model.embed(texts, batch_size=min(batch_size, 8))),
+                          dtype=np.float32)
+        if normalize_embeddings:
+            vecs /= np.linalg.norm(vecs, axis=1, keepdims=True) + 1e-12
+        return vecs
+
+
+class _OnnxCrossEncoder:
+    def __init__(self, model_name: str) -> None:
+        from fastembed.rerank.cross_encoder import TextCrossEncoder
+
+        self.model = TextCrossEncoder(ONNX_CROSS_ENCODERS.get(model_name, model_name),
+                                      threads=int(os.environ.get("ONNX_THREADS", "1")))
+
+    def predict(self, pairs: list[tuple[str, str]], batch_size: int = 16,
+                show_progress_bar: bool = False) -> np.ndarray:
+        return np.asarray(list(self.model.rerank_pairs(pairs, batch_size=min(batch_size, 4))),
+                          dtype=np.float32)
+
+
+def _onnx() -> bool:
+    return os.environ.get("EMBED_BACKEND", "torch").lower() == "onnx"
+
+
 @lru_cache(maxsize=2)
 def _embedder(model_name: str):
+    if _onnx():
+        return _OnnxEmbedder(model_name)
     from sentence_transformers import SentenceTransformer
 
     return SentenceTransformer(model_name, device="cpu",
@@ -39,6 +79,8 @@ def _embedder(model_name: str):
 
 @lru_cache(maxsize=2)
 def _cross_encoder(model_name: str):
+    if _onnx():
+        return _OnnxCrossEncoder(model_name)
     from sentence_transformers import CrossEncoder
 
     return CrossEncoder(model_name, device="cpu", max_length=512)
