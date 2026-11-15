@@ -57,23 +57,33 @@ def _first_sentence(text: str) -> str:
     return _SENT.split(body)[0].strip()
 
 
-def template_letter(job: dict, evidence: list[Evidence], spec_reqs: list[str]) -> str:
-    """Deterministic fallback: mirror the need, cite up to two projects verbatim."""
-    need = (spec_reqs[0] if spec_reqs else job.get("title", "your project")).rstrip(".")
-    paras = [f"You need help with {need[:160].lower()}."]
-    cited, seen = [], set()
+def template_letter(job: dict, evidence: list[Evidence], spec_reqs: list[str],
+                    matched: list[str] | None = None) -> str:
+    """Deterministic fallback: restate the job in its own title words, name the listed skills
+    the portfolio evidences, and quote real built/result sentences verbatim."""
+    title = (job.get("title") or (spec_reqs[0] if spec_reqs else "your project")).rstrip(".")
+    paras = [f"You are looking for help with {title[:160]}."]
+    if matched:
+        paras[0] += f" Your post asks for {', '.join(matched[:4])}."
+    cited: list[str] = []
+    used_projects: list[str | None] = []
     for i, e in enumerate(evidence, 1):
-        if e.project in seen:
+        if e.type.value not in ("case_study", "review", "cv"):
             continue
-        m = re.search(r"\bI built [^.]*\.", e.text) or re.search(r"\bThe work [^.]*\.", e.text)
-        if m and e.type.value in ("case_study", "review", "cv"):
-            seen.add(e.project)
-            sent = m.group(0).replace("The work", "That work", 1)
-            cited.append(f"{sent} [E{i}]")
-        if len(cited) == 2:
+        for pat in (r"\bI built [^.]*\.", r"\bThe work [^.]*\.", r"\b(?:cut|raised|reached|"
+                    r"lowered|saved|rose|fell)[^.]*\d[^.]*\."):
+            m = re.search(pat, e.text)
+            if m and (e.project not in used_projects or pat != r"\bI built [^.]*\."):
+                sent = m.group(0).replace("The work", "That work", 1)
+                if sent[0].islower():
+                    sent = "That work " + sent
+                if f"{sent} [E{i}]" not in cited:
+                    cited.append(f"{sent} [E{i}]")
+                    used_projects.append(e.project)
+        if len(set(used_projects)) >= 2 or len(cited) >= 3:
             break
     if cited:
-        paras.append(" ".join(cited))
+        paras.append(" ".join(cited[:3]))
     paras.append("I would start by confirming the scope and success criteria with you, then "
                  "share a short plan with milestones. Which part matters most to you first?")
     return "\n\n".join(paras)
@@ -94,12 +104,16 @@ def writer(state: dict) -> dict:
     from agent.memory.store import style_rules_text
 
     style = style_rules_text(state.get("user_id", "default"))
+    fit = state.get("analyses", {}).get("fit")
+    matched = list(fit.matched_skills) if fit else []
     tokens, mode = 0, cfg.get("writer_mode", "llm")
     with timed() as t:
         text = ""
         if mode == "llm":
             system = load_prompt("writer").replace("{style_rules}", style)
             user = (f"JOB POST:\n{untrusted('job', job.get('title', '') + chr(10) + job.get('description', ''))}\n\n"
+                    f"CLIENT'S LISTED SKILLS: {', '.join(job.get('skills') or []) or 'none'}\n"
+                    f"LISTED SKILLS YOU HAVE EVIDENCE FOR: {', '.join(matched) or 'none'}\n"
                     f"SCREENING QUESTIONS: {spec.screening_questions if spec else []}\n"
                     f"PRICE: {price.amount if price else '?'} {price.budget_type if price else ''}\n\n"
                     f"EVIDENCE:\n{evidence_block(evidence)}")
@@ -113,11 +127,11 @@ def writer(state: dict) -> dict:
                 text, mode = "", "template"
         if not text.strip():
             mode = "template"
-            text = template_letter(job, evidence, [r.text for r in spec.requirements] if spec else [])
+            text = template_letter(job, evidence, [r.text for r in spec.requirements] if spec else [], matched)
         paragraphs, answers, claims = parse_tagged(text, evidence)
         if not paragraphs:
             paragraphs, answers, claims = parse_tagged(
-                template_letter(job, evidence, []), evidence)
+                template_letter(job, evidence, [], matched), evidence)
     draft = ProposalDraft(job_id=job["job_id"], paragraphs=paragraphs, screening_answers=answers,
                           evidence_ids=[e.id for e in evidence], claims=claims,
                           revision=min(revision, 10),
