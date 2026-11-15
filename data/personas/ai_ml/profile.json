@@ -1,0 +1,31 @@
+{
+  "name": "Ayesha Khan",
+  "title": "AI/ML Engineer (LLM apps, RAG, MLOps)",
+  "location": "Lahore, Pakistan",
+  "hourly_floor": 35,
+  "fixed_floor": 300,
+  "years": 6,
+  "categories": [
+    "ai_ml",
+    "data_analytics"
+  ],
+  "core_skills": [
+    "Python",
+    "PyTorch",
+    "LangChain",
+    "LangGraph",
+    "RAG",
+    "OpenAI API",
+    "Hugging Face",
+    "FastAPI",
+    "Docker",
+    "scikit-learn",
+    "NLP",
+    "Computer Vision",
+    "MLOps",
+    "Vector Database",
+    "Machine Learning"
+  ],
+  "persona": "ai_ml",
+  "provenance": "synthetic"
+}

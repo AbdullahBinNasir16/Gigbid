@@ -1,0 +1,98 @@
+[
+  {
+    "id": "review:data_analyst:sales-powerbi",
+    "project": "sales-powerbi",
+    "stars": 4,
+    "client_industry": "retail",
+    "date": "2024-12-15",
+    "text": "Sara delivered sales performance dashboard for us. Reporting time went from 5 days to same-day; used by 40 managers. Good work, a few delays near the end."
+  },
+  {
+    "id": "review:data_analyst:marketing-attribution",
+    "project": "marketing-attribution",
+    "stars": 5,
+    "client_industry": "e-commerce",
+    "date": "2024-12-15",
+    "text": "Sara delivered marketing attribution analysis for us. Shifted 20% of spend to the two best channels; ROAS rose 27%. Clear communication throughout."
+  },
+  {
+    "id": "review:data_analyst:dbt-warehouse",
+    "project": "dbt-warehouse",
+    "stars": 5,
+    "client_industry": "saas",
+    "date": "2025-12-15",
+    "text": "Sara delivered analytics warehouse with dbt for us. One source of truth; dashboard disagreements stopped. Clear communication throughout."
+  },
+  {
+    "id": "review:data_analyst:survey-analysis",
+    "project": "survey-analysis",
+    "stars": 5,
+    "client_industry": "hospitality",
+    "date": "2023-12-15",
+    "text": "Sara delivered customer satisfaction survey analysis for us. Identified check-in wait as the top detractor; fixing it lifted NPS by 9 points. Clear communication throughout."
+  },
+  {
+    "id": "review:data_analyst:excel-automation",
+    "project": "excel-automation",
+    "stars": 5,
+    "client_industry": "accounting",
+    "date": "2022-12-15",
+    "text": "Sara delivered financial report automation for us. Month-end reporting dropped to 3 hours. Clear communication throughout."
+  },
+  {
+    "id": "review:data_analyst:ab-test-analysis",
+    "project": "ab-test-analysis",
+    "stars": 5,
+    "client_industry": "saas",
+    "date": "2024-12-15",
+    "text": "Sara delivered a/b test analysis framework for us. Stopped three false-positive launches in its first two months. Clear communication throughout."
+  },
+  {
+    "id": "review:data_analyst:looker-studio-agency",
+    "project": "looker-studio-agency",
+    "stars": 5,
+    "client_industry": "marketing",
+    "date": "2023-12-15",
+    "text": "Sara delivered client reporting for a marketing agency for us. Saved the agency about 60 hours a month. Clear communication throughout."
+  },
+  {
+    "id": "review:data_analyst:healthcare-claims",
+    "project": "healthcare-claims",
+    "stars": 5,
+    "client_industry": "healthcare",
+    "date": "2025-12-15",
+    "text": "Sara delivered insurance claims analysis for us. Flagged 37 providers for review; $410k in overbilling confirmed. Clear communication throughout."
+  },
+  {
+    "id": "review:data_analyst:web-scraped-pricing-no",
+    "project": "web-scraped-pricing-no",
+    "stars": 4,
+    "client_industry": "retail",
+    "date": "2024-12-15",
+    "text": "Sara delivered competitor price monitoring from licensed feeds for us. Margin rose 2.3 points on matched products. Good work, a few delays near the end."
+  },
+  {
+    "id": "review:data_analyst:bigquery-cost",
+    "project": "bigquery-cost",
+    "stars": 5,
+    "client_industry": "media",
+    "date": "2025-12-15",
+    "text": "Sara delivered bigquery cost optimisation for us. Cut the monthly bill by 58%. Clear communication throughout."
+  },
+  {
+    "id": "review:data_analyst:ecommerce-cohorts",
+    "project": "ecommerce-cohorts",
+    "stars": 5,
+    "client_industry": "e-commerce",
+    "date": "2023-12-15",
+    "text": "Sara delivered e-commerce cohort and ltv analysis for us. Showed paid social customers had 40% lower LTV; budget was rebalanced. Clear communication throughout."
+  },
+  {
+    "id": "review:data_analyst:public-data-report",
+    "project": "public-data-report",
+    "stars": 5,
+    "client_industry": "non-profit",
+    "date": "2022-12-15",
+    "text": "Sara delivered public health data report for us. The proposal won a $120k grant. Clear communication throughout."
+  }
+]

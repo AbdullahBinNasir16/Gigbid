@@ -1,0 +1,74 @@
+[
+  {
+    "id": "review:fullstack:saas-billing-dashboard",
+    "project": "saas-billing-dashboard",
+    "stars": 5,
+    "client_industry": "saas",
+    "date": "2025-12-15",
+    "text": "Daniyal delivered saas billing dashboard for us. Support tickets about billing fell 64%. Clear communication throughout."
+  },
+  {
+    "id": "review:fullstack:marketplace-mvp",
+    "project": "marketplace-mvp",
+    "stars": 5,
+    "client_industry": "home services",
+    "date": "2024-12-15",
+    "text": "Daniyal delivered two-sided services marketplace mvp for us. Launched on time and onboarded 1,200 providers in the first two months. Clear communication throughout."
+  },
+  {
+    "id": "review:fullstack:shopify-headless",
+    "project": "shopify-headless",
+    "stars": 5,
+    "client_industry": "e-commerce",
+    "date": "2024-12-15",
+    "text": "Daniyal delivered headless shopify storefront for us. Lighthouse mobile went from 28 to 94 and conversion rose 22%. Clear communication throughout."
+  },
+  {
+    "id": "review:fullstack:lms-platform",
+    "project": "lms-platform",
+    "stars": 5,
+    "client_industry": "education",
+    "date": "2022-12-15",
+    "text": "Daniyal delivered learning management platform for us. Served 9,000 learners in its first year. Clear communication throughout."
+  },
+  {
+    "id": "review:fullstack:react-native-fitness",
+    "project": "react-native-fitness",
+    "stars": 5,
+    "client_industry": "health and fitness",
+    "date": "2024-12-15",
+    "text": "Daniyal delivered fitness tracking mobile app for us. Reached 4.7 stars on both stores with 6,000 installs. Clear communication throughout."
+  },
+  {
+    "id": "review:fullstack:graphql-gateway",
+    "project": "graphql-gateway",
+    "stars": 5,
+    "client_industry": "media",
+    "date": "2023-12-15",
+    "text": "Daniyal delivered graphql api gateway for us. Screen load time dropped from 2.8 s to 0.9 s. Clear communication throughout."
+  },
+  {
+    "id": "review:fullstack:real-estate-portal",
+    "project": "real-estate-portal",
+    "stars": 5,
+    "client_industry": "real estate",
+    "date": "2024-12-15",
+    "text": "Daniyal delivered real estate listings portal for us. Generated 300 qualified leads a month. Clear communication throughout."
+  },
+  {
+    "id": "review:fullstack:devops-migration",
+    "project": "devops-migration",
+    "stars": 5,
+    "client_industry": "saas",
+    "date": "2024-12-15",
+    "text": "Daniyal delivered heroku to aws migration for us. Cut hosting cost 45% with zero downtime during cutover. Clear communication throughout."
+  },
+  {
+    "id": "review:fullstack:accessibility-audit",
+    "project": "accessibility-audit",
+    "stars": 5,
+    "client_industry": "government",
+    "date": "2025-12-15",
+    "text": "Daniyal delivered accessibility remediation for us. Passed the re-audit with zero critical issues. Clear communication throughout."
+  }
+]

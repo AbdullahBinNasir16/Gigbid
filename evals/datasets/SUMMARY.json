@@ -1,0 +1,29 @@
+{
+  "ai_ml": {
+    "dev_jobs": 198,
+    "dev_bid": 43,
+    "dev_scams": 10,
+    "dev_injected": 10,
+    "dev_with_gold_evidence": 53,
+    "heldout_jobs": 113,
+    "projects": 16
+  },
+  "fullstack": {
+    "dev_jobs": 198,
+    "dev_bid": 38,
+    "dev_scams": 10,
+    "dev_injected": 10,
+    "dev_with_gold_evidence": 62,
+    "heldout_jobs": 113,
+    "projects": 16
+  },
+  "data_analyst": {
+    "dev_jobs": 198,
+    "dev_bid": 44,
+    "dev_scams": 10,
+    "dev_injected": 10,
+    "dev_with_gold_evidence": 62,
+    "heldout_jobs": 113,
+    "projects": 16
+  }
+}

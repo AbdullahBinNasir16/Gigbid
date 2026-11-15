@@ -1,0 +1,32 @@
+{
+  "name": "Daniyal Ahmed",
+  "title": "Full-Stack Web Developer (React, Next.js, Node, Django)",
+  "location": "Karachi, Pakistan",
+  "hourly_floor": 30,
+  "fixed_floor": 250,
+  "years": 7,
+  "categories": [
+    "web_dev",
+    "mobile_dev"
+  ],
+  "core_skills": [
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Express",
+    "Django",
+    "Python",
+    "PostgreSQL",
+    "MongoDB",
+    "REST API",
+    "GraphQL",
+    "Tailwind CSS",
+    "AWS",
+    "Docker",
+    "Web Development"
+  ],
+  "persona": "fullstack",
+  "provenance": "synthetic"
+}

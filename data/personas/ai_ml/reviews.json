@@ -1,0 +1,66 @@
+[
+  {
+    "id": "review:ai_ml:defect-vision",
+    "project": "defect-vision",
+    "stars": 5,
+    "client_industry": "manufacturing",
+    "date": "2024-12-15",
+    "text": "Ayesha delivered manufacturing defect detection for us. Raised recall on cracked bottles from 72% to 96%. Clear communication throughout."
+  },
+  {
+    "id": "review:ai_ml:agentic-research-assistant",
+    "project": "agentic-research-assistant",
+    "stars": 4,
+    "client_industry": "consulting",
+    "date": "2025-12-15",
+    "text": "Ayesha delivered agentic research assistant for us. Cut brief preparation from 6 hours to 50 minutes. Good work, a few delays near the end."
+  },
+  {
+    "id": "review:ai_ml:medical-triage-classifier",
+    "project": "medical-triage-classifier",
+    "stars": 5,
+    "client_industry": "healthcare",
+    "date": "2024-12-15",
+    "text": "Ayesha delivered patient message triage classifier for us. Urgent messages reached a nurse 3 times faster. Clear communication throughout."
+  },
+  {
+    "id": "review:ai_ml:semantic-search-catalog",
+    "project": "semantic-search-catalog",
+    "stars": 4,
+    "client_industry": "e-commerce",
+    "date": "2024-12-15",
+    "text": "Ayesha delivered semantic product search for us. Search-to-cart conversion rose 11%. Good work, a few delays near the end."
+  },
+  {
+    "id": "review:ai_ml:speech-notes",
+    "project": "speech-notes",
+    "stars": 5,
+    "client_industry": "consulting",
+    "date": "2023-12-15",
+    "text": "Ayesha delivered meeting transcription and summarisation for us. Notes were ready 2 minutes after each call. Clear communication throughout."
+  },
+  {
+    "id": "review:ai_ml:invoice-ocr",
+    "project": "invoice-ocr",
+    "stars": 5,
+    "client_industry": "accounting",
+    "date": "2022-12-15",
+    "text": "Ayesha delivered invoice data extraction for us. Processing time fell from 6 minutes to 20 seconds per invoice at 97% field accuracy. Clear communication throughout."
+  },
+  {
+    "id": "review:ai_ml:fraud-anomaly",
+    "project": "fraud-anomaly",
+    "stars": 5,
+    "client_industry": "fintech",
+    "date": "2022-12-15",
+    "text": "Ayesha delivered payment anomaly detection for us. Flagged 82% of confirmed fraud within 5 minutes at a 1.5% review rate. Clear communication throughout."
+  },
+  {
+    "id": "review:ai_ml:fine-tune-llama",
+    "project": "fine-tune-llama",
+    "stars": 4,
+    "client_industry": "education",
+    "date": "2025-12-15",
+    "text": "Ayesha delivered domain fine-tuning of an open llm for us. Human graders preferred it over the base model in 71% of pairwise comparisons. Good work, a few delays near the end."
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "name": "Sara Malik",
+  "title": "Data Analyst (SQL, Python, Power BI, Tableau)",
+  "location": "Islamabad, Pakistan",
+  "hourly_floor": 25,
+  "fixed_floor": 150,
+  "years": 5,
+  "categories": [
+    "data_analytics"
+  ],
+  "core_skills": [
+    "SQL",
+    "Python",
+    "Pandas",
+    "Excel",
+    "Power BI",
+    "Tableau",
+    "Data Analysis",
+    "Data Visualization",
+    "Statistics",
+    "Google Sheets",
+    "Looker Studio",
+    "dbt",
+    "BigQuery",
+    "Data Cleaning",
+    "Dashboard"
+  ],
+  "persona": "data_analyst",
+  "provenance": "synthetic"
+}
