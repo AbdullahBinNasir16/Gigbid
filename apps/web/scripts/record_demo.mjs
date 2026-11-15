@@ -10,7 +10,8 @@ const USER = process.env.REVIEWER_USERNAME ?? "reviewer";
 const PASS = process.env.REVIEWER_PASSWORD ?? "reviewer-dev-password";
 const SCAM = process.env.DEMO_SCAM_JOB ?? "live_00009";
 const INJECTED = process.env.DEMO_INJECTED_JOB ?? "live_00015";
-const APPROVE_JOB = process.env.DEMO_APPROVE_JOB ?? "job_913f71039141";
+const APPROVE_JOB = process.env.DEMO_APPROVE_JOB ?? "job_2a4b04cc8325";
+const THEME = process.env.DEMO_THEME ?? "dark"; // dark | light (the app follows the system setting)
 const THREAD_JOB = process.env.DEMO_THREAD_JOB ?? "job_c6a12317e8c0";
 const OUT = "demo";
 
@@ -52,7 +53,7 @@ async function slowScroll(page, px, steps = 6) {
 
 const browser = await chromium.launch();
 mkdirSync(OUT, { recursive: true });
-const context = await browser.newContext({ viewport: { width: 1280, height: 720 }, recordVideo: { dir: OUT, size: { width: 1280, height: 720 } } });
+const context = await browser.newContext({ colorScheme: THEME, viewport: { width: 1280, height: 720 }, recordVideo: { dir: OUT, size: { width: 1280, height: 720 } } });
 const page = await context.newPage();
 
 // 0. Title
