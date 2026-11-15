@@ -94,6 +94,12 @@ async def fit_matcher(state: dict) -> dict:
         import asyncio
 
         report = await asyncio.to_thread(score_fit, job, evidence, skills, persona)
+        # Past proposals inform phrasing but are never proof, so also fetch proof items for the
+        # writer and the claim verifier. The fit score above is unchanged (as evaluated).
+        proof = await tb.call("search_evidence", requirement=job_text(job)[:2000], k=k,
+                              persona_id=persona,
+                              filters={"types": ["case_study", "repo", "code", "review", "cv"]})
+        evidence = evidence + [Evidence.model_validate(e) for e in proof["items"]]
     return {"analyses": {"fit": report}, "evidence": evidence, "counters": step(),
             "trace": [*tool_events(state, "matcher", tb.calls),
                       event(state, "matcher", duration_ms=t["ms"],

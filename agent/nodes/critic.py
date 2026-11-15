@@ -29,6 +29,10 @@ def rule_issues(text: str, job: dict, verification: dict | None) -> list[Critiqu
                                     "the client's specific problem in the first sentence.",
                                     paragraph_index=0))
     words = word_count(text)
+    if words < int(g.get("min_words", 80)):
+        issues.append(CritiqueIssue(kind="other", detail=(
+            f"Only {words} words after unsupported claims were removed. Rewrite using claims "
+            "backed by case study, repo, review or CV evidence, each with its tag.")))
     if words > int(g.get("max_words", 250)):
         issues.append(CritiqueIssue(kind="too_long", detail=f"{words} words; cut to under "
                                     f"{g.get('max_words', 250)}."))

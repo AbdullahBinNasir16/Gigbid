@@ -91,7 +91,7 @@ async def search_evidence(
 
     p = persona_id or persona()
     r = await anyio.to_thread.run_sync(get_retriever, p)
-    items = await anyio.to_thread.run_sync(r.retrieve, requirement, k * 3 if filters else k)
+    items = await anyio.to_thread.run_sync(r.retrieve, requirement, k * 8 if filters else k)
     if filters:
         if filters.types:
             items = [e for e in items if e.type.value in filters.types]

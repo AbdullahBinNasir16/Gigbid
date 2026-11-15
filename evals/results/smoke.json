@@ -1,7 +1,7 @@
 {
   "jobs": 30,
-  "bid_f1": 0.8421,
-  "drafts": 9,
+  "bid_f1": 0.6667,
+  "drafts": 8,
   "unsupported_rate_before": 0.0,
   "unsupported_rate_after": 0.0,
   "gate": {
