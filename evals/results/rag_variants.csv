@@ -1,0 +1,9 @@
+config,persona,n,recall@5,mrr,ndcg@10,p95_latency_s
+V0 naive,ai_ml,15,0.1689,0.2488,0.1719,1.1065
+V0 naive,fullstack,15,0.3467,0.3088,0.337,0.8413
+V0 naive,data_analyst,15,0.3744,0.4334,0.3738,0.6385
+V0 naive,all,45,0.2967,0.3303,0.2942,1.1065
+V2 hybrid,ai_ml,15,0.1744,0.4068,0.2332,1.0517
+V2 hybrid,fullstack,15,0.4133,0.3385,0.3633,0.635
+V2 hybrid,data_analyst,15,0.4322,0.4796,0.4363,0.7372
+V2 hybrid,all,45,0.34,0.4083,0.3443,1.0517

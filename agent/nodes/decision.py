@@ -8,6 +8,26 @@ from agent.nodes._common import event
 from agent.state import Status, step
 
 
+def _below_floor(state: dict) -> str | None:
+    """Skip jobs whose top budget is well under the user's rate floor (ratios in config)."""
+    from agent.nodes.fit_matcher import persona_profile
+
+    t = get_config().thresholds
+    job, prof = state["job"], persona_profile(state.get("persona", "ai_ml"))
+    top = job.get("budget_max")
+    if not top:
+        return None
+    if job.get("budget_type") == "hourly":
+        floor = prof.get("hourly_floor") or t.price.floor_hourly_usd
+        if top < floor * t.below_floor_hourly_ratio:
+            return f"client pays up to ${top:g}/h, under your ${floor:g}/h floor"
+    elif job.get("budget_type") == "fixed":
+        floor = prof.get("fixed_floor") or t.price.floor_fixed_usd
+        if top < floor * t.below_floor_fixed_ratio:
+            return f"fixed budget ${top:g} is far below your ${floor:g} minimum"
+    return None
+
+
 def decide(state: dict) -> dict:
     t = get_config().thresholds
     a = state.get("analyses", {})
@@ -24,6 +44,9 @@ def decide(state: dict) -> dict:
     elif "duplicate" in (risk.flags if risk else []):
         decision = "skip"
         reasons.append("duplicate of a job already in the queue")
+    elif (floor := _below_floor(state)) is not None:
+        decision = "skip"
+        reasons.append(floor)
     elif fit_score >= t.fit.bid:
         decision = "bid"
         reasons.append(f"fit {fit_score:.2f} >= {t.fit.bid}")

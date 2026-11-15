@@ -75,7 +75,7 @@ class SkillList(BaseModel):
 
 
 @mcp.tool(annotations=READ)
-def search_evidence(
+async def search_evidence(
     requirement: Annotated[str, Field(min_length=2, max_length=2000,
                                       description="One job requirement or the job text")],
     k: Annotated[int, Field(ge=1, le=20)] = 5,
@@ -85,11 +85,13 @@ def search_evidence(
 ) -> EvidenceResult:
     """Find portfolio evidence for a requirement. Returns items with type, source, date,
     project and (for past proposals) outcome. Uses the retrieval design chosen in config."""
+    import anyio
+
     from rag.retriever import get_retriever
 
     p = persona_id or persona()
-    r = get_retriever(p)
-    items = r.retrieve(requirement, k=k * 3 if filters else k)
+    r = await anyio.to_thread.run_sync(get_retriever, p)
+    items = await anyio.to_thread.run_sync(r.retrieve, requirement, k * 3 if filters else k)
     if filters:
         if filters.types:
             items = [e for e in items if e.type.value in filters.types]

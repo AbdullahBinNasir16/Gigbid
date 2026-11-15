@@ -128,8 +128,8 @@ thresholds:
   minimum_fit_score: 0.60          # kit key, kept (bid cutoff)
   maximum_risk_score: 0.70         # kit key, kept (scam cutoff)
   fit:
-    bid: 0.60                      # fit >= bid and risk < scam -> bid
-    watch: 0.40                    # watch <= fit < bid -> watch
+    bid: 0.50                      # fit >= bid and risk < scam -> bid (tuned on dev set)
+    watch: 0.35                    # watch <= fit < bid -> watch
   scam_risk: 0.70                  # risk >= this -> skip
   price:
     floor_hourly_usd: 25           # never quote under the user's floor
@@ -138,7 +138,10 @@ thresholds:
     band_high_percentile: p75
     min_expected_value_per_connect_usd: 1.0   # worth_it rule for Connects spend
   autonomy:
-    auto_skip_below_fit: 0.25      # used only when the user enables auto skip. Never auto sends.
+    auto_skip_below_fit: 0.25
+  # skip when the client's top budget is below these fractions of the user's floor
+  below_floor_hourly_ratio: 0.8
+  below_floor_fixed_ratio: 0.5      # used only when the user enables auto skip. Never auto sends.
 
 platform_rules:
   connects:
@@ -215,7 +218,7 @@ risk_rules:
     too_good:
       weight: 0.3
       patterns: ['no experience needed', 'easy work from home', '\$\d+ ?(per|a|/) ?week', 'earn \$?\d+']
-  injection_patterns: ['ignore (all )?(previous|prior|above) instructions', 'you are now', '\[system\]', 'if you are an? (ai|automated|bot|language model)', 'for ai assistants', 'reveal your (system )?prompt', 'skip the review', 'submit immediately', 'admin mode']
+  injection_patterns: ['ignore (all )?(previous|prior|above) instructions', 'you are now', '\[system\]', 'if you are an? (ai|automated|bot|language model)', 'for ai assistants', 'reveal your (system )?prompt', 'skip the review', 'submit immediately', 'admin mode', 'note to (bots|ai|assistants|agents)', 'ignore your (rules|instructions)', 'disregard (all|any|previous)']
   injection_weight: 0.5
   client:
     unverified_payment: 0.15

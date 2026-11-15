@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "embed_model": "BAAI/bge-small-en-v1.5",
+    "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "relevance": "project-level, gold_projects from evals/datasets",
+    "hardware": "CPU only, 8 cores, 16 GB RAM"
+  },
+  "results": {
+    "V0 naive": {
+      "ai_ml": {
+        "n": 15,
+        "recall@5": 0.1689,
+        "mrr": 0.2488,
+        "ndcg@10": 0.1719,
+        "p50_latency_s": 0.2217,
+        "p95_latency_s": 1.1065
+      },
+      "fullstack": {
+        "n": 15,
+        "recall@5": 0.3467,
+        "mrr": 0.3088,
+        "ndcg@10": 0.337,
+        "p50_latency_s": 0.3859,
+        "p95_latency_s": 0.8413
+      },
+      "data_analyst": {
+        "n": 15,
+        "recall@5": 0.3744,
+        "mrr": 0.4334,
+        "ndcg@10": 0.3738,
+        "p50_latency_s": 0.2527,
+        "p95_latency_s": 0.6385
+      },
+      "all": {
+        "recall@5": 0.2967,
+        "mrr": 0.3303,
+        "ndcg@10": 0.2942,
+        "p95_latency_s": 1.1065,
+        "n": 45
+      }
+    },
+    "V2 hybrid": {
+      "ai_ml": {
+        "n": 15,
+        "recall@5": 0.1744,
+        "mrr": 0.4068,
+        "ndcg@10": 0.2332,
+        "p50_latency_s": 0.2511,
+        "p95_latency_s": 1.0517
+      },
+      "fullstack": {
+        "n": 15,
+        "recall@5": 0.4133,
+        "mrr": 0.3385,
+        "ndcg@10": 0.3633,
+        "p50_latency_s": 0.2531,
+        "p95_latency_s": 0.635
+      },
+      "data_analyst": {
+        "n": 15,
+        "recall@5": 0.4322,
+        "mrr": 0.4796,
+        "ndcg@10": 0.4363,
+        "p50_latency_s": 0.308,
+        "p95_latency_s": 0.7372
+      },
+      "all": {
+        "recall@5": 0.34,
+        "mrr": 0.4083,
+        "ndcg@10": 0.3443,
+        "p95_latency_s": 1.0517,
+        "n": 45
+      }
+    }
+  }
+}

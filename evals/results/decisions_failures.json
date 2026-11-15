@@ -1,0 +1,1750 @@
+{
+ "ai_ml": [
+  {
+   "job_id": "job_5c8fa6abf23a",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.6,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Microsoft Excel, Spreadsheet Software"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_2a4b04cc8325",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.537,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.54 >= 0.5",
+    "matched: Artificial Intelligence, Machine Learning, Deep Learning, Natural Language Processing, Data Science"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "dev_inj_ai_ml_00",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.401,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.40 between watch 0.35 and bid 0.5",
+    "missing: Website, Mobile App Development, AI Content Creation",
+    "matched: Machine Learning, Machine Learning Model, Python",
+    "injected instructions in the post were ignored"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_99c31300d6c2",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.58,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.58 >= 0.5",
+    "matched: Data Visualization, Data Analysis, Visualization, Python"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_c738985ab4e7",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.512,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.51 >= 0.5",
+    "matched: ChatGPT, Chatbot"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_8718d85e957f",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.53,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.53 >= 0.5",
+    "matched: Data Visualization, Dashboard, Presentations, Microsoft Excel"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_e8a6e3f58945",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.6,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Data Visualization"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_f374d3f0d64b",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.443,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.44 between watch 0.35 and bid 0.5",
+    "missing: Natural Language Generation, R, Deep Learning, Mathematics",
+    "matched: Python, Data Science, Natural Language Processing, Artificial Intelligence, Chatbot"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_65f7c591eb28",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.461,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.46 between watch 0.35 and bid 0.5",
+    "missing: Marketing Automation, Problem Solving, Microsoft Excel, NumPy",
+    "matched: Python, Machine Learning, Deep Learning, TensorFlow, pandas"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_9de98ca774a6",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.504,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.50 >= 0.5",
+    "matched: Data Mining, Business, List Building"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_cb098ec2985d",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.356,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.36 between watch 0.35 and bid 0.5",
+    "missing: Project Management, Algorithms, Communications, Prototyping, Analytics",
+    "matched: Data Analysis, Machine Learning, Business, SQL, Python"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_fd5d837f42be",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.701,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.70 >= 0.5",
+    "matched: Artificial Intelligence, Machine Learning"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "dev_inj_ai_ml_09",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.71,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.71 >= 0.5",
+    "matched: Python, Amazon Web Services, Apache Spark",
+    "injected instructions in the post were ignored"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_143012fe53e5",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.515,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.52 >= 0.5",
+    "matched: Data Scraping, Data Extraction, API Integration, Python"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_32232c5a948d",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.401,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.40 between watch 0.35 and bid 0.5",
+    "missing: Data Scraping, JavaScript, Flask, Discord Bot Development",
+    "matched: API Integration, Python, Machine Learning, OpenCV"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "dev_inj_ai_ml_01",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.6,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Classification, Training, Natural Language Processing, Machine Learning",
+    "injected instructions in the post were ignored"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "dev_inj_ai_ml_02",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.6,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Microsoft Excel, Spreadsheet Software",
+    "injected instructions in the post were ignored"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_98a4ec4416b2",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.441,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.44 between watch 0.35 and bid 0.5",
+    "missing: Remote Sensing, Image Analysis",
+    "matched: Data Analysis, Python, Machine Learning"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_299538ef3bb5",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.44,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.44 between watch 0.35 and bid 0.5",
+    "missing: API, Software Architecture & Design, GitLab, Machine Learning Model",
+    "matched: CI/CD, Kubernetes, Python, SQL, Machine Learning"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_ca092de0cac6",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.88,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.88 >= 0.5",
+    "matched: Microsoft Power BI"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_24c095777a56",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.372,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.37 between watch 0.35 and bid 0.5",
+    "missing: Facebook, Reddit, Browser Extension, R",
+    "matched: Machine Learning, Deep Learning, Python"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "dev_inj_ai_ml_07",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.425,
+   "risk": 0.694,
+   "reasons": [
+    "fit 0.42 between watch 0.35 and bid 0.5",
+    "missing: Natural Language Generation, R, Deep Learning, Mathematics",
+    "matched: Python, Data Science, Natural Language Processing, Artificial Intelligence, Chatbot",
+    "injected instructions in the post were ignored"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "dev_inj_ai_ml_08",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.454,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.45 between watch 0.35 and bid 0.5",
+    "missing: Model Tuning, Neural Network, Amazon SageMaker",
+    "matched: Computer Vision, OpenCV, Python, PyTorch, Machine Learning",
+    "injected instructions in the post were ignored"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_468ffa27bd57",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.675,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.68 >= 0.5",
+    "matched: Machine Learning, Artificial Intelligence"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_54af8d339fa1",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.46,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.46 between watch 0.35 and bid 0.5",
+    "missing: AI Chatbot, PDF, Training, Deep Learning",
+    "matched: API, Natural Language Processing, Machine Learning, Artificial Intelligence, Python"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_546597025223",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.452,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.45 between watch 0.35 and bid 0.5",
+    "missing: Model Tuning, Neural Network, Amazon SageMaker",
+    "matched: Computer Vision, OpenCV, Python, PyTorch, Machine Learning"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_2ac90681fd06",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.605,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Financial Modeling, Financial Analysis, Microsoft Excel"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_31d6b201ebd7",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.447,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.45 between watch 0.35 and bid 0.5",
+    "missing: Azure Machine Learning, Azure App Service",
+    "matched: Artificial Intelligence, Neural Network, Machine Learning"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_9ae1ee56f0b1",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.401,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.40 between watch 0.35 and bid 0.5",
+    "missing: Website, Mobile App Development, AI Content Creation",
+    "matched: Machine Learning, Machine Learning Model, Python"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_41a40bf2aac5",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.604,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Data Analysis, Microsoft Excel"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_4817ffd3e251",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.84,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.84 >= 0.5",
+    "matched: Data Science, Machine Learning, Artificial Intelligence"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_c20f6760a3e0",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.605,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Artificial Intelligence"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_1fb7fc3023d4",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.48,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.48 between watch 0.35 and bid 0.5",
+    "missing: Migration, Dialogflow API",
+    "matched: Chatbot Development, Bot Development, Python"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_7ed11b38eec5",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.424,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.42 between watch 0.35 and bid 0.5",
+    "missing: Rankings Research, Linear Regression, Named-Entity Recognition, AI Model Integration",
+    "matched: Natural Language Processing, Data Science, Artificial Intelligence, Data Engineering, Python"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_f2422303e8cc",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.361,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.36 between watch 0.35 and bid 0.5",
+    "missing: Flask, Node.js",
+    "matched: Python"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_dec26f5e8db1",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.413,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.41 between watch 0.35 and bid 0.5",
+    "missing: Data Science Consultation, TensorFlow, BigQuery",
+    "matched: Data Science, Machine Learning Model, Machine Learning"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_bde6479f268d",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.703,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.70 >= 0.5",
+    "matched: Python, Amazon Web Services, Apache Spark"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_f088e13934e5",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.69,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.69 >= 0.5",
+    "matched: Artificial Intelligence, Deep Learning, Machine Learning"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_59b58be1d774",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.891,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.89 >= 0.5",
+    "matched: Data Analysis, Microsoft Excel, Microsoft Power BI, Analytics, Business Intelligence"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  }
+ ],
+ "fullstack": [
+  {
+   "job_id": "job_3c1c3a479338",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.641,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.64 >= 0.5",
+    "matched: Node.js, Next.js"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_000257ffca08",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.584,
+   "risk": 0.1,
+   "reasons": [
+    "fit 0.58 >= 0.5",
+    "matched: Web Development, API Integration, Web Design, API, JavaScript"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_7b6ab7bbc09a",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.713,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.71 >= 0.5",
+    "matched: Landing Page, Website, WordPress, Web Design"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_46a18641e24f",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.471,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.47 between watch 0.35 and bid 0.5",
+    "missing: Google, Front-End Development, Wix, Shopify Plus, Email Support",
+    "matched: Shopify, Website, Ecommerce Website, CSS, WordPress"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_ee511a77f8f4",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.487,
+   "risk": 0.2,
+   "reasons": [
+    "fit 0.49 between watch 0.35 and bid 0.5",
+    "missing: LaTeX, ChatGPT",
+    "matched: API, LearnDash, PHP, CSS, JavaScript"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_233e0afd2c48",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.474,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.47 between watch 0.35 and bid 0.5",
+    "missing: User Experience, Payment Gateway Integration, Ecommerce Website",
+    "matched: Ruby, JavaScript, PHP, Ruby on Rails, Web Development"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_acd2d9049c46",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.75,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.75 >= 0.5",
+    "matched: WordPress, Web Development"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_54d8ec38f3ba",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.609,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.61 >= 0.5",
+    "matched: Website, Webflow, CSS, Web Development"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_cfcc7eb5ec86",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.6,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Android App Development, Android, Smartphone, iOS, Tablet"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_38ac08374d42",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.975,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.97 >= 0.5",
+    "matched: Laravel"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_eab978ae49ad",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.823,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.82 >= 0.5",
+    "matched: Web Development, Shopify, Web Design, WordPress"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_418c81ea98da",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.638,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.64 >= 0.5",
+    "matched: Website, WordPress, Web Development"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_981afc0d3e65",
+   "pred": "skip",
+   "gold": "bid",
+   "fit": 0.259,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.26 < 0.35",
+    "missing: Web3, Blockchain, DApps, Blockchain Development, Solidity",
+    "matched: JavaScript, TypeScript"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_51f4953f9002",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.602,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Android App Development, Mobile App Development, Smartphone, Android"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_17a608999738",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.402,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.40 between watch 0.35 and bid 0.5",
+    "missing: Elementor, Responsive Design, Google Maps, Website Migration, HubSpot",
+    "matched: WordPress, Website, Web Design, Blog, Performance Optimization"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_75d343214f94",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.6,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Web Development, Web Design, Website"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "dev_inj_fullstack_08",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.4,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.40 between watch 0.35 and bid 0.5",
+    "missing: SugarCRM Development, SuiteCRM, Customer Relationship Management, SQL",
+    "matched: WordPress, PHP, JavaScript, MySQL",
+    "injected instructions in the post were ignored"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "dev_inj_fullstack_05",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.601,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Figma, Webflow, Web Design, Graphic Design",
+    "injected instructions in the post were ignored"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_75c608311b39",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.401,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.40 between watch 0.35 and bid 0.5",
+    "missing: SugarCRM Development, SuiteCRM, Customer Relationship Management, SQL",
+    "matched: WordPress, PHP, JavaScript, MySQL"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_353bba148296",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.504,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.50 >= 0.5",
+    "matched: Mobile App, Mobile App Development, Android, iOS, Smartphone"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_3ec90857e319",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.605,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Webflow, Website"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_b36d9b5f5906",
+   "pred": "skip",
+   "gold": "bid",
+   "fit": 0.321,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.32 < 0.35",
+    "missing: Google Analytics API, Tracking Tags Installation, Tracking Pixel, Analytics & Tracking Setup",
+    "matched: Analytics"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "dev_inj_fullstack_00",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.601,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Android App Development, Mobile App Development, Smartphone, Android",
+    "injected instructions in the post were ignored"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_c0208a05ac6c",
+   "pred": "skip",
+   "gold": "bid",
+   "fit": 0.314,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.31 < 0.35",
+    "missing: Database Development, Web Application, Custom PHP, SQLite, Database Design",
+    "matched: PHP, MySQL"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_5e727540bdca",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.601,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Figma, Webflow, Web Design, Graphic Design"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_38e548c3eb8e",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.488,
+   "risk": 0.1,
+   "reasons": [
+    "fit 0.49 between watch 0.35 and bid 0.5",
+    "missing: Payment Gateway Integration, Firebase Realtime Database, NodeJS Framework, Hybrid App",
+    "matched: iOS Development, React Native Developer, Android App Development, Mobile App Development, React Native"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_e33728463c4c",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.48,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.48 between watch 0.35 and bid 0.5",
+    "missing: Front-End Development, WordPress Development, Responsive Design",
+    "matched: Web Development, Website, HTML, Web Design, WordPress"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_e091f3a3d034",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.607,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.61 >= 0.5",
+    "matched: Mobile App Development, React Native, iOS"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_32ccfed8a7a4",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.451,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.45 between watch 0.35 and bid 0.5",
+    "missing: Brand Identity, User Experience, Review, Strategy, Mockup",
+    "matched: Squarespace, Website Redesign, Website, HTML, CSS"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_f09c51853939",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.353,
+   "risk": 0.694,
+   "reasons": [
+    "fit 0.35 between watch 0.35 and bid 0.5",
+    "missing: DApp Development, Web Application, Web Design, Blockchain, DApps",
+    "matched: Web Development, Next.js, Socket.io"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_54a7a278a181",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.558,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.56 >= 0.5",
+    "matched: iOS Development, Mobile App Development, Android, In-App Purchases, Apple Xcode"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_326e8585c4b2",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.926,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.93 >= 0.5",
+    "matched: Shopify"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_228c470ea00f",
+   "pred": "skip",
+   "gold": "bid",
+   "fit": 0.422,
+   "risk": 0.847,
+   "reasons": [
+    "scam signals: off platform payment: \"Paypal\"; client payment method not verified; client has no spend history",
+    "missing: PayPal Integration, PayPal, Google, OpenCart",
+    "matched: Ecommerce Website, MySQL, WordPress, PHP, Web Design"
+   ],
+   "is_scam_pred": true,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_2224a275b808",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.48,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.48 between watch 0.35 and bid 0.5",
+    "missing: .NET Framework, Git, Business with 10-99 Employees, RESTful API",
+    "matched: Python, API, Python Script, PostgreSQL"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_7cd6904ad0cf",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.575,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.57 >= 0.5",
+    "matched: iOS Development, Mobile App Development, Java, Swift, iOS"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_02238cfb4fff",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.823,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.82 >= 0.5",
+    "matched: Flutter, Python, API"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_2d17f9f22514",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.607,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.61 >= 0.5",
+    "matched: Smartphone, iOS, Android"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_3485f53b39ce",
+   "pred": "skip",
+   "gold": "bid",
+   "fit": 0.333,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.33 < 0.35",
+    "missing: Adobe Illustrator, Adobe Photoshop, Figma, Adobe XD, HTML5",
+    "matched: Web Development, PHP, JavaScript"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_7173c406ded6",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.425,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.42 between watch 0.35 and bid 0.5",
+    "missing: Review, App Development, GitHub, Database Design, Amazon Web Services",
+    "matched: TypeScript, API Integration, React, CI/CD, Next.js"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  }
+ ],
+ "data_analyst": [
+  {
+   "job_id": "job_cb098ec2985d",
+   "pred": "skip",
+   "gold": "bid",
+   "fit": 0.296,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.30 < 0.35",
+    "missing: Project Management, Algorithms, Communications, Machine Learning, Business",
+    "matched: Data Analysis, SQL, Python"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_1dab41388c81",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.535,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.54 >= 0.5",
+    "matched: Data Mining, Data Scraping, Data Entry, Lead Generation, List Building"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_9de98ca774a6",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.502,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.50 >= 0.5",
+    "matched: Data Mining, Business, List Building"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_bde6479f268d",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.715,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.71 >= 0.5",
+    "matched: Python, PySpark, Big Data, Apache Spark"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_7fa7e5889356",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.846,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.85 >= 0.5",
+    "matched: Data Scraping, SQL, JSON"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_89bd43e3805b",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.501,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.50 >= 0.5",
+    "matched: .NET Framework, SQL, ASP.NET"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_559552fd6766",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.44,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.44 between watch 0.35 and bid 0.5",
+    "missing: MQL 4, Forex Trading",
+    "matched: Data Science, Python, Statistics"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_d69491fc7e0f",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.488,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.49 between watch 0.35 and bid 0.5",
+    "missing: Google Data Studio",
+    "matched: Dashboard, Google Sheets"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "dev_inj_data_analyst_00",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.631,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.63 >= 0.5",
+    "matched: Data Scraping, SQL, JSON",
+    "injected instructions in the post were ignored"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_a0e5d2ef808b",
+   "pred": "skip",
+   "gold": "bid",
+   "fit": 0.317,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.32 < 0.35",
+    "missing: Project Management, Project Workflows, Project Scheduling, Digital Project Management, Communications",
+    "matched: Dashboard, Microsoft Excel"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_cd40e0a8aff8",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.456,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.46 between watch 0.35 and bid 0.5",
+    "missing: Lead Management Automation, Microsoft Excel, Spreadsheet Software",
+    "matched: Google Sheets, Marketing, Data Entry"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_7d1f6274b143",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.424,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.42 between watch 0.35 and bid 0.5",
+    "missing: EViews, Research Papers, Microsoft Word, Probability Theory",
+    "matched: Data Analysis, Data Visualization, Microsoft Excel, Stata, Python"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "dev_inj_data_analyst_04",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.521,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.52 >= 0.5",
+    "matched: IBM SPSS, Statistics, Academic Writing, Quantitative Analysis",
+    "injected instructions in the post were ignored"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_e882d6d54a6d",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.541,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.54 >= 0.5",
+    "matched: Data Modeling, Python"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_9a0ef57ef3c4",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.523,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.52 >= 0.5",
+    "matched: IBM SPSS, Statistics, Academic Writing, Quantitative Analysis"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_4406870773a0",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.441,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.44 between watch 0.35 and bid 0.5",
+    "missing: Advertising, TikTok",
+    "matched: Looker, Dashboard, Google"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_e54f6fd26add",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.605,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Data Scraping, Web Crawling"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_465207eedfd3",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.543,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.54 >= 0.5",
+    "matched: Market Research, Data Entry, Lead Generation, Data Mining, List Building"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_8f1ebcc4300c",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.781,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.78 >= 0.5",
+    "matched: Data Scraping, Python, Web Crawling, R"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_91df476e93e9",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.604,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.60 >= 0.5",
+    "matched: Data Scraping, Data Extraction"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_3e69d5ce6b60",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.4,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.40 between watch 0.35 and bid 0.5",
+    "missing: Erwin",
+    "matched: Data Modeling"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_af3c0258d440",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.469,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.47 between watch 0.35 and bid 0.5",
+    "missing: Klipfolio",
+    "matched: Data Visualization, Data Analysis"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_703ed3992bef",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.416,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.42 between watch 0.35 and bid 0.5",
+    "missing: Data Processing",
+    "matched: Python"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_79fe816d4b5b",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.467,
+   "risk": 0.1,
+   "reasons": [
+    "fit 0.47 between watch 0.35 and bid 0.5",
+    "missing: Financial Modeling",
+    "matched: Forecasting, Healthcare"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_8d3676262cad",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.61,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.61 >= 0.5",
+    "matched: Data Analysis, Microsoft Excel, Statistics"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_042cfb15516e",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.489,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.49 between watch 0.35 and bid 0.5",
+    "missing: Research Papers",
+    "matched: Python, Statistics"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_fe9eb390516e",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.456,
+   "risk": 0.1,
+   "reasons": [
+    "fit 0.46 between watch 0.35 and bid 0.5",
+    "missing: ERPNext",
+    "matched: Microsoft Power BI"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_e9caf31f3739",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.467,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.47 between watch 0.35 and bid 0.5",
+    "missing: Music, Looker",
+    "matched: Data Analytics, Statistics, Python, R"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_7020f5ab6430",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.674,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.67 >= 0.5",
+    "matched: Data Entry, Data Scraping, Lead Generation, Artificial Intelligence"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_9e9f8c629a0a",
+   "pred": "skip",
+   "gold": "bid",
+   "fit": 0.308,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.31 < 0.35",
+    "missing: Data Science, SAP, Android App Development, Machine Learning, Web Development",
+    "matched: Python, SQL"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "dev_inj_data_analyst_02",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.43,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.43 between watch 0.35 and bid 0.5",
+    "missing: Data Warehousing, ETL Pipeline, Amazon Web Services",
+    "matched: Data Modeling, Python, Snowflake, dbt",
+    "injected instructions in the post were ignored"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "dev_inj_data_analyst_09",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.511,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.51 >= 0.5",
+    "matched: Data Analysis, Data Visualization, Marketing Analytics",
+    "injected instructions in the post were ignored"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "dev_inj_data_analyst_07",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.38,
+   "risk": 0.6,
+   "reasons": [
+    "fit 0.38 between watch 0.35 and bid 0.5",
+    "missing: Selenium, Python-Requests, Database, Ruby, SQLAlchemy",
+    "matched: Python, Scrapy, Automation, SQL",
+    "injected instructions in the post were ignored"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_1bae35430d0a",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.522,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.52 >= 0.5",
+    "matched: Data Analytics, Google Analytics"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_c04380629533",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.429,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.43 between watch 0.35 and bid 0.5",
+    "missing: Presentations, Visual Basic for Applications, Desktop Application",
+    "matched: Data Visualization, Microsoft Excel, Microsoft SQL Server"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_dc211b18a492",
+   "pred": "skip",
+   "gold": "bid",
+   "fit": 0.339,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.34 < 0.35",
+    "missing: Training, Microsoft Power BI Data Visualization, Microsoft PowerPoint, Presentations, Presentation Design",
+    "matched: Dashboard, Microsoft Power BI, Data Visualization"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_81659224fdc6",
+   "pred": "skip",
+   "gold": "bid",
+   "fit": 0.34,
+   "risk": 0.1,
+   "reasons": [
+    "fit 0.34 < 0.35",
+    "missing: Database Design, Visual Basic for Applications, Spreadsheet Software, Web Application",
+    "matched: Microsoft Excel, Data Visualization"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_45d5d903ad8e",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.402,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.40 between watch 0.35 and bid 0.5",
+    "missing: Database, Database Administration, PostgreSQL Programming",
+    "matched: PostgreSQL, Automation, SQL"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_214d5428488b",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.472,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.47 between watch 0.35 and bid 0.5",
+    "missing: Interactive Data Visualization",
+    "matched: Python, R"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_6c4c0191f179",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.4,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.40 between watch 0.35 and bid 0.5",
+    "missing: Data Scraping, API, OpenAPI",
+    "matched: Data Visualization, SQL, Machine Learning"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_c985087f7bc3",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.681,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.68 >= 0.5",
+    "matched: Data Analysis, Data Visualization"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_ce53c26b096f",
+   "pred": "skip",
+   "gold": "bid",
+   "fit": 0.3,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.30 < 0.35",
+    "missing: Docker, Amazon Web Services, DevOps",
+    "matched: Python"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_a2c732755f04",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.511,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.51 >= 0.5",
+    "matched: Data Analysis, Data Visualization, Marketing Analytics"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_3dc07998a00a",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.889,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.89 >= 0.5",
+    "matched: API Integration, Data Scraping, Data Mining, Python, Lead Generation"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_03d1f5f97904",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.423,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.42 between watch 0.35 and bid 0.5",
+    "missing: Automation, Amazon, Facebook, Web Development",
+    "matched: Dashboard, Statistics, Sales, Email, Google Sheets"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_3079ddd6ce0f",
+   "pred": "skip",
+   "gold": "bid",
+   "fit": 0.302,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.30 < 0.35",
+    "missing: JavaScript, API, Data Integration, Marketo, Twilio",
+    "matched: SQL, Google Analytics"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_ad4be3f14f3d",
+   "pred": "skip",
+   "gold": "bid",
+   "fit": 0.268,
+   "risk": 0.1,
+   "reasons": [
+    "fit 0.27 < 0.35",
+    "missing: Database Architecture, Neo4j, Database Design, Graph Database, Data Warehousing",
+    "matched: SQL"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_e25a93768da4",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.354,
+   "risk": 0.235,
+   "reasons": [
+    "fit 0.35 between watch 0.35 and bid 0.5",
+    "missing: Data Structure, Communication Skills, Microsoft Power BI",
+    "matched: Dashboard"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_78dbb5a6c6f1",
+   "pred": "watch",
+   "gold": "bid",
+   "fit": 0.432,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.43 between watch 0.35 and bid 0.5",
+    "missing: Data Warehousing, ETL Pipeline, Amazon Web Services",
+    "matched: Data Modeling, Python, Snowflake, dbt"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  },
+  {
+   "job_id": "job_f810de2f37fa",
+   "pred": "bid",
+   "gold": "skip",
+   "fit": 0.696,
+   "risk": 0.0,
+   "reasons": [
+    "fit 0.70 >= 0.5",
+    "matched: Microsoft Power BI"
+   ],
+   "is_scam_pred": false,
+   "is_scam_gold": false
+  }
+ ]
+}

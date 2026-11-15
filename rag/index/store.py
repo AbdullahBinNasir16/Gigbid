@@ -118,3 +118,13 @@ def reset_index(persona: str | None = None) -> None:
     for key in list(_INDEXES):
         if persona is None or key[0] == persona:
             del _INDEXES[key]
+
+
+def warm(personas: list[str] | None = None) -> None:
+    """Build indexes and load models up front (API startup, eval runners), so the first
+    tool call does not pay model loading inside its timeout."""
+    from agent.config import get_config
+
+    for p in personas or ["ai_ml", "fullstack", "data_analyst"]:
+        get_index(p)
+    _cross_encoder(get_config().models.reranker.model)

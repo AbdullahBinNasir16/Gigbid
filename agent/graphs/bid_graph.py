@@ -50,8 +50,9 @@ def guarded(name: str, fn: Callable[..., Any]) -> Callable[..., Any]:
         last: Exception | None = None
         for attempt in range(b.node_max_retries + 1):
             try:
-                res = fn(state)
-                return await res if inspect.isawaitable(res) else res
+                if inspect.iscoroutinefunction(fn):
+                    return await fn(state)
+                return await asyncio.to_thread(fn, state)
             except Exception as exc:  # noqa: BLE001
                 if type(exc).__name__ in ("GraphInterrupt", "Interrupt") or \
                         "Interrupt" in type(exc).__name__:

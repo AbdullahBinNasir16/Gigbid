@@ -1,10 +1,72 @@
+"""GigBid API (FastAPI). The web app talks only to this; agents talk only to MCP tools."""
+
+from __future__ import annotations
+
+import asyncio
+import logging
+import os
+from contextlib import asynccontextmanager
+from pathlib import Path
+
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
-app = FastAPI(title="GigBid Student API", version="0.1.0")
+from apps.api import auth, db
+from apps.api.routers import analytics, approvals, jobs, messages, proposals, runs
+from apps.api.routers import auth as auth_router
+from apps.api.schemas import Health
 
-@app.get("/health")
-async def health():
-    return {"status": "ok", "service": "gigbid-api"}
+log = logging.getLogger("gigbid.api")
+WEB_DIST = Path(__file__).resolve().parents[1] / "web" / "dist"
 
-# TODO: Add typed routers, auth, jobs, proposals, approvals, messages, runs and analytics.
-# TODO: Add SSE or WebSocket streaming from LangGraph.
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):  # type: ignore[no-untyped-def]
+    auth.seed_reviewer()
+    if os.environ.get("WARM_INDEXES", "1") == "1":
+        from rag.index.store import warm
+
+        await asyncio.to_thread(warm)
+    yield
+
+
+app = FastAPI(title="GigBid API", version="1.0.0", lifespan=lifespan)
+app.add_middleware(CORSMiddleware, allow_origins=os.environ.get("CORS_ORIGINS", "*").split(","),
+                   allow_methods=["*"], allow_headers=["*"])
+for r in (auth_router.router, jobs.router, approvals.router, runs.router, proposals.router,
+          messages.router, analytics.router):
+    app.include_router(r, prefix="/api")
+
+
+@app.get("/health", response_model=Health)
+@app.get("/api/health", response_model=Health)
+async def health() -> Health:
+    """Marketplace reachability drives the UI's degraded-mode banner."""
+    from agent.marketplace_port import get_marketplace
+
+    queued = len(db.q(db.select(db.jobs.c.job_id).where(db.jobs.c.status == "queued")))
+    try:
+        await asyncio.wait_for(get_marketplace().get_connects_balance(), timeout=4)
+        return Health(status="ok", marketplace="ok", queued=queued)
+    except Exception as exc:  # noqa: BLE001
+        return Health(status="degraded", marketplace="unavailable",
+                      marketplace_detail=f"{type(exc).__name__}: {exc}"[:200], queued=queued)
+
+
+@app.post("/api/retry-queued")
+async def retry_queued(user: auth.CurrentUser) -> dict:
+    from apps.api import runtime
+
+    return {"restarted": await runtime.retry_queued(user)}
+
+
+# Serve the built React app from the same origin when present (single-container deploy).
+if WEB_DIST.exists():
+    app.mount("/assets", StaticFiles(directory=WEB_DIST / "assets"), name="assets")
+
+    @app.get("/{path:path}", include_in_schema=False)
+    async def spa(path: str) -> FileResponse:
+        f = WEB_DIST / path
+        return FileResponse(f if path and f.is_file() else WEB_DIST / "index.html")

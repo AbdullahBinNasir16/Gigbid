@@ -91,7 +91,9 @@ async def fit_matcher(state: dict) -> dict:
                             persona_id=persona)
         evidence = [Evidence.model_validate(e) for e in res["items"]]
         skills = (await tb.call("list_skills", persona_id=persona))["skills"]
-        report = score_fit(job, evidence, skills, persona)
+        import asyncio
+
+        report = await asyncio.to_thread(score_fit, job, evidence, skills, persona)
     return {"analyses": {"fit": report}, "evidence": evidence, "counters": step(),
             "trace": [*tool_events(state, "matcher", tb.calls),
                       event(state, "matcher", duration_ms=t["ms"],

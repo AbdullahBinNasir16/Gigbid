@@ -167,6 +167,8 @@ class ThresholdsConfig(_Strict):
     scam_risk: float = Field(ge=0, le=1)
     price: PriceThresholds
     autonomy: AutonomyThresholds
+    below_floor_hourly_ratio: float = Field(default=0.8, ge=0, le=2)
+    below_floor_fixed_ratio: float = Field(default=0.5, ge=0, le=2)
 
 
 class ConnectsTier(_Strict):

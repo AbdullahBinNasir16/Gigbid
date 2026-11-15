@@ -205,7 +205,7 @@ def label_job(p: dict, row: dict) -> dict:
         floor_ok = row["budget_max"] >= p["hourly_floor"] * 0.8
     if row["budget_type"] == "fixed" and row.get("budget_max"):
         floor_ok = row["budget_max"] >= p["fixed_floor"] * 0.5
-    bid = (not row.get("is_scam") and in_cat and skill_hits >= 2 and bool(gold_projects)
+    bid = (not row.get("is_scam") and not row.get("duplicate_of") and in_cat and skill_hits >= 2 and bool(gold_projects)
            and floor_ok)
     band = fair_band(row["category"], row["budget_type"]) if row["budget_type"] != "unknown" else None
     return {"gold_decision": "bid" if bid else "skip", "gold_projects": gold_projects,
