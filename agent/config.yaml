@@ -4,7 +4,7 @@
 
 marketplace:
   mode: gigsim                     # gigsim | upwork_live | fake  (kit key, kept)
-  max_requests_per_minute: 20      # kit key, kept. Our own limiter stays under GigSim's limit.
+  max_requests_per_minute: 60      # kit key, kept. Our own limiter stays under GigSim's 120/min.
   polling_interval_seconds: 300    # scheduled scouting in gigsim mode
   live_polling_interval_seconds: 1800  # conservative schedule for the official Upwork server
   adapters:                        # mode -> "module:Class". Graph code never imports these.

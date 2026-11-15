@@ -211,3 +211,31 @@ async def retry_queued(user: dict) -> int:
     for r in rows:
         start_run(user, json.loads(r["data"]))
     return len(rows)
+
+
+async def recover_interrupted() -> int:
+    """After a crash or restart, continue runs that were in flight from their last checkpoint.
+
+    A job left as analysing/resuming/running has no live task any more. If its thread has a
+    checkpoint with pending nodes, resume it (input None continues from that checkpoint);
+    otherwise start it again. Writes stay exactly-once through the idempotency keys.
+    """
+    from apps.api import auth
+
+    rows = db.q(db.select(db.jobs).where(db.jobs.c.status.in_(["analysing", "resuming",
+                                                               "running"])))
+    g = await graph()
+    n = 0
+    for r in rows:
+        user = auth.get_user(r["user_id"])
+        if not user or not r["thread_id"]:
+            continue
+        snap = await g.aget_state({"configurable": {"thread_id": r["thread_id"]}})
+        if snap.next and not getattr(snap, "interrupts", ()):
+            _spawn(_drive(user, r["thread_id"], r["job_id"], None))
+        elif not snap.values:
+            start_run(user, json.loads(r["data"]))
+        else:
+            await persist(user, r["thread_id"], r["job_id"], 0.0)
+        n += 1
+    return n

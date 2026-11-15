@@ -29,6 +29,9 @@ async def lifespan(app: FastAPI):  # type: ignore[no-untyped-def]
         from rag.index.store import warm
 
         await asyncio.to_thread(warm)
+    from apps.api import runtime
+
+    asyncio.get_running_loop().create_task(runtime.recover_interrupted())
     if os.environ.get("SEED_ON_START") == "1":
         asyncio.get_running_loop().create_task(_seed_reviewer_inbox())
     yield
@@ -63,11 +66,21 @@ for r in (auth_router.router, jobs.router, approvals.router, runs.router, propos
 @app.get("/api/health", response_model=Health)
 async def health() -> Health:
     """Marketplace reachability drives the UI's degraded-mode banner."""
+    from agent.config import get_config
     from agent.marketplace_port import get_marketplace
 
     queued = len(db.q(db.select(db.jobs.c.job_id).where(db.jobs.c.status == "queued")))
     try:
-        await asyncio.wait_for(get_marketplace().get_connects_balance(), timeout=4)
+        if get_config().marketplace.mode == "gigsim":
+            # Ping GigSim directly: going through the adapter would queue behind the agents'
+            # rate limiter and report a false outage while jobs are being analysed.
+            import httpx
+
+            base = os.environ.get("GIGSIM_BASE_URL", "http://localhost:8081")
+            async with httpx.AsyncClient(timeout=4) as c:
+                (await c.get(f"{base}/health")).raise_for_status()
+        else:
+            await asyncio.wait_for(get_marketplace().get_connects_balance(), timeout=4)
         return Health(status="ok", marketplace="ok", queued=queued)
     except Exception as exc:  # noqa: BLE001
         return Health(status="degraded", marketplace="unavailable",
