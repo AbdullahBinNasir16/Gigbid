@@ -119,8 +119,11 @@ class BidState(TypedDict, total=False):
     thread_id: str
     user_id: str
     trace_id: str
-    # input
+    persona: str
+    # input (job text is untrusted)
     job: dict[str, Any]
+    client: dict[str, Any]
+    duplicate_of: str | None
     # parallel analyses (Analyst, Risk, Matcher)
     analyses: Annotated[Analyses, merge_analyses]
     evidence: Annotated[list[Evidence], merge_evidence]
@@ -129,9 +132,11 @@ class BidState(TypedDict, total=False):
     price: PriceQuote
     drafts: Annotated[list[ProposalDraft], operator.add]
     critiques: Annotated[list[Critique], operator.add]
+    verification: dict[str, Any]
     compliance: ComplianceVerdict
     approval_request: ApprovalPayload
     approvals: Annotated[list[ApprovalDecision], operator.add]
+    final_text: str
     outcomes: Annotated[list[OutcomeEvent], operator.add]
     # exactly once submission
     submitted: bool

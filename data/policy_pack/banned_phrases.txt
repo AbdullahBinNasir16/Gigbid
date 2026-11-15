@@ -1,0 +1,22 @@
+# One phrase per line, case-insensitive. Loaded by the Compliance Guard; GigSim policy
+# updates can add phrases here without code changes.
+guarantee
+guaranteed
+100% satisfaction
+5-star results
+risk-free
+pay outside
+outside the platform
+off the platform
+whatsapp
+telegram
+skype
+wire transfer
+western union
+paypal me
+contact me directly
+my email is
+my phone number
+work for free
+free sample
+unpaid trial

@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from functools import lru_cache
 from pathlib import Path
-from typing import Literal
+from typing import Any, Literal
 
 import yaml
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -224,6 +224,7 @@ class ToolAllowlists(_Strict):
     analyst: list[str]
     compliance: list[str]
     liaison: LiaisonAllowlist
+    submitter: list[str] = Field(default_factory=list)  # runs only after human approval
 
 
 class RetrievalConfig(_Strict):
@@ -248,6 +249,9 @@ class AppConfig(_Strict):
     tool_allowlists: ToolAllowlists
     retrieval: RetrievalConfig
     seeds: SeedsConfig
+    # Rule tables kept in config so a policy update is a YAML edit, not a code change.
+    risk_rules: dict[str, Any] = Field(default_factory=dict)
+    generation: dict[str, Any] = Field(default_factory=dict)
 
     def connects_cost_for(self, budget_usd: float | None) -> int:
         """Connects cost for a job, from config tiers (falls back to the flat cost)."""

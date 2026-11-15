@@ -181,6 +181,7 @@ tool_allowlists:
   liaison:
     read: [list_messages, get_client_history, get_free_slots]
     after_approval: [send_message, create_tentative_hold, create_email_draft]
+  submitter:  [get_connects_balance, create_proposal_draft, submit_proposal]
 
 retrieval:
   variant: v0_naive                # v0_naive | v1_decomposition | v2_hybrid | v3_rerank | v4_outcome_aware | v8_corrective
@@ -191,3 +192,41 @@ retrieval:
 
 seeds:
   global: 4016
+
+# Risk Assessor rules. Each signal is a list of regexes (case-insensitive) and a weight;
+# the score is 1 - prod(1 - weight) over the signals that fire, plus client-history signals.
+risk_rules:
+  signals:
+    off_platform_payment:
+      weight: 0.8
+      patterns: ['outside (of )?the platform', 'off[- ]platform', 'avoid (platform )?fees', 'paypal', 'western union', 'wire transfer', 'usdt', 'crypto wallet', 'directly to your (wallet|account)', 'company account outside']
+    off_platform_contact:
+      weight: 0.6
+      patterns: ['whats ?app', 'telegram', 'skype', 'signal app', 'contact me (on|at|via)', 'email me at', '\+\d[\d \-]{7,}']
+    free_work:
+      weight: 0.7
+      patterns: ['unpaid (test|trial)', 'trial (week|project)? ?unpaid', 'work one full week unpaid', 'free sample', 'send (three|3|some) (finished )?sample', 'pay only after', 'after (we|the business) launch', 'equity only', 'no cash']
+    personal_data_request:
+      weight: 0.8
+      patterns: ['copy of your (id|passport)', 'national id', 'bank(ing)? login', 'send your full name, phone', 'social security', 'verify your bank account']
+    upfront_deposit:
+      weight: 0.8
+      patterns: ['refundable .{0,20}deposit', 'pay (a|the) .{0,20}(fee|deposit) first', 'shipping deposit']
+    too_good:
+      weight: 0.3
+      patterns: ['no experience needed', 'easy work from home', '\$\d+ ?(per|a|/) ?week', 'earn \$?\d+']
+  injection_patterns: ['ignore (all )?(previous|prior|above) instructions', 'you are now', '\[system\]', 'if you are an? (ai|automated|bot|language model)', 'for ai assistants', 'reveal your (system )?prompt', 'skip the review', 'submit immediately', 'admin mode']
+  injection_weight: 0.5
+  client:
+    unverified_payment: 0.15
+    no_spend_history: 0.1
+    low_rating_below: 3.5
+    low_rating_weight: 0.2
+
+generation:
+  writer_mode: llm             # llm | template (template = deterministic, evidence-only)
+  critic_mode: rules+llm       # rules | rules+llm
+  analyst_mode: rules          # rules | llm
+  evidence_k: 6
+  max_words: 250
+  min_words: 80
