@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api, streamUrl } from "../lib/api/client";
-import { Empty } from "../components/Layout";
+import { Empty, PageHead } from "../components/Layout";
 
 type Ev = { type: string; node?: string; summary?: string; at?: number; status?: string; trace_id?: string };
 type Trace = { node: string; kind: string; tool?: string | null; result_summary?: string | null; duration_ms?: number | null; tokens?: number };
@@ -37,10 +37,12 @@ export default function RunViewer() {
 
   const waiting = events.some((e) => e.type === "interrupt");
   return (
+    <>
+    <PageHead title="Agent run" sub="Live, node by node, with the full trace below." />
     <section className="grid">
       <div className="card span2">
         <div className="row between">
-          <h2>Agent run</h2>
+          <h2>Live progress</h2>
           <span className={`badge ${live ? "ok" : "pending"}`} aria-live="polite">{live ? "live" : "idle"}</span>
         </div>
         {waiting && <p><Link className="button" to={`/studio/${encodeURIComponent(thread)}`}>Waiting for your approval — review the proposal</Link></p>}
@@ -67,5 +69,6 @@ export default function RunViewer() {
         </table>
       </div>
     </section>
+    </>
   );
 }

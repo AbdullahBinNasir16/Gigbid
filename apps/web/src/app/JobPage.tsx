@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api, type JobDetail } from "../lib/api/client";
 import { Badge, ErrorNote, Loading } from "../components/Layout";
+import { Ring } from "../components/Icons";
 
 type Ev = { id: string; type: string; project?: string | null; text: string; source: string };
 
@@ -56,7 +57,7 @@ export default function JobPage() {
 
       {decision && (
         <div className="card">
-          <h3>Bid or skip</h3>
+          <div className="row between top"><h3>Bid or skip</h3><Ring value={decision.fit_score} size={52} /></div>
           <ul>{decision.reasons.map((r: string) => <li key={r}>{r}</li>)}</ul>
           <p className="muted">fit {(decision.fit_score * 100).toFixed(0)}% · risk {(decision.risk_score * 100).toFixed(0)}%</p>
         </div>
@@ -99,7 +100,7 @@ export default function JobPage() {
               {fit.requirement_matches.map((m: any) => (
                 <tr key={m.requirement}>
                   <td>{m.requirement}</td>
-                  <td>{m.evidence_ids.length ? m.evidence_ids.map((i: string) => <span key={i} className="chip" title={byId[i]?.text}>{byId[i]?.project ?? i}</span>) : <span className="muted">no evidence</span>}</td>
+                  <td>{m.evidence_ids.length ? m.evidence_ids.map((i: string) => <span key={i} className="chip-ev" title={byId[i]?.text}>{byId[i]?.project ?? i}</span>) : <span className="muted">no evidence</span>}</td>
                   <td>{(m.strength * 100).toFixed(0)}%</td>
                 </tr>
               ))}

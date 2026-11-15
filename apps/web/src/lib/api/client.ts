@@ -36,17 +36,19 @@ const auth: Middleware = {
     return request;
   },
   onResponse({ response }) {
-    if (response.status === 401 && !location.pathname.startsWith("/login")) {
+    if (response.status === 401 && !location.pathname.endsWith("/login")) {
       setToken(null);
-      location.assign("/login");
+      location.assign(`${import.meta.env.BASE_URL}login`);
     }
     return response;
   },
 };
 
-export const api = createClient<paths>({ baseUrl: "" });
+// Same origin by default; a static deploy (GitHub Pages) sets VITE_API_BASE to the API URL.
+export const API_BASE: string = (import.meta.env.VITE_API_BASE ?? "").replace(/\/$/, "");
+export const api = createClient<paths>({ baseUrl: API_BASE });
 api.use(auth);
 
 export function streamUrl(threadId: string): string {
-  return `/api/runs/${encodeURIComponent(threadId)}/stream?token=${encodeURIComponent(getToken() ?? "")}`;
+  return `${API_BASE}/api/runs/${encodeURIComponent(threadId)}/stream?token=${encodeURIComponent(getToken() ?? "")}`;
 }

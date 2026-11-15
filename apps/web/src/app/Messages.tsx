@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../lib/api/client";
-import { Empty, ErrorNote, Loading } from "../components/Layout";
+import { Empty, ErrorNote, Loading, PageHead } from "../components/Layout";
 
 type Thread = { thread_id: string; job_id: string; message_count: number; last_message_at: string };
 type Msg = { message_id: string; sender: string; text: string; sent_at: string };
@@ -50,9 +50,11 @@ export default function Messages() {
 
   if (!threads) return <Loading what="Loading conversations" />;
   return (
+    <>
+    <PageHead title="Messages" sub="Client replies with suggested answers. You approve before anything is sent." />
     <section className="grid">
       <div className="card">
-        <h2>Messages</h2>
+        <h2>Conversations</h2>
         {threads.length === 0 ? <Empty title="No client replies yet" /> : (
           <ul className="list">
             {threads.map((t) => (
@@ -81,5 +83,6 @@ export default function Messages() {
         )}
       </div>
     </section>
+    </>
   );
 }

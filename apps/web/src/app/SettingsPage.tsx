@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { api, type MemoryItem, type Settings } from "../lib/api/client";
-import { ErrorNote, Loading } from "../components/Layout";
+import { ErrorNote, Loading, PageHead } from "../components/Layout";
 
 export default function SettingsPage() {
   const [s, setS] = useState<Settings | null>(null);
@@ -35,8 +35,10 @@ export default function SettingsPage() {
 
   if (!s) return <Loading what="Loading settings" />;
   return (
+    <>
+    <PageHead title="Settings" sub="Your portfolio, rates, budgets and what GigBid has learned." />
     <section className="grid">
-      <form className="card" onSubmit={save} aria-label="Settings">
+      <form className="card form-grid" onSubmit={save} aria-label="Settings">
         <h2>{onboarding ? "Set up GigBid" : "Settings"}</h2>
         <label>Portfolio
           <select value={s.persona} onChange={(e) => setS({ ...s, persona: e.target.value as Settings["persona"] })}>
@@ -66,7 +68,7 @@ export default function SettingsPage() {
             <option value="auto_skip">Auto-skip very low fit (never auto-send)</option>
           </select>
         </label>
-        <button type="submit">Save</button>
+        <button type="submit" className="primary">Save</button>
         <ErrorNote error={saved} />
       </form>
       <div className="card">
@@ -81,5 +83,6 @@ export default function SettingsPage() {
         )}
       </div>
     </section>
+    </>
   );
 }

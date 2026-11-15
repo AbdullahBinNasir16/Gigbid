@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { api, type ApprovalItem } from "../lib/api/client";
-import { Badge, Empty, ErrorNote, Loading } from "../components/Layout";
+import { Badge, Empty, ErrorNote, Loading, PageHead } from "../components/Layout";
 import { EvidenceHover, type EvidenceItem } from "../components/EvidenceHover";
 
 type Claim = { text: string; evidence_ids: string[]; support: string };
@@ -47,10 +47,10 @@ export default function Studio() {
   if (!item) return <Loading what="Loading draft" />;
 
   return (
+    <>
+    <PageHead title="Proposal studio" sub={item.title} />
     <section className="grid">
       <div className="card span2">
-        <h2>Proposal studio</h2>
-        <p className="muted">{item.title}</p>
         <label htmlFor="draft">Draft (edit freely; edits are re-checked by Compliance and teach your style memory)</label>
         <textarea id="draft" data-testid="draft-editor" value={text} onChange={(e) => setText(e.target.value)} rows={12} />
         <h3>Claims and their evidence</h3>
@@ -85,7 +85,7 @@ export default function Studio() {
       <div className="card span2">
         <ErrorNote error={error} />
         <div className="row">
-          <button data-testid="approve" onClick={() => act(edited ? "edit" : "approve")} disabled={busy}>
+          <button className="primary" data-testid="approve" onClick={() => act(edited ? "edit" : "approve")} disabled={busy}>
             {edited ? "Approve with my edits" : "Approve and send as draft"}
           </button>
           <input aria-label="Reason for rejecting" placeholder="Reason (required to reject)" value={reason} onChange={(e) => setReason(e.target.value)} data-testid="reject-reason" />
@@ -94,5 +94,6 @@ export default function Studio() {
         <p className="muted">Nothing is sent until you approve. Approval creates the proposal on the marketplace and spends the Connects shown above, exactly once.</p>
       </div>
     </section>
+    </>
   );
 }
