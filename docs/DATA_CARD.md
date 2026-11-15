@@ -111,7 +111,7 @@ after dropping duplicate texts.
 | GigSim clients (600) | in memory, `gigsim/world.py` | public history sampled from real distributions; 3% scam clients |
 | Hidden client preferences | in memory, never served | per job: 1 to 3 must-have skills from the job's own tags, budget ceiling 0.9 to 1.3 × posted budget, 70% dislike generic openings |
 | Live planted jobs | GigSim live stream | templates in `gigsim/templates.yaml`: near duplicates, scams, injected instructions |
-| Personas, portfolios, past proposals, dev eval set | `data/personas/`, `evals/datasets/` | Phase 0B-2 (next step); this section will be extended there |
+| Personas, portfolios, past proposals, dev eval set | `data/personas/`, `evals/datasets/` | `scripts/data/build_personas.py` (seed 4016), see section 4 |
 
 ## 4. Limitations
 
@@ -138,3 +138,47 @@ after dropping duplicate texts.
   masks miss (for example names). Masking is regex based.
 * **Dataset 6 has no stated licence.** Only aggregate word statistics derived from it are
   committed (`scam_lexicon.json`); no rows or text passages.
+
+
+## 4. Personas, portfolios and evaluation sets (synthetic)
+
+Built by `python -m scripts.data.build_personas` from hand-written project facts in
+`scripts/data/persona_specs.py` (seed 4016, fully deterministic). All records carry
+`provenance: synthetic`, except dev/held-out jobs taken from the real job stream, which keep
+`provenance: real` and only gain gold labels.
+
+**Corpora** (`data/personas/<persona>/`): `profile.json`, `cv.md`, 16 case studies with
+front-matter metadata (project, skills, date, client industry), repos (README + code) for
+every second project, client reviews for about 70% of projects, and 150 past proposals with
+outcomes. The corpus is messy on purpose:
+* each project is described three ways (case study, terse CV line, technical README);
+* some skills appear only in code (`# uses Celery`), never in prose;
+* past proposals carry `won / replied / ignored` outcomes that depend on whether the letter
+  was specific and cited a real project, not on its wording.
+
+**Evaluation sets** (`evals/datasets/dev_<persona>.jsonl`; held-out in `data/heldout/`, git
+ignored, disjoint jobs):
+
+| Persona | Projects | Dev jobs | Gold bid | Planted scams | Planted injections | Jobs with gold evidence | Held-out jobs |
+|---|---|---|---|---|---|---|---|
+| ai_ml | 16 | 198 | 41 | 10 | 10 | 53 | 113 |
+| fullstack | 16 | 198 | 35 | 10 | 10 | 62 | 113 |
+| data_analyst | 16 | 198 | 41 | 10 | 10 | 62 | 113 |
+
+Source: `evals/datasets/SUMMARY.json`. Each dev set mixes 120 jobs from the persona's
+categories, 50 from other categories, 10 planted scams (GigSim templates plus five
+hand-written patterns: unpaid trials, deposits, ID/bank requests, crypto off-platform,
+equity-only), 10 planted prompt injections appended to relevant jobs, and 8 near-duplicates.
+
+**How gold labels were made (and their limits).** Labels are rule-derived, not human:
+* `gold_projects`: projects whose skills (including code-only skills) overlap the job text
+  or listed skills in at least two places;
+* `gold_decision = bid` when the job is in the persona's categories, not a scam or
+  duplicate, has at least two persona skill hits, at least one gold project, and a budget not
+  far below the persona's floor;
+* `fair_band`: p25 to p75 of real prices for the job's category and budget type
+  (`data/real/price_stats.json`).
+Because GigBid's own matcher also uses skill overlap, decision metrics on this set are
+optimistic about lexical matching and pessimistic about semantic matches the rules miss. The
+synthetic past proposals cite the project with the highest skill overlap, which favours
+outcome-aware ranking (V4); see the threats to validity in the README.

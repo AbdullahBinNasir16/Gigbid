@@ -55,7 +55,8 @@ def _build(model_cfg: NodeModelConfig, cfg: AppConfig) -> BaseChatModel:
         temperature=model_cfg.temperature,
         max_completion_tokens=model_cfg.max_tokens,
         timeout=cfg.budgets.node_timeout_seconds,
-        max_retries=cfg.budgets.node_max_retries,
+        # hosted free tiers rate-limit per minute: let the client back off on 429s
+        max_retries=cfg.budgets.node_max_retries if provider.api_key_env is None else 8,
     )
 
 

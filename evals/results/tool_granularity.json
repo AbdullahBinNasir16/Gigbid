@@ -1,0 +1,1413 @@
+{
+  "model": "openai/gpt-oss-20b",
+  "profile": "open_hosted",
+  "results": {
+    "fine": {
+      "tools": 26,
+      "tasks": 40,
+      "tool_selection_accuracy": 0.9,
+      "argument_accuracy": 0.9,
+      "tokens_per_task": 736.8,
+      "rows": [
+        {
+          "task": "Find new jobs that mention dbt.",
+          "expected": "search_jobs",
+          "called": "search_jobs_by_keyword",
+          "args": {
+            "query": "dbt"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 727
+        },
+        {
+          "task": "Any Celery or Redis gigs posted today?",
+          "expected": "search_jobs",
+          "called": "search_jobs_by_keyword",
+          "args": {
+            "query": "Celery OR Redis"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 742
+        },
+        {
+          "task": "Look for Next.js freelance work.",
+          "expected": "search_jobs",
+          "called": "search_jobs_by_keyword",
+          "args": {
+            "query": "Next.js"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 711
+        },
+        {
+          "task": "Search the marketplace for Power BI dashboard jobs.",
+          "expected": "search_jobs",
+          "called": "search_jobs_by_keyword",
+          "args": {
+            "query": "Power BI dashboard"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 706
+        },
+        {
+          "task": "Show me five LangGraph jobs.",
+          "expected": "search_jobs",
+          "called": "search_jobs_by_keyword",
+          "args": {
+            "query": "LangGraph"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 715
+        },
+        {
+          "task": "Open job job_9ae1ee56f0b1 so I can read the full post.",
+          "expected": "get_job",
+          "called": "get_job_description",
+          "args": {
+            "id": "job_9ae1ee56f0b1"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 748
+        },
+        {
+          "task": "What budget does job_7ae85e6c4e7c have?",
+          "expected": "get_job",
+          "called": "get_job_budget",
+          "args": {
+            "id": "job_7ae85e6c4e7c"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 729
+        },
+        {
+          "task": "Read the description of job_913f71039141.",
+          "expected": "get_job",
+          "called": "get_job_description",
+          "args": {
+            "id": "job_913f71039141"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 711
+        },
+        {
+          "task": "Is client c_0042 trustworthy? Check their history.",
+          "expected": "get_client_history",
+          "called": "get_client_reviews",
+          "args": {
+            "id": "c_0042"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 774
+        },
+        {
+          "task": "What rating does client c_0107 have?",
+          "expected": "get_client_history",
+          "called": "get_client_rating",
+          "args": {
+            "id": "c_0107"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 707
+        },
+        {
+          "task": "Has client c_0311 verified their payment method?",
+          "expected": "get_client_history",
+          "called": "get_client_payment_status",
+          "args": {
+            "id": "c_0311"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 715
+        },
+        {
+          "task": "How much has client c_0005 spent on the platform?",
+          "expected": "get_client_history",
+          "called": "get_client_spend",
+          "args": {
+            "id": "c_0005"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 716
+        },
+        {
+          "task": "How many Connects do I have left?",
+          "expected": "get_connects_balance",
+          "called": "get_connects_balance",
+          "args": {},
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 694
+        },
+        {
+          "task": "Can I afford another proposal this week?",
+          "expected": "get_connects_balance",
+          "called": "get_connects_balance",
+          "args": {
+            "": ""
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 991
+        },
+        {
+          "task": "What is my weekly Connects budget?",
+          "expected": "get_connects_balance",
+          "called": "get_weekly_connects_budget",
+          "args": {},
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 697
+        },
+        {
+          "task": "Show the messages in thread th_0001.",
+          "expected": "list_messages",
+          "called": "get_thread_messages",
+          "args": {
+            "id": "th_0001"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 707
+        },
+        {
+          "task": "Did the client in thread th_0007 reply?",
+          "expected": "list_messages",
+          "called": "get_thread_messages",
+          "args": {
+            "id": "th_0007"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 712
+        },
+        {
+          "task": "Read all my client conversations.",
+          "expected": "list_messages",
+          "called": "list_threads",
+          "args": {},
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 1032
+        },
+        {
+          "task": "Do I have experience with Pinecone?",
+          "expected": "search_evidence",
+          "called": "search_cv",
+          "args": {
+            "query": "Pinecone"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 815
+        },
+        {
+          "task": "Find proof that I have built RAG chatbots.",
+          "expected": "search_evidence",
+          "called": "search_code",
+          "args": {
+            "query": "RAG chatbot"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 824
+        },
+        {
+          "task": "Which of my projects used Stripe?",
+          "expected": "search_evidence",
+          "called": "search_code",
+          "args": {
+            "query": "Stripe"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 873
+        },
+        {
+          "task": "Find a past proposal that won for a dashboard job.",
+          "expected": "search_evidence",
+          "called": "search_past_proposals",
+          "args": {
+            "query": "dashboard"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 724
+        },
+        {
+          "task": "What client reviews mention fast delivery?",
+          "expected": "search_evidence",
+          "called": "search_reviews",
+          "args": {
+            "query": "fast delivery"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 707
+        },
+        {
+          "task": "Have I done computer vision for a manufacturing client?",
+          "expected": "search_evidence",
+          "called": "search_past_proposals",
+          "args": {
+            "query": "computer vision manufacturing"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 739
+        },
+        {
+          "task": "Show code in my repos that uses Kafka.",
+          "expected": "search_evidence",
+          "called": "search_code",
+          "args": {
+            "query": "Kafka"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 727
+        },
+        {
+          "task": "Evidence for Tableau work?",
+          "expected": "search_evidence",
+          "called": "search_case_studies",
+          "args": {
+            "query": "Tableau"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 788
+        },
+        {
+          "task": "Open my case study support-rag-bot.",
+          "expected": "get_case_study",
+          "called": "search_case_studies",
+          "args": {
+            "query": "support-rag-bot"
+          },
+          "tool_ok": false,
+          "args_ok": false,
+          "tokens": 913
+        },
+        {
+          "task": "Give me the full write-up of the dbt-warehouse project.",
+          "expected": "get_case_study",
+          "called": "search_case_studies",
+          "args": {
+            "query": "dbt-warehouse"
+          },
+          "tool_ok": false,
+          "args_ok": false,
+          "tokens": 732
+        },
+        {
+          "task": "Show case study saas-billing-dashboard in full.",
+          "expected": "get_case_study",
+          "called": "get_case_study_text",
+          "args": {
+            "id": "saas-billing-dashboard"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 750
+        },
+        {
+          "task": "What skills are in my profile?",
+          "expected": "list_skills",
+          "called": "list_skills",
+          "args": {},
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 705
+        },
+        {
+          "task": "Which skills do I have evidence for?",
+          "expected": "list_skills",
+          "called": null,
+          "args": null,
+          "tool_ok": false,
+          "args_ok": false,
+          "tokens": 0
+        },
+        {
+          "task": "List my skills.",
+          "expected": "list_skills",
+          "called": "list_skills",
+          "args": {
+            "": ""
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 705
+        },
+        {
+          "task": "When am I free for a 30 minute interview this week?",
+          "expected": "get_free_slots",
+          "called": "get_free_slots",
+          "args": {},
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 700
+        },
+        {
+          "task": "Suggest three interview times.",
+          "expected": "get_free_slots",
+          "called": "get_free_slots",
+          "args": {
+            "": ""
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 738
+        },
+        {
+          "task": "Hold 2026-11-18T10:00:00Z for 30 minutes for the Acme interview.",
+          "expected": "create_tentative_hold",
+          "called": "create_calendar_hold",
+          "args": {
+            "duration_minutes": 30,
+            "start": "2026-11-18T10:00:00Z"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 734
+        },
+        {
+          "task": "Pencil in a 45 minute call on 2026-11-20T14:00:00Z with the client.",
+          "expected": "create_tentative_hold",
+          "called": "create_calendar_hold",
+          "args": {
+            "duration_minutes": 45,
+            "start": "2026-11-20T14:00:00Z"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 757
+        },
+        {
+          "task": "Draft an email to sam@example.com confirming the interview.",
+          "expected": "create_email_draft",
+          "called": "create_email_draft",
+          "args": {
+            "body": "Hello Sam,\n\nThank you for your interest in the position. I am pleased to confirm your interview scheduled for [Date] at [Time]. Please let me know if you need any additional information or if you would like to reschedule.\n\nLooking forward to speaking with you.\n\nBest regards,\n[Your Name]",
+            "subject": "Interview Confirmation",
+            "to": "sam@example.com"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 778
+        },
+        {
+          "task": "Write an email draft to lee@example.org with the project plan.",
+          "expected": "create_email_draft",
+          "called": "create_email_draft",
+          "args": {
+            "body": "Hi Lee,\n\nI hope you're doing well. Attached is the project plan for the upcoming initiative. It outlines the key milestones, deliverables, and timelines. Please review it at your earliest convenience and let me know if you have any questions or suggestions.\n\nThank you for your collaboration.\n\nBest regards,\n[Your Name]",
+            "subject": "Project Plan",
+            "to": "lee@example.org"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 782
+        },
+        {
+          "task": "Find remote data cleaning jobs.",
+          "expected": "search_jobs",
+          "called": "search_jobs_by_keyword",
+          "args": {
+            "query": "remote data cleaning"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 712
+        },
+        {
+          "task": "Do I have any React Native work to show?",
+          "expected": "search_evidence",
+          "called": "search_jobs_by_keyword",
+          "args": {
+            "query": "React Native"
+          },
+          "tool_ok": false,
+          "args_ok": false,
+          "tokens": 735
+        }
+      ]
+    },
+    "coarse": {
+      "tools": 3,
+      "tasks": 40,
+      "tool_selection_accuracy": 0.85,
+      "argument_accuracy": 0.85,
+      "tokens_per_task": 418.7,
+      "rows": [
+        {
+          "task": "Find new jobs that mention dbt.",
+          "expected": "search_jobs",
+          "called": "marketplace",
+          "args": {
+            "action": "search",
+            "query": "dbt"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 324
+        },
+        {
+          "task": "Any Celery or Redis gigs posted today?",
+          "expected": "search_jobs",
+          "called": "marketplace",
+          "args": {
+            "action": "search",
+            "query": "Celery OR Redis"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 446
+        },
+        {
+          "task": "Look for Next.js freelance work.",
+          "expected": "search_jobs",
+          "called": "marketplace",
+          "args": {
+            "action": "search",
+            "query": "Next.js freelance work"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 357
+        },
+        {
+          "task": "Search the marketplace for Power BI dashboard jobs.",
+          "expected": "search_jobs",
+          "called": "marketplace",
+          "args": {
+            "action": "search",
+            "query": "Power BI dashboard jobs"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 336
+        },
+        {
+          "task": "Show me five LangGraph jobs.",
+          "expected": "search_jobs",
+          "called": "marketplace",
+          "args": {
+            "action": "search",
+            "query": "LangGraph"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 372
+        },
+        {
+          "task": "Open job job_9ae1ee56f0b1 so I can read the full post.",
+          "expected": "get_job",
+          "called": "marketplace",
+          "args": {
+            "action": "get_job",
+            "id": "job_9ae1ee56f0b1"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 361
+        },
+        {
+          "task": "What budget does job_7ae85e6c4e7c have?",
+          "expected": "get_job",
+          "called": "marketplace",
+          "args": {
+            "action": "get_job",
+            "id": "job_7ae85e6c4e7c"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 396
+        },
+        {
+          "task": "Read the description of job_913f71039141.",
+          "expected": "get_job",
+          "called": "marketplace",
+          "args": {
+            "action": "get_job",
+            "id": "job_913f71039141"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 359
+        },
+        {
+          "task": "Is client c_0042 trustworthy? Check their history.",
+          "expected": "get_client_history",
+          "called": "marketplace",
+          "args": {
+            "action": "client",
+            "id": "c_0042"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 400
+        },
+        {
+          "task": "What rating does client c_0107 have?",
+          "expected": "get_client_history",
+          "called": "marketplace",
+          "args": {
+            "action": "client",
+            "id": "c_0107"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 375
+        },
+        {
+          "task": "Has client c_0311 verified their payment method?",
+          "expected": "get_client_history",
+          "called": "marketplace",
+          "args": {
+            "action": "client",
+            "id": "c_0311"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 410
+        },
+        {
+          "task": "How much has client c_0005 spent on the platform?",
+          "expected": "get_client_history",
+          "called": "marketplace",
+          "args": {
+            "action": "client",
+            "id": "c_0005"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 378
+        },
+        {
+          "task": "How many Connects do I have left?",
+          "expected": "get_connects_balance",
+          "called": "marketplace",
+          "args": {
+            "action": "connects"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 367
+        },
+        {
+          "task": "Can I afford another proposal this week?",
+          "expected": "get_connects_balance",
+          "called": "marketplace",
+          "args": {
+            "action": "connects"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 559
+        },
+        {
+          "task": "What is my weekly Connects budget?",
+          "expected": "get_connects_balance",
+          "called": "marketplace",
+          "args": {
+            "action": "connects"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 367
+        },
+        {
+          "task": "Show the messages in thread th_0001.",
+          "expected": "list_messages",
+          "called": "marketplace",
+          "args": {
+            "action": "messages",
+            "id": "th_0001"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 365
+        },
+        {
+          "task": "Did the client in thread th_0007 reply?",
+          "expected": "list_messages",
+          "called": "marketplace",
+          "args": {
+            "action": "messages",
+            "id": "th_0007"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 374
+        },
+        {
+          "task": "Read all my client conversations.",
+          "expected": "list_messages",
+          "called": "marketplace",
+          "args": {
+            "action": "messages",
+            "id": null,
+            "query": null
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 498
+        },
+        {
+          "task": "Do I have experience with Pinecone?",
+          "expected": "search_evidence",
+          "called": "portfolio",
+          "args": {
+            "action": "search",
+            "query": "Pinecone"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 463
+        },
+        {
+          "task": "Find proof that I have built RAG chatbots.",
+          "expected": "search_evidence",
+          "called": "portfolio",
+          "args": {
+            "action": "search",
+            "query": "RAG chatbots"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 442
+        },
+        {
+          "task": "Which of my projects used Stripe?",
+          "expected": "search_evidence",
+          "called": "portfolio",
+          "args": {
+            "action": "search",
+            "query": "Stripe"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 348
+        },
+        {
+          "task": "Find a past proposal that won for a dashboard job.",
+          "expected": "search_evidence",
+          "called": "marketplace",
+          "args": {
+            "action": "search",
+            "query": "dashboard"
+          },
+          "tool_ok": false,
+          "args_ok": false,
+          "tokens": 716
+        },
+        {
+          "task": "What client reviews mention fast delivery?",
+          "expected": "search_evidence",
+          "called": "marketplace",
+          "args": {
+            "action": "search",
+            "query": "fast delivery"
+          },
+          "tool_ok": false,
+          "args_ok": false,
+          "tokens": 342
+        },
+        {
+          "task": "Have I done computer vision for a manufacturing client?",
+          "expected": "search_evidence",
+          "called": "marketplace",
+          "args": {
+            "action": "search",
+            "query": "computer vision manufacturing"
+          },
+          "tool_ok": false,
+          "args_ok": false,
+          "tokens": 569
+        },
+        {
+          "task": "Show code in my repos that uses Kafka.",
+          "expected": "search_evidence",
+          "called": "marketplace",
+          "args": {
+            "action": "search",
+            "query": "Kafka"
+          },
+          "tool_ok": false,
+          "args_ok": false,
+          "tokens": 559
+        },
+        {
+          "task": "Evidence for Tableau work?",
+          "expected": "search_evidence",
+          "called": "portfolio",
+          "args": {
+            "action": "search",
+            "query": "Tableau"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 384
+        },
+        {
+          "task": "Open my case study support-rag-bot.",
+          "expected": "get_case_study",
+          "called": "portfolio",
+          "args": {
+            "action": "case",
+            "id": "support-rag-bot"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 347
+        },
+        {
+          "task": "Give me the full write-up of the dbt-warehouse project.",
+          "expected": "get_case_study",
+          "called": "marketplace",
+          "args": {
+            "action": "search",
+            "query": "dbt-warehouse project write-up"
+          },
+          "tool_ok": false,
+          "args_ok": false,
+          "tokens": 396
+        },
+        {
+          "task": "Show case study saas-billing-dashboard in full.",
+          "expected": "get_case_study",
+          "called": "portfolio",
+          "args": {
+            "action": "search",
+            "query": "saas-billing-dashboard"
+          },
+          "tool_ok": false,
+          "args_ok": false,
+          "tokens": 384
+        },
+        {
+          "task": "What skills are in my profile?",
+          "expected": "list_skills",
+          "called": "portfolio",
+          "args": {
+            "action": "skills"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 362
+        },
+        {
+          "task": "Which skills do I have evidence for?",
+          "expected": "list_skills",
+          "called": "portfolio",
+          "args": {
+            "action": "skills",
+            "id": null,
+            "query": null
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 459
+        },
+        {
+          "task": "List my skills.",
+          "expected": "list_skills",
+          "called": "portfolio",
+          "args": {
+            "action": "skills"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 342
+        },
+        {
+          "task": "When am I free for a 30 minute interview this week?",
+          "expected": "get_free_slots",
+          "called": "workspace",
+          "args": {
+            "action": "slots",
+            "start": "2026-11-15"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 449
+        },
+        {
+          "task": "Suggest three interview times.",
+          "expected": "get_free_slots",
+          "called": "workspace",
+          "args": {
+            "action": "slots",
+            "start": null
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 532
+        },
+        {
+          "task": "Hold 2026-11-18T10:00:00Z for 30 minutes for the Acme interview.",
+          "expected": "create_tentative_hold",
+          "called": "workspace",
+          "args": {
+            "action": "hold",
+            "start": "2026-11-18T10:00:00Z",
+            "text": "Acme interview",
+            "to": null
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 430
+        },
+        {
+          "task": "Pencil in a 45 minute call on 2026-11-20T14:00:00Z with the client.",
+          "expected": "create_tentative_hold",
+          "called": "workspace",
+          "args": {
+            "action": "hold",
+            "start": "2026-11-20T14:00:00Z",
+            "text": "45 minute call",
+            "to": "client"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 538
+        },
+        {
+          "task": "Draft an email to sam@example.com confirming the interview.",
+          "expected": "create_email_draft",
+          "called": "workspace",
+          "args": {
+            "action": "email",
+            "text": "Subject: Interview Confirmation\n\nHi Sam,\n\nThank you for scheduling the interview. I am writing to confirm that we will meet on [Date] at [Time] via [Platform/Location]. Please let me know if you need any additional information or if there are any changes.\n\nLooking forward to speaking with you.\n\nBest regards,\n[Your Name]",
+            "to": "sam@example.com"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 473
+        },
+        {
+          "task": "Write an email draft to lee@example.org with the project plan.",
+          "expected": "create_email_draft",
+          "called": "workspace",
+          "args": {
+            "action": "email",
+            "text": "Project Plan",
+            "to": "lee@example.org"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 416
+        },
+        {
+          "task": "Find remote data cleaning jobs.",
+          "expected": "search_jobs",
+          "called": "marketplace",
+          "args": {
+            "action": "search",
+            "query": "remote data cleaning jobs"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 355
+        },
+        {
+          "task": "Do I have any React Native work to show?",
+          "expected": "search_evidence",
+          "called": "portfolio",
+          "args": {
+            "action": "search",
+            "query": "React Native"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 398
+        }
+      ]
+    },
+    "best": {
+      "tools": 11,
+      "tasks": 40,
+      "tool_selection_accuracy": 0.975,
+      "argument_accuracy": 0.975,
+      "tokens_per_task": 679.9,
+      "rows": [
+        {
+          "task": "Find new jobs that mention dbt.",
+          "expected": "search_jobs",
+          "called": "search_jobs",
+          "args": {
+            "query": "dbt"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 616
+        },
+        {
+          "task": "Any Celery or Redis gigs posted today?",
+          "expected": "search_jobs",
+          "called": "search_jobs",
+          "args": {
+            "limit": 20,
+            "query": "Celery OR Redis"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 762
+        },
+        {
+          "task": "Look for Next.js freelance work.",
+          "expected": "search_jobs",
+          "called": "search_jobs",
+          "args": {
+            "limit": 20,
+            "query": "Next.js"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 638
+        },
+        {
+          "task": "Search the marketplace for Power BI dashboard jobs.",
+          "expected": "search_jobs",
+          "called": "search_jobs",
+          "args": {
+            "limit": 20,
+            "query": "Power BI dashboard"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 617
+        },
+        {
+          "task": "Show me five LangGraph jobs.",
+          "expected": "search_jobs",
+          "called": "search_jobs",
+          "args": {
+            "limit": 5,
+            "query": "LangGraph"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 628
+        },
+        {
+          "task": "Open job job_9ae1ee56f0b1 so I can read the full post.",
+          "expected": "get_job",
+          "called": "get_job",
+          "args": {
+            "job_id": "job_9ae1ee56f0b1"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 631
+        },
+        {
+          "task": "What budget does job_7ae85e6c4e7c have?",
+          "expected": "get_job",
+          "called": "get_job",
+          "args": {
+            "job_id": "job_7ae85e6c4e7c"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 632
+        },
+        {
+          "task": "Read the description of job_913f71039141.",
+          "expected": "get_job",
+          "called": "get_job",
+          "args": {
+            "job_id": "job_913f71039141"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 626
+        },
+        {
+          "task": "Is client c_0042 trustworthy? Check their history.",
+          "expected": "get_client_history",
+          "called": "get_client_history",
+          "args": {
+            "client_id": "c_0042"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 622
+        },
+        {
+          "task": "What rating does client c_0107 have?",
+          "expected": "get_client_history",
+          "called": "get_client_history",
+          "args": {
+            "client_id": "c_0107"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 624
+        },
+        {
+          "task": "Has client c_0311 verified their payment method?",
+          "expected": "get_client_history",
+          "called": "get_client_history",
+          "args": {
+            "client_id": "c_0311"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 663
+        },
+        {
+          "task": "How much has client c_0005 spent on the platform?",
+          "expected": "get_client_history",
+          "called": "get_client_history",
+          "args": {
+            "client_id": "c_0005"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 623
+        },
+        {
+          "task": "How many Connects do I have left?",
+          "expected": "get_connects_balance",
+          "called": "get_connects_balance",
+          "args": {
+            "": ""
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 608
+        },
+        {
+          "task": "Can I afford another proposal this week?",
+          "expected": "get_connects_balance",
+          "called": "get_connects_balance",
+          "args": {
+            "": ""
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 651
+        },
+        {
+          "task": "What is my weekly Connects budget?",
+          "expected": "get_connects_balance",
+          "called": "get_connects_balance",
+          "args": {
+            "": ""
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 607
+        },
+        {
+          "task": "Show the messages in thread th_0001.",
+          "expected": "list_messages",
+          "called": "list_messages",
+          "args": {
+            "thread_id": "th_0001"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 618
+        },
+        {
+          "task": "Did the client in thread th_0007 reply?",
+          "expected": "list_messages",
+          "called": "list_messages",
+          "args": {
+            "thread_id": "th_0007"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 623
+        },
+        {
+          "task": "Read all my client conversations.",
+          "expected": "list_messages",
+          "called": "list_messages",
+          "args": {
+            "thread_id": null
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 635
+        },
+        {
+          "task": "Do I have experience with Pinecone?",
+          "expected": "search_evidence",
+          "called": "search_evidence",
+          "args": {
+            "k": 5,
+            "requirement": "Pinecone"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 741
+        },
+        {
+          "task": "Find proof that I have built RAG chatbots.",
+          "expected": "search_evidence",
+          "called": "search_evidence",
+          "args": {
+            "k": 5,
+            "requirement": "RAG chatbots"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 672
+        },
+        {
+          "task": "Which of my projects used Stripe?",
+          "expected": "search_evidence",
+          "called": "search_evidence",
+          "args": {
+            "requirement": "Stripe"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 768
+        },
+        {
+          "task": "Find a past proposal that won for a dashboard job.",
+          "expected": "search_evidence",
+          "called": "search_evidence",
+          "args": {
+            "k": 5,
+            "requirement": "dashboard"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 635
+        },
+        {
+          "task": "What client reviews mention fast delivery?",
+          "expected": "search_evidence",
+          "called": "get_client_history",
+          "args": {
+            "client_id": "client123"
+          },
+          "tool_ok": false,
+          "args_ok": false,
+          "tokens": 1276
+        },
+        {
+          "task": "Have I done computer vision for a manufacturing client?",
+          "expected": "search_evidence",
+          "called": "search_evidence",
+          "args": {
+            "k": 5,
+            "requirement": "computer vision manufacturing"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 691
+        },
+        {
+          "task": "Show code in my repos that uses Kafka.",
+          "expected": "search_evidence",
+          "called": "search_evidence",
+          "args": {
+            "k": 5,
+            "requirement": "Kafka"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 866
+        },
+        {
+          "task": "Evidence for Tableau work?",
+          "expected": "search_evidence",
+          "called": "search_evidence",
+          "args": {
+            "k": 5,
+            "requirement": "Tableau work"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 672
+        },
+        {
+          "task": "Open my case study support-rag-bot.",
+          "expected": "get_case_study",
+          "called": "get_case_study",
+          "args": {
+            "id": "support-rag-bot"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 622
+        },
+        {
+          "task": "Give me the full write-up of the dbt-warehouse project.",
+          "expected": "get_case_study",
+          "called": "get_case_study",
+          "args": {
+            "id": "dbt-warehouse"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 742
+        },
+        {
+          "task": "Show case study saas-billing-dashboard in full.",
+          "expected": "get_case_study",
+          "called": "get_case_study",
+          "args": {
+            "id": "saas-billing-dashboard"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 640
+        },
+        {
+          "task": "What skills are in my profile?",
+          "expected": "list_skills",
+          "called": "list_skills",
+          "args": {
+            "": ""
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 631
+        },
+        {
+          "task": "Which skills do I have evidence for?",
+          "expected": "list_skills",
+          "called": "list_skills",
+          "args": {
+            "": ""
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 604
+        },
+        {
+          "task": "List my skills.",
+          "expected": "list_skills",
+          "called": "list_skills",
+          "args": {
+            "": ""
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 616
+        },
+        {
+          "task": "When am I free for a 30 minute interview this week?",
+          "expected": "get_free_slots",
+          "called": "get_free_slots",
+          "args": {
+            "days_ahead": 5
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 613
+        },
+        {
+          "task": "Suggest three interview times.",
+          "expected": "get_free_slots",
+          "called": "get_free_slots",
+          "args": {
+            "days_ahead": 5
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 678
+        },
+        {
+          "task": "Hold 2026-11-18T10:00:00Z for 30 minutes for the Acme interview.",
+          "expected": "create_tentative_hold",
+          "called": "create_tentative_hold",
+          "args": {
+            "duration_minutes": 30,
+            "idempotency_key": "acme-interview-2026-11-18T10:00:00Z",
+            "start": "2026-11-18T10:00:00Z",
+            "title": "Acme interview"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 720
+        },
+        {
+          "task": "Pencil in a 45 minute call on 2026-11-20T14:00:00Z with the client.",
+          "expected": "create_tentative_hold",
+          "called": "create_tentative_hold",
+          "args": {
+            "duration_minutes": 45,
+            "idempotency_key": "call-2026-11-20T14:00:00Z",
+            "start": "2026-11-20T14:00:00Z",
+            "title": "Call with client"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 717
+        },
+        {
+          "task": "Draft an email to sam@example.com confirming the interview.",
+          "expected": "create_email_draft",
+          "called": "create_email_draft",
+          "args": {
+            "body": "Hi Sam,\n\nThank you for scheduling the interview. I\u2019m writing to confirm our meeting on [Date] at [Time] (your time zone). I\u2019ll be available via [platform] and will send a calendar invite shortly.\n\nIf you need to reschedule or have any questions beforehand, please let me know.\n\nLooking forward to speaking with you.\n\nBest regards,\n[Your Name]",
+            "idempotency_key": "confirm_interview_email_12345",
+            "subject": "Interview Confirmation",
+            "to": "sam@example.com"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 737
+        },
+        {
+          "task": "Write an email draft to lee@example.org with the project plan.",
+          "expected": "create_email_draft",
+          "called": "create_email_draft",
+          "args": {
+            "body": "Hi Lee,\n\nI hope you're doing well. Attached is the detailed project plan for the upcoming engagement. It outlines the scope, milestones, deliverables, timeline, and key responsibilities. Please review it at your earliest convenience and let me know if you have any questions or would like to discuss any adjustments.\n\nThank you for the opportunity, and I look forward to moving forward.\n\nBest regards,\n[Your Name]",
+            "idempotency_key": "project_plan_email",
+            "subject": "Project Plan for Upcoming Engagement",
+            "to": "lee@example.org"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 814
+        },
+        {
+          "task": "Find remote data cleaning jobs.",
+          "expected": "search_jobs",
+          "called": "search_jobs",
+          "args": {
+            "limit": 20,
+            "query": "remote data cleaning"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 628
+        },
+        {
+          "task": "Do I have any React Native work to show?",
+          "expected": "search_evidence",
+          "called": "search_evidence",
+          "args": {
+            "requirement": "React Native"
+          },
+          "tool_ok": true,
+          "args_ok": true,
+          "tokens": 690
+        }
+      ]
+    }
+  }
+}
