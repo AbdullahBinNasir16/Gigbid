@@ -33,6 +33,9 @@ dependencies = [
   "langchain-openai==1.8.0",
 ]
 
+[project.scripts]
+gigbid-portfolio-mcp = "mcp_servers.portfolio.server:main"
+
 [project.optional-dependencies]
 data = ["openpyxl==3.1.5"]
 dev = ["pytest==9.2.0", "pytest-asyncio==1.5.0", "ruff==0.17.5", "mypy==2.4.1"]
@@ -45,6 +48,9 @@ line-length = 100
 # the fallback is recorded in the trace.
 "agent/nodes/*.py" = ["S110"]
 "worker/main.py" = ["RUF012"]
+
+[tool.setuptools.package-data]
+agent = ["config.yaml", "prompts/*.md"]
 
 [tool.setuptools.packages.find]
 where = ["."]

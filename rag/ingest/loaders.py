@@ -135,7 +135,10 @@ def resolve_cv_lines(chunks: list[Chunk], persona: str, base: Path) -> None:
 
 
 def load_corpus(persona: str, base: Path | None = None) -> list[Chunk]:
-    base = base or PERSONA_DIR / persona
+    import os
+
+    custom = os.environ.get("PORTFOLIO_DIR")
+    base = base or (Path(custom) if custom else PERSONA_DIR / persona)
     chunks: list[Chunk] = []
     for loader in LOADERS:
         chunks.extend(loader(persona, base))

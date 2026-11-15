@@ -190,6 +190,15 @@ def opening_line(job_summary: str) -> str:
             "Sir', no 'I am passionate', no guarantees.")
 
 
+def main() -> None:
+    """Console entry point (`gigbid-portfolio-mcp [--stdio]`)."""
+    if "--stdio" in sys.argv:
+        mcp.run("stdio")
+    else:
+        serve_http(mcp, "MCP_PORTFOLIO_BEARER_TOKEN", int(os.environ.get("MCP_PORTFOLIO_PORT",
+                                                                          "8102")))
+
+
 if __name__ == "__main__":
     if "--stdio" in sys.argv:
         mcp.run("stdio")
