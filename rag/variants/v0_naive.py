@@ -1,3 +1,8 @@
-def retrieve(query: str, index, k: int = 5):
-    # TODO: Implement the mandatory baseline: dense top-k cosine retrieval.
-    raise NotImplementedError
+"""V0 baseline: dense top-k cosine on the whole job post. Everything else must beat it."""
+
+from rag.variants.base import Flags, Pipeline
+
+
+class V0Naive(Pipeline):
+    name = "v0_naive"
+    flags = Flags()

@@ -97,13 +97,15 @@ models:
     paid: {}
 
   # Open models in every profile, CPU friendly.
+  # Chosen by measurement on this CPU (evals/results/rag_*.json): small models keep a
+  # full dev-set retrieval run under a few minutes. Swap to nomic or bge-reranker-v2-m3 here.
   embeddings:
-    model: nomic-ai/nomic-embed-text-v1.5
-    dimension: 768
-    query_prefix: "search_query: "
-    document_prefix: "search_document: "
+    model: BAAI/bge-small-en-v1.5
+    dimension: 384
+    query_prefix: "Represent this sentence for searching relevant passages: "
+    document_prefix: ""
   reranker:
-    model: BAAI/bge-reranker-v2-m3
+    model: cross-encoder/ms-marco-MiniLM-L-6-v2
     top_n: 20                      # rerank only the top 20 candidates on CPU
 
 budgets:
