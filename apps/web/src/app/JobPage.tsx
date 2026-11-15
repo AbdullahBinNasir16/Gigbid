@@ -101,7 +101,7 @@ export default function JobPage() {
               {fit.requirement_matches.map((m: any) => (
                 <tr key={m.requirement}>
                   <td>{m.requirement}</td>
-                  <td>{m.evidence_ids.length ? [...new Map(m.evidence_ids.map((i: string) => [byId[i]?.project ?? i, i])).entries()].map(([proj, i]) => <span key={proj} className="chip-ev" title={byId[i]?.text}>{proj}</span>) : <span className="muted">no evidence</span>}</td>
+                  <td>{m.evidence_ids.length ? [...new Map<string, string>(m.evidence_ids.map((i: string): [string, string] => [byId[i]?.project ?? i, i])).entries()].map(([proj, i]) => <span key={proj} className="chip-ev" title={byId[i]?.text}>{proj}</span>) : <span className="muted">no evidence</span>}</td>
                   <td className="strength-cell"><Strength value={m.strength} /> <span className="small muted">{(m.strength * 100).toFixed(0)}%</span></td>
                 </tr>
               ))}
