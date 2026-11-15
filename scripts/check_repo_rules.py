@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Check repository rules that can be enforced without external tooling."""
 
 from __future__ import annotations
