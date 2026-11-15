@@ -53,7 +53,7 @@ def guarded(name: str, fn: Callable[..., Any]) -> Callable[..., Any]:
                 if inspect.iscoroutinefunction(fn):
                     return await fn(state)
                 return await asyncio.to_thread(fn, state)
-            except Exception as exc:  # noqa: BLE001
+            except Exception as exc:
                 if type(exc).__name__ in ("GraphInterrupt", "Interrupt") or \
                         "Interrupt" in type(exc).__name__:
                     raise

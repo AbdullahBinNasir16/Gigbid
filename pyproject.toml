@@ -40,6 +40,12 @@ dev = ["pytest==9.2.0", "pytest-asyncio==1.5.0", "ruff==0.17.5", "mypy==2.4.1"]
 [tool.ruff]
 line-length = 100
 
+[tool.ruff.lint.per-file-ignores]
+# Nodes deliberately fall back (template writer, rules verdict) instead of failing a run;
+# the fallback is recorded in the trace.
+"agent/nodes/*.py" = ["S110"]
+"worker/main.py" = ["RUF012"]
+
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["agent*", "rag*", "apps*", "mcp_servers*", "worker*", "evals*"]

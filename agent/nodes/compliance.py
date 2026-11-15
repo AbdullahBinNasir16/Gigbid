@@ -19,11 +19,11 @@ from mcp_servers.common import mask_pii
 
 ROOT = Path(__file__).resolve().parents[2]
 BLOCKING = re.compile(r"(work for free|free (sample|trial)|unpaid|pay (me )?outside|off[- ]platform"
-                      r"|whats ?app|telegram|skype|wire transfer|western union|paypal)", re.I)
-INJECTION_ECHO = re.compile(r"(guarantee 5-star|will work for free|system prompt|admin mode|"
-                            r"submit immediately|skip the review)", re.I)
+                      r"|whats ?app|telegram|skype|wire transfer|western union|paypal)", re.IGNORECASE)
+INJECTION_ECHO = re.compile(r"(guarantee 5-star|will work for free|system\W+prompt|admin mode|"
+                            r"submit immediately|skip the review)", re.IGNORECASE)
 GUARANTEE = re.compile(r"[^.!?]*\b(guarantee[ds]?|100% (satisfaction|success)|risk-free)\b[^.!?]*[.!?]",
-                       re.I)
+                       re.IGNORECASE)
 
 
 @lru_cache(maxsize=1)

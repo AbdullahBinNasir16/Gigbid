@@ -1,0 +1,12 @@
+{
+  "jobs": 30,
+  "bid_f1": 0.8421,
+  "drafts": 9,
+  "unsupported_rate_before": 0.0,
+  "unsupported_rate_after": 0.0,
+  "gate": {
+    "min_bid_f1": 0.3,
+    "max_unsupported_rate_after": 0.05,
+    "note": "Gate for the 30-job PR smoke eval. Raise min_bid_f1 as the decision model improves."
+  }
+}

@@ -72,7 +72,7 @@ def call_llm(node: str, system: str, user: str) -> tuple[str, int]:
 
 
 def parse_json(text: str) -> dict[str, Any] | None:
-    m = re.search(r"\{.*\}", text, re.S)
+    m = re.search(r"\{.*\}", text, re.DOTALL)
     if not m:
         return None
     try:

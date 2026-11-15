@@ -27,8 +27,8 @@ def edit_patterns(original: str, edited: str) -> list[tuple[str, str]]:
     o_sents, e_sents = _SENT.split(original.strip()), _SENT.split(edited.strip())
     if o_sents and e_sents and o_sents[0].strip() != e_sents[0].strip() \
             and o_sents[0].strip() not in edited:
-        out.append(("cut_first_sentence", "Cut the generic first sentence; start with the "
-                                          "client's problem."))
+        out.append(("cut_first_sentence", ("Cut the generic first sentence; start with the "
+                                          "client's problem.")))
     removed = {w.lower() for w in WORD.findall(original)} - {w.lower() for w in
                                                             WORD.findall(edited)}
     for w in sorted(removed):

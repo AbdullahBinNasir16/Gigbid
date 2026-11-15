@@ -254,7 +254,7 @@ def _tracked_paths() -> set[str]:
 
 
 def _repository_text_files(tracked_paths: set[str]) -> list[Path]:
-    excluded = {".git", ".mypy_cache", ".pytest_cache", ".ruff_cache", ".venv", "__pycache__", "node_modules"}
+    excluded = {".git", ".mypy_cache", ".pytest_cache", ".ruff_cache", ".venv", "__pycache__", "node_modules", "dist", "playwright-report", "test-results"}
     paths = []
     for path in ROOT.rglob("*"):
         if not path.is_file():

@@ -8,68 +8,365 @@
   "results": {
     "V0 naive": {
       "ai_ml": {
-        "n": 15,
-        "recall@5": 0.1689,
-        "mrr": 0.2488,
-        "ndcg@10": 0.1719,
-        "p50_latency_s": 0.2217,
-        "p95_latency_s": 1.1065
+        "n": 53,
+        "recall@5": 0.2021,
+        "mrr": 0.3709,
+        "ndcg@10": 0.2417,
+        "p50_latency_s": 0.2784,
+        "p95_latency_s": 0.7656
       },
       "fullstack": {
-        "n": 15,
-        "recall@5": 0.3467,
-        "mrr": 0.3088,
-        "ndcg@10": 0.337,
-        "p50_latency_s": 0.3859,
-        "p95_latency_s": 0.8413
+        "n": 62,
+        "recall@5": 0.2972,
+        "mrr": 0.3001,
+        "ndcg@10": 0.2806,
+        "p50_latency_s": 0.3503,
+        "p95_latency_s": 1.0418
       },
       "data_analyst": {
-        "n": 15,
-        "recall@5": 0.3744,
-        "mrr": 0.4334,
-        "ndcg@10": 0.3738,
-        "p50_latency_s": 0.2527,
-        "p95_latency_s": 0.6385
+        "n": 62,
+        "recall@5": 0.3957,
+        "mrr": 0.4079,
+        "ndcg@10": 0.3614,
+        "p50_latency_s": 0.1554,
+        "p95_latency_s": 0.4593
       },
       "all": {
-        "recall@5": 0.2967,
-        "mrr": 0.3303,
-        "ndcg@10": 0.2942,
-        "p95_latency_s": 1.1065,
-        "n": 45
+        "recall@5": 0.3032,
+        "mrr": 0.3591,
+        "ndcg@10": 0.2973,
+        "p95_latency_s": 1.0418,
+        "n": 177
+      }
+    },
+    "V1 decomposition": {
+      "ai_ml": {
+        "n": 53,
+        "recall@5": 0.1135,
+        "mrr": 0.214,
+        "ndcg@10": 0.1897,
+        "p50_latency_s": 0.7964,
+        "p95_latency_s": 1.6694
+      },
+      "fullstack": {
+        "n": 62,
+        "recall@5": 0.294,
+        "mrr": 0.3069,
+        "ndcg@10": 0.3048,
+        "p50_latency_s": 1.3088,
+        "p95_latency_s": 2.2933
+      },
+      "data_analyst": {
+        "n": 62,
+        "recall@5": 0.3958,
+        "mrr": 0.4753,
+        "ndcg@10": 0.369,
+        "p50_latency_s": 0.5993,
+        "p95_latency_s": 1.2876
+      },
+      "all": {
+        "recall@5": 0.2756,
+        "mrr": 0.3381,
+        "ndcg@10": 0.2928,
+        "p95_latency_s": 2.2933,
+        "n": 177
       }
     },
     "V2 hybrid": {
       "ai_ml": {
-        "n": 15,
-        "recall@5": 0.1744,
-        "mrr": 0.4068,
-        "ndcg@10": 0.2332,
-        "p50_latency_s": 0.2511,
-        "p95_latency_s": 1.0517
+        "n": 53,
+        "recall@5": 0.2158,
+        "mrr": 0.4452,
+        "ndcg@10": 0.271,
+        "p50_latency_s": 0.242,
+        "p95_latency_s": 0.7164
       },
       "fullstack": {
-        "n": 15,
-        "recall@5": 0.4133,
-        "mrr": 0.3385,
-        "ndcg@10": 0.3633,
-        "p50_latency_s": 0.2531,
-        "p95_latency_s": 0.635
+        "n": 62,
+        "recall@5": 0.3811,
+        "mrr": 0.378,
+        "ndcg@10": 0.3555,
+        "p50_latency_s": 0.4412,
+        "p95_latency_s": 0.9077
       },
       "data_analyst": {
-        "n": 15,
-        "recall@5": 0.4322,
-        "mrr": 0.4796,
-        "ndcg@10": 0.4363,
-        "p50_latency_s": 0.308,
-        "p95_latency_s": 0.7372
+        "n": 62,
+        "recall@5": 0.425,
+        "mrr": 0.4465,
+        "ndcg@10": 0.4038,
+        "p50_latency_s": 0.3178,
+        "p95_latency_s": 0.5841
       },
       "all": {
-        "recall@5": 0.34,
-        "mrr": 0.4083,
-        "ndcg@10": 0.3443,
-        "p95_latency_s": 1.0517,
-        "n": 45
+        "recall@5": 0.347,
+        "mrr": 0.4221,
+        "ndcg@10": 0.3471,
+        "p95_latency_s": 0.9077,
+        "n": 177
+      }
+    },
+    "V3 rerank": {
+      "ai_ml": {
+        "n": 53,
+        "recall@5": 0.3249,
+        "mrr": 0.4811,
+        "ndcg@10": 0.3275,
+        "p50_latency_s": 2.6664,
+        "p95_latency_s": 5.6936
+      },
+      "fullstack": {
+        "n": 62,
+        "recall@5": 0.4117,
+        "mrr": 0.3412,
+        "ndcg@10": 0.3305,
+        "p50_latency_s": 3.1274,
+        "p95_latency_s": 6.805
+      },
+      "data_analyst": {
+        "n": 62,
+        "recall@5": 0.3856,
+        "mrr": 0.4698,
+        "ndcg@10": 0.3874,
+        "p50_latency_s": 2.175,
+        "p95_latency_s": 4.5291
+      },
+      "all": {
+        "recall@5": 0.3766,
+        "mrr": 0.4281,
+        "ndcg@10": 0.3495,
+        "p95_latency_s": 6.805,
+        "n": 177
+      }
+    },
+    "V4 outcome": {
+      "ai_ml": {
+        "n": 53,
+        "recall@5": 0.4385,
+        "mrr": 0.7571,
+        "ndcg@10": 0.4702,
+        "p50_latency_s": 0.2114,
+        "p95_latency_s": 0.5381
+      },
+      "fullstack": {
+        "n": 62,
+        "recall@5": 0.6255,
+        "mrr": 0.5446,
+        "ndcg@10": 0.5296,
+        "p50_latency_s": 0.3512,
+        "p95_latency_s": 1.07
+      },
+      "data_analyst": {
+        "n": 62,
+        "recall@5": 0.6172,
+        "mrr": 0.6919,
+        "ndcg@10": 0.5986,
+        "p50_latency_s": 0.2086,
+        "p95_latency_s": 0.519
+      },
+      "all": {
+        "recall@5": 0.5666,
+        "mrr": 0.6598,
+        "ndcg@10": 0.536,
+        "p95_latency_s": 1.07,
+        "n": 177
+      }
+    },
+    "V5 multi-vector": {
+      "ai_ml": {
+        "n": 53,
+        "recall@5": 0.2021,
+        "mrr": 0.3715,
+        "ndcg@10": 0.2417,
+        "p50_latency_s": 0.228,
+        "p95_latency_s": 0.5881
+      },
+      "fullstack": {
+        "n": 62,
+        "recall@5": 0.2972,
+        "mrr": 0.3013,
+        "ndcg@10": 0.2806,
+        "p50_latency_s": 0.3033,
+        "p95_latency_s": 0.9343
+      },
+      "data_analyst": {
+        "n": 62,
+        "recall@5": 0.3957,
+        "mrr": 0.4111,
+        "ndcg@10": 0.3614,
+        "p50_latency_s": 0.1779,
+        "p95_latency_s": 0.4927
+      },
+      "all": {
+        "recall@5": 0.3032,
+        "mrr": 0.3608,
+        "ndcg@10": 0.2973,
+        "p95_latency_s": 0.9343,
+        "n": 177
+      }
+    },
+    "V8 corrective": {
+      "ai_ml": {
+        "n": 53,
+        "recall@5": 0.0299,
+        "mrr": 0.0603,
+        "ndcg@10": 0.0368,
+        "p50_latency_s": 7.4133,
+        "p95_latency_s": 16.1527
+      },
+      "fullstack": {
+        "n": 62,
+        "recall@5": 0.0379,
+        "mrr": 0.0207,
+        "ndcg@10": 0.0214,
+        "p50_latency_s": 12.5633,
+        "p95_latency_s": 23.3613
+      },
+      "data_analyst": {
+        "n": 62,
+        "recall@5": 0.0363,
+        "mrr": 0.0484,
+        "ndcg@10": 0.0386,
+        "p50_latency_s": 6.1358,
+        "p95_latency_s": 13.296
+      },
+      "all": {
+        "recall@5": 0.0349,
+        "mrr": 0.0423,
+        "ndcg@10": 0.032,
+        "p95_latency_s": 23.3613,
+        "n": 177
+      }
+    },
+    "V1+V2": {
+      "ai_ml": {
+        "n": 53,
+        "recall@5": 0.2489,
+        "mrr": 0.3161,
+        "ndcg@10": 0.2692,
+        "p50_latency_s": 0.651,
+        "p95_latency_s": 1.2024
+      },
+      "fullstack": {
+        "n": 62,
+        "recall@5": 0.2985,
+        "mrr": 0.2832,
+        "ndcg@10": 0.2911,
+        "p50_latency_s": 1.2641,
+        "p95_latency_s": 7.3677
+      },
+      "data_analyst": {
+        "n": 62,
+        "recall@5": 0.3821,
+        "mrr": 0.4967,
+        "ndcg@10": 0.3964,
+        "p50_latency_s": 0.5207,
+        "p95_latency_s": 0.9615
+      },
+      "all": {
+        "recall@5": 0.3129,
+        "mrr": 0.3678,
+        "ndcg@10": 0.3214,
+        "p95_latency_s": 7.3677,
+        "n": 177
+      }
+    },
+    "V1+V2+V3": {
+      "ai_ml": {
+        "n": 53,
+        "recall@5": 0.2365,
+        "mrr": 0.3955,
+        "ndcg@10": 0.3134,
+        "p50_latency_s": 3.0768,
+        "p95_latency_s": 6.4061
+      },
+      "fullstack": {
+        "n": 62,
+        "recall@5": 0.3283,
+        "mrr": 0.3257,
+        "ndcg@10": 0.3176,
+        "p50_latency_s": 4.0968,
+        "p95_latency_s": 7.7256
+      },
+      "data_analyst": {
+        "n": 62,
+        "recall@5": 0.3997,
+        "mrr": 0.4833,
+        "ndcg@10": 0.417,
+        "p50_latency_s": 3.1876,
+        "p95_latency_s": 5.4163
+      },
+      "all": {
+        "recall@5": 0.3258,
+        "mrr": 0.4018,
+        "ndcg@10": 0.3512,
+        "p95_latency_s": 7.7256,
+        "n": 177
+      }
+    },
+    "V1+V2+V3+V4": {
+      "ai_ml": {
+        "n": 53,
+        "recall@5": 0.3094,
+        "mrr": 0.4344,
+        "ndcg@10": 0.3428,
+        "p50_latency_s": 3.5401,
+        "p95_latency_s": 6.835
+      },
+      "fullstack": {
+        "n": 62,
+        "recall@5": 0.3605,
+        "mrr": 0.378,
+        "ndcg@10": 0.3542,
+        "p50_latency_s": 2.9099,
+        "p95_latency_s": 5.4666
+      },
+      "data_analyst": {
+        "n": 62,
+        "recall@5": 0.4199,
+        "mrr": 0.5646,
+        "ndcg@10": 0.4578,
+        "p50_latency_s": 3.1543,
+        "p95_latency_s": 5.6758
+      },
+      "all": {
+        "recall@5": 0.366,
+        "mrr": 0.4603,
+        "ndcg@10": 0.3871,
+        "p95_latency_s": 6.835,
+        "n": 177
+      }
+    },
+    "V2+V3": {
+      "ai_ml": {
+        "n": 53,
+        "recall@5": 0.2956,
+        "mrr": 0.4515,
+        "ndcg@10": 0.2818,
+        "p50_latency_s": 3.4063,
+        "p95_latency_s": 7.1125
+      },
+      "fullstack": {
+        "n": 62,
+        "recall@5": 0.4221,
+        "mrr": 0.3508,
+        "ndcg@10": 0.3529,
+        "p50_latency_s": 2.6205,
+        "p95_latency_s": 4.7078
+      },
+      "data_analyst": {
+        "n": 62,
+        "recall@5": 0.41,
+        "mrr": 0.4758,
+        "ndcg@10": 0.4066,
+        "p50_latency_s": 2.8787,
+        "p95_latency_s": 5.6996
+      },
+      "all": {
+        "recall@5": 0.38,
+        "mrr": 0.4247,
+        "ndcg@10": 0.3504,
+        "p95_latency_s": 7.1125,
+        "n": 177
       }
     }
   }

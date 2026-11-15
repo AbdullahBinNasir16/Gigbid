@@ -1,12 +1,39 @@
 name: Evaluations
 on:
+  pull_request:
   workflow_dispatch:
+    inputs:
+      full:
+        description: "Run the full dev-set evaluation (slow)"
+        type: boolean
+        default: false
+
 jobs:
-  eval-skeleton:
+  smoke:
     runs-on: ubuntu-latest
+    env:
+      HF_HOME: ~/.cache/hf
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-      - run: python -m evals.runners.run_demo_eval
+          python-version: "3.12"
+          cache: pip
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/hf
+          key: hf-${{ hashFiles('agent/config.yaml') }}
+      - run: pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install -e ".[dev]"
+      - name: 30-job smoke eval with gates (evals/thresholds.json)
+        run: python -m evals.runners.smoke_gate
+      - name: Full evaluation
+        if: ${{ inputs.full }}
+        run: |
+          python -m evals.runners.decision_eval
+          python -m evals.runners.rag_eval
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eval-results
+          path: evals/results/

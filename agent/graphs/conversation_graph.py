@@ -24,8 +24,8 @@ from agent.prompts import load_prompt
 from agent.state import ConversationState, Status, step
 
 INTENT_RULES = [
-    ("scam_signal", r"whats ?app|telegram|outside (the )?platform|pay(ment)? (via|by) (crypto|"
-                    r"gift|wire)|bank (login|details)|copy of your id|free (sample|trial)"),
+    ("scam_signal", (r"whats ?app|telegram|outside (the )?platform|pay(ment)? (via|by) (crypto|"
+                    r"gift|wire)|bank (login|details)|copy of your id|free (sample|trial)")),
     ("interview_request", r"\b(call|interview|meet|zoom|chat (live|now)|talk|available)\b"),
     ("negotiation", r"\b(rate|price|budget|discount|lower|cheaper|\$\d+|cost)\b"),
     ("question", r"\?"),
@@ -34,7 +34,7 @@ INTENT_RULES = [
 
 def classify_text(text: str) -> str:
     for label, pat in INTENT_RULES:
-        if re.search(pat, text, re.I):
+        if re.search(pat, text, re.IGNORECASE):
             return label
     return "other"
 

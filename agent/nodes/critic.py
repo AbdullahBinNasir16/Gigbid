@@ -17,7 +17,7 @@ from agent.state import step
 from rag.index.store import tokenize
 
 GENERIC = re.compile(r"^(dear (sir|madam|hiring manager)|hello|hi there|hi,|greetings|i am a "
-                     r"highly|i have read your|i am (very )?interested|i am passionate)", re.I)
+                     r"highly|i have read your|i am (very )?interested|i am passionate)", re.IGNORECASE)
 
 
 def rule_issues(text: str, job: dict, verification: dict | None) -> list[CritiqueIssue]:
@@ -67,7 +67,7 @@ def critic(state: dict) -> dict:
                 pass
     can_loop = loops < budgets.critic_max_loops
     verdict = "revise" if issues and can_loop else "accept"
-    c = Critique(verdict=verdict, score=score, issues=issues if verdict == "revise" else issues,
+    c = Critique(verdict=verdict, score=score, issues=issues,
                  instructions="; ".join(i.detail for i in issues)[:2000])
     return {"critiques": [c], "counters": step(tokens, critic_loop=verdict == "revise"),
             "trace": [event(state, "critic", tokens=tokens, duration_ms=t["ms"],

@@ -24,7 +24,7 @@ SCAM_SIGNALS = {"off_platform_payment", "free_work", "personal_data_request", "s
 def injection_spans(text: str) -> list[SuspiciousSpan]:
     out = []
     for pat in get_config().risk_rules.get("injection_patterns", []):
-        for m in re.finditer(pat, text, re.I):
+        for m in re.finditer(pat, text, re.IGNORECASE):
             s = max(0, m.start() - 40)
             out.append(SuspiciousSpan(text=text[s:m.end() + 80][:1000],
                                       flag=RiskFlag.prompt_injection, start=m.start(),
@@ -40,7 +40,7 @@ def assess(job: dict[str, Any], client: dict[str, Any] | None) -> RiskReport:
     spans: list[SuspiciousSpan] = []
     reasons: list[str] = []
     for name, sig in rules.get("signals", {}).items():
-        hits = [m for p in sig["patterns"] for m in re.finditer(p, text, re.I)]
+        hits = [m for p in sig["patterns"] for m in re.finditer(p, text, re.IGNORECASE)]
         if hits:
             probs.append(float(sig["weight"]))
             flag = FLAG_FOR.get(name, RiskFlag.scam)

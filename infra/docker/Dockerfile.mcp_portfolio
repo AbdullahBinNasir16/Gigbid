@@ -1,11 +1,9 @@
 FROM python:3.12-slim
-
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
-
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 HF_HOME=/models/hf
 WORKDIR /app
+RUN pip install --no-cache-dir torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
 COPY . .
-RUN python -m pip install --no-cache-dir .
-
-# TODO: Replace when the portfolio MCP server is implemented.
-CMD ["sh", "-c", "echo 'TODO: implement the portfolio MCP server'; sleep infinity"]
+RUN pip install --no-cache-dir . && python -c "from rag.index.store import warm; warm()"
+EXPOSE 8102
+HEALTHCHECK CMD python -c "from urllib.request import urlopen; urlopen('http://127.0.0.1:8102/health', timeout=2)"
+CMD ["python", "-m", "mcp_servers.portfolio.server"]

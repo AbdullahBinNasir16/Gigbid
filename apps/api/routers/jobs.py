@@ -50,7 +50,7 @@ async def scout_now(user: CurrentUser, limit: int = 8) -> list[RunStarted]:
         for q in user["settings"].get("saved_searches") or [""]:
             for j in (await tb.call("search_jobs", query=q, limit=limit))["items"]:
                 found.setdefault(j["job_id"], j)
-    except Exception as exc:  # noqa: BLE001
+    except Exception as exc:
         raise HTTPException(503, f"marketplace unavailable: {exc}") from exc
     known = {r["job_id"] for r in db.q(db.select(db.jobs.c.job_id)
                                         .where(db.jobs.c.user_id == user["user_id"]))}
@@ -88,7 +88,7 @@ async def run(job_id: str, user: CurrentUser) -> RunStarted:
     else:
         try:
             job = await ToolBox("scout").call("get_job", job_id=job_id)
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:
             raise HTTPException(503, f"marketplace unavailable: {exc}") from exc
     return RunStarted(thread_id=runtime.start_run(user, job))
 

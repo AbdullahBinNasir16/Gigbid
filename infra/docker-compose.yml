@@ -30,13 +30,16 @@ x-langfuse-environment: &langfuse-environment
   LANGFUSE_S3_MEDIA_UPLOAD_PREFIX: media/
 
 services:
-  # TODO: Enable after the Next.js app and package manifest are implemented.
-  # web:
-  #   build:
-  #     context: ..
-  #     dockerfile: infra/docker/Dockerfile.web
-  #   ports:
-  #     - "127.0.0.1:3000:3000"
+  web:
+    build:
+      context: ..
+      dockerfile: infra/docker/Dockerfile.web
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:3000:3000"
 
   api:
     build:
@@ -62,6 +65,14 @@ services:
       MCP_MARKETPLACE_BEARER_TOKEN: ${MCP_MARKETPLACE_BEARER_TOKEN:-}
       MCP_PORTFOLIO_BEARER_TOKEN: ${MCP_PORTFOLIO_BEARER_TOKEN:-}
       MCP_WORKSPACE_BEARER_TOKEN: ${MCP_WORKSPACE_BEARER_TOKEN:-}
+      MCP_TRANSPORT: ${MCP_TRANSPORT:-memory}
+      MCP_MARKETPLACE_URL: http://mcp_marketplace:8101/mcp
+      MCP_PORTFOLIO_URL: http://mcp_portfolio:8102/mcp
+      MCP_WORKSPACE_URL: http://mcp_workspace:8103/mcp
+      OLLAMA_BASE_URL: http://ollama:11434/v1
+      OPEN_MODEL_API_KEY: ${OPEN_MODEL_API_KEY:-}
+      REVIEWER_USERNAME: ${REVIEWER_USERNAME:-reviewer}
+      REVIEWER_PASSWORD: ${REVIEWER_PASSWORD:?Set REVIEWER_PASSWORD in .env}
     depends_on:
       postgres:
         condition: service_healthy
@@ -82,35 +93,63 @@ services:
       retries: 5
       start_period: 20s
 
-  # TODO: Enable when the worker entry point is implemented.
-  # worker:
-  #   build:
-  #     context: ..
-  #     dockerfile: infra/docker/Dockerfile.worker
-  #   depends_on:
-  #     api:
-  #       condition: service_healthy
-  #     redis:
-  #       condition: service_healthy
+  worker:
+    build:
+      context: ..
+      dockerfile: infra/docker/Dockerfile.worker
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: "postgresql+psycopg://${POSTGRES_USER:-gigbid}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@postgres:5432/${POSTGRES_DB:-gigbid}"
+      REDIS_URL: "redis://:${REDIS_PASSWORD:?Set REDIS_PASSWORD in .env}@redis:6379/0"
+      GIGSIM_BASE_URL: http://gigsim:8081
+      GIGSIM_API_TOKEN: ${GIGSIM_API_TOKEN:-}
+      MODEL_PROFILE: ${MODEL_PROFILE:-open}
+      OLLAMA_BASE_URL: http://ollama:11434/v1
+      OPEN_MODEL_API_KEY: ${OPEN_MODEL_API_KEY:-}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:?Set JWT_SECRET_KEY in .env}
+    depends_on:
+      api:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
 
-  # TODO: Enable when portfolio MCP tools are implemented.
-  # mcp_portfolio:
-  #   build:
-  #     context: ..
-  #     dockerfile: infra/docker/Dockerfile.mcp_portfolio
-  #   # TODO: Add a healthcheck when the server transport is implemented.
+  # MCP servers over Streamable HTTP with bearer auth, usable by external hosts (Claude
+  # Desktop, Cursor, MCP Inspector) and by the API with MCP_TRANSPORT=http.
+  mcp_marketplace:
+    build:
+      context: ..
+      dockerfile: infra/docker/Dockerfile.mcp_marketplace
+    restart: unless-stopped
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+      GIGSIM_BASE_URL: http://gigsim:8081
+      GIGSIM_API_TOKEN: ${GIGSIM_API_TOKEN:-}
+      MCP_MARKETPLACE_BEARER_TOKEN: ${MCP_MARKETPLACE_BEARER_TOKEN:-}
+    ports:
+      - "127.0.0.1:8101:8101"
 
-  # TODO: Enable when marketplace MCP tools and adapters are implemented.
-  # mcp_marketplace:
-  #   build:
-  #     context: ..
-  #     dockerfile: infra/docker/Dockerfile.mcp_marketplace
+  mcp_portfolio:
+    build:
+      context: ..
+      dockerfile: infra/docker/Dockerfile.mcp_portfolio
+    restart: unless-stopped
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+      PORTFOLIO_PERSONA: ${PORTFOLIO_PERSONA:-ai_ml}
+      MCP_PORTFOLIO_BEARER_TOKEN: ${MCP_PORTFOLIO_BEARER_TOKEN:-}
+    ports:
+      - "127.0.0.1:8102:8102"
 
-  # TODO: Enable when workspace MCP tools are implemented.
-  # mcp_workspace:
-  #   build:
-  #     context: ..
-  #     dockerfile: infra/docker/Dockerfile.mcp_workspace
+  mcp_workspace:
+    build:
+      context: ..
+      dockerfile: infra/docker/Dockerfile.mcp_workspace
+    restart: unless-stopped
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+      MCP_WORKSPACE_BEARER_TOKEN: ${MCP_WORKSPACE_BEARER_TOKEN:-}
+    ports:
+      - "127.0.0.1:8103:8103"
 
   # Student built marketplace simulator (Phase 0B). Agents never call it directly:
   # only mcp_servers/marketplace/adapters/gigsim.py talks to it over HTTP.

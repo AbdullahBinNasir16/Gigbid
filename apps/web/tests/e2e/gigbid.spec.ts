@@ -36,7 +36,7 @@ test("rejecting requires a reason and sends it", async ({ page }) => {
   await signIn(page);
   await page.goto("/studio/t1%3Ajob_1");
   await page.getByTestId("reject").click();
-  await expect(page.getByRole("alert")).toContainText("Say why");
+  await expect(page.getByRole("alert")).toContainText("Give a reason");
   expect(calls.approvals).toHaveLength(0);
   await page.getByTestId("reject-reason").fill("budget too low for the scope");
   await page.getByTestId("reject").click();

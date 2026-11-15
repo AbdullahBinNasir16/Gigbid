@@ -33,7 +33,7 @@ export default function Studio() {
   const edited = text.trim() !== original.trim();
 
   async function act(action: "approve" | "edit" | "reject") {
-    if (action === "reject" && !reason.trim()) return setError("Say why you are rejecting it; GigBid learns from the reason.");
+    if (action === "reject" && !reason.trim()) return setError("Give a reason for rejecting; GigBid learns from it.");
     setBusy(true);
     setError(null);
     const body = action === "edit" ? { action, edited_text: text } : action === "reject" ? { action, reason } : { action };

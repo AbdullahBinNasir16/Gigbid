@@ -42,7 +42,7 @@ def job_text(job: dict[str, Any] | str) -> str:
 _SPLIT = re.compile(r"(?<=[.!?])\s+|\n+|;\s*|•")
 _NEED = re.compile(r"\b(need|build|create|develop|implement|experience|looking for|must|should|"
                    r"require|integrat|design|set up|automate|analy[sz]e|dashboard|model)\w*",
-                   re.I)
+                   re.IGNORECASE)
 
 
 def decompose(job: dict[str, Any] | str, max_reqs: int = 8) -> list[str]:

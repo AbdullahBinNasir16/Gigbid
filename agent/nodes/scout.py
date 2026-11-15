@@ -12,7 +12,7 @@ from typing import Any
 
 from agent.mcp_client import ToolBox
 
-_PREFIX = re.compile(r"^\s*(urgent|reposting|updated|\(updated\)|re-?post)\s*[:!-]*\s*", re.I)
+_PREFIX = re.compile(r"^\s*(urgent|reposting|updated|\(updated\)|re-?post)\s*[:!-]*\s*", re.IGNORECASE)
 
 
 def fingerprint(job: dict[str, Any]) -> str:

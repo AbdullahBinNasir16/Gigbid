@@ -31,7 +31,7 @@ _CLAIM_CUES = re.compile(
     r"led|shipped|cut|reduced|raised|increased|improved|saved|migrated|deployed|trained|"
     r"fine-tuned|automated|worked|experience|years|helped|launched|implemented|wrote|ran|"
     r"analy[sz]ed|reached|achieved|managed|handled|fixed|solved)\b",
-    re.I,
+    re.IGNORECASE,
 )
 _TOOL = re.compile(r"\b([A-Z][a-zA-Z0-9+#]*(?:\.[a-z]+)?|[a-z]+\.js|dbt|scikit-learn)\b")
 _STOP_TOOLS = {"I", "I've", "I'm", "My", "We", "Our", "The", "This", "That", "In", "For",
@@ -91,7 +91,7 @@ def _scores(pairs: list[tuple[str, str]]) -> list[float]:
         ce = _cross_encoder(get_config().models.reranker.model)
         logits = ce.predict(pairs, batch_size=16, show_progress_bar=False)
         return (1 / (1 + np.exp(-np.asarray(logits, dtype=float)))).tolist()
-    except Exception:  # model unavailable: lexical fallback keeps verification running
+    except Exception:  # noqa: BLE001 - model unavailable: lexical fallback keeps verification running
         from rag.index.store import tokenize
 
         out = []

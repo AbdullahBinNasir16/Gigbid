@@ -108,5 +108,18 @@ def upsert_run(thread_id: str, user_id: str, **fields: Any) -> None:
             c.execute(insert(runs).values(thread_id=thread_id, user_id=user_id, **fields))
 
 
-__all__ = ["engine", "users", "jobs", "runs", "tokens", "q", "upsert_job", "upsert_run", "now",
-           "select", "update", "delete", "insert"]
+__all__ = [
+    "delete",
+    "engine",
+    "insert",
+    "jobs",
+    "now",
+    "q",
+    "runs",
+    "select",
+    "tokens",
+    "update",
+    "upsert_job",
+    "upsert_run",
+    "users",
+]

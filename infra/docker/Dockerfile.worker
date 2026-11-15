@@ -1,11 +1,7 @@
 FROM python:3.12-slim
-
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
-
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 HF_HOME=/models/hf
 WORKDIR /app
+RUN pip install --no-cache-dir torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
 COPY . .
-RUN python -m pip install --no-cache-dir .
-
-# TODO: Replace when worker/__main__.py is implemented.
-CMD ["sh", "-c", "echo 'TODO: implement the worker entry point'; sleep infinity"]
+RUN pip install --no-cache-dir . && python -c "from rag.index.store import warm; warm()"
+CMD ["arq", "worker.main.WorkerSettings"]

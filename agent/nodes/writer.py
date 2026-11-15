@@ -51,7 +51,7 @@ def parse_tagged(text: str, evidence: list[Evidence]) -> tuple[list[str], list[s
 
 
 def _first_sentence(text: str) -> str:
-    body = re.sub(r"^#+.*$", "", text, flags=re.M).strip()
+    body = re.sub(r"^#+.*$", "", text, flags=re.MULTILINE).strip()
     body = re.sub(r"^.*?\.\s", "", body, count=1) if body.count(".") > 1 else body
     return _SENT.split(body)[0].strip()
 
@@ -59,13 +59,16 @@ def _first_sentence(text: str) -> str:
 def template_letter(job: dict, evidence: list[Evidence], spec_reqs: list[str]) -> str:
     """Deterministic fallback: mirror the need, cite up to two projects verbatim."""
     need = (spec_reqs[0] if spec_reqs else job.get("title", "your project")).rstrip(".")
-    paras = [f"You are looking for help with {need[:160].lower()}, and that is close to "
-             "work I have already delivered."]
+    paras = [f"You need help with {need[:160].lower()}."]
     cited, seen = [], set()
     for i, e in enumerate(evidence, 1):
-        if e.type.value in ("case_study", "review", "cv") and e.project not in seen:
+        if e.project in seen:
+            continue
+        m = re.search(r"\bI built [^.]*\.", e.text) or re.search(r"\bThe work [^.]*\.", e.text)
+        if m and e.type.value in ("case_study", "review", "cv"):
             seen.add(e.project)
-            cited.append(f"{_first_sentence(e.text)} [E{i}]")
+            sent = m.group(0).replace("The work", "That work", 1)
+            cited.append(f"{sent} [E{i}]")
         if len(cited) == 2:
             break
     if cited:
