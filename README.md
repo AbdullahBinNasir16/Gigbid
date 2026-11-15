@@ -5,7 +5,9 @@ every claim links to real portfolio evidence, and drafts replies to clients. **N
 until you approve it.** It runs against the GigSim marketplace simulator and, through the same
 port, against Upwork's official MCP server.
 
-> Demo GIF: `docs/images/demo.gif` (30 s: inbox → approved proposal → client reply)
+![GigBid demo: an injected instruction is flagged and ignored, then an evidence-backed proposal is reviewed](docs/images/demo.gif)
+
+> 3-minute demo video: _add the YouTube/Drive link here_ (recorded with `node apps/web/scripts/record_demo.mjs`)
 > Live app: _add the Hugging Face Space URL here_ · reviewer login is shared privately
 > Public traces: _add three LangSmith/Langfuse share links here (scam skipped, approved
 > proposal with a Critic loop, crash-and-resume)_
