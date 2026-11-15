@@ -1,4 +1,6 @@
 .env
+.env.*
+!.env.example
 .venv/
 __pycache__/
 *.py[cod]
@@ -11,4 +13,5 @@ dist/
 build/
 *.egg-info/
 data/processed/
-data/raw/
+/data/raw/*
+!/data/raw/README.md

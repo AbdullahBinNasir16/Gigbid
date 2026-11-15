@@ -11,3 +11,5 @@ jobs:
       - run: python -m pip install -e ".[dev]"
       - run: ruff check .
       - run: pytest -q
+      # TODO: Add MCP contract tests when the server contracts are implemented.
+      - run: python scripts/check_repo_rules.py
