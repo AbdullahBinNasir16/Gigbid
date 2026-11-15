@@ -29,7 +29,26 @@ async def lifespan(app: FastAPI):  # type: ignore[no-untyped-def]
         from rag.index.store import warm
 
         await asyncio.to_thread(warm)
+    if os.environ.get("SEED_ON_START") == "1":
+        asyncio.get_running_loop().create_task(_seed_reviewer_inbox())
     yield
+
+
+async def _seed_reviewer_inbox() -> None:
+    """Fill the reviewer's inbox once at boot (same path as pressing "Scout now")."""
+    from apps.api.routers.jobs import scout_now
+
+    name = os.environ.get("REVIEWER_USERNAME", "reviewer")
+    rows = db.q(db.select(db.users.c.user_id).where(db.users.c.username == name))
+    if not rows:
+        return
+    user = auth.get_user(rows[0]["user_id"])
+    has_jobs = db.q(db.select(db.jobs.c.job_id).where(db.jobs.c.user_id == user["user_id"]))
+    if user and not has_jobs:
+        try:
+            await scout_now(user, limit=4)
+        except Exception as exc:  # noqa: BLE001 - seeding is best effort
+            log.warning("seed scout failed: %s", exc)
 
 
 app = FastAPI(title="GigBid API", version="1.0.0", lifespan=lifespan)

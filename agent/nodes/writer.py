@@ -62,7 +62,7 @@ def template_letter(job: dict, evidence: list[Evidence], spec_reqs: list[str],
     """Deterministic fallback: restate the job in its own title words, name the listed skills
     the portfolio evidences, and quote real built/result sentences verbatim."""
     title = (job.get("title") or (spec_reqs[0] if spec_reqs else "your project")).rstrip(".")
-    paras = [f"You are looking for help with {title[:160]}."]
+    paras = [f"Your post is looking for help with {title[:160]}."]
     if matched:
         paras[0] += f" Your post asks for {', '.join(matched[:4])}."
     cited: list[str] = []
@@ -70,8 +70,8 @@ def template_letter(job: dict, evidence: list[Evidence], spec_reqs: list[str],
     for i, e in enumerate(evidence, 1):
         if e.type.value not in ("case_study", "review", "cv"):
             continue
-        for pat in (r"\bI built [^.]*\.", r"\bThe work [^.]*\.", r"\b(?:cut|raised|reached|"
-                    r"lowered|saved|rose|fell)[^.]*\d[^.]*\."):
+        for pat in (r"\bI built [^.]*\.", r"\bThe work [^.]*\.", (r"\b(?:cut|raised|reached|"
+                    r"lowered|saved|rose|fell)[^.]*\d[^.]*\.")):
             m = re.search(pat, e.text)
             if m and (e.project not in used_projects or pat != r"\bI built [^.]*\."):
                 sent = m.group(0).replace("The work", "That work", 1)

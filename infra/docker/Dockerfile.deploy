@@ -11,7 +11,8 @@ RUN npx vite build
 FROM python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 HF_HOME=/app/.hf \
     MODEL_PROFILE=open_hosted MCP_TRANSPORT=memory GIGSIM_BASE_URL=http://127.0.0.1:8081 \
-    GIGSIM_STATE_FILE=/app/data/processed/gigsim_state.json PORT=7860 MAX_CONCURRENT_RUNS=2
+    GIGSIM_STATE_FILE=/app/data/processed/gigsim_state.json PORT=7860 MAX_CONCURRENT_RUNS=2 \
+    SEED_ON_START=1 APP_ENV=production
 RUN useradd -m -u 1000 app
 WORKDIR /app
 RUN pip install --no-cache-dir torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu

@@ -111,11 +111,23 @@ judge's labels; the human labels and Cohen's kappa are added by the author
 three systems uses gpt-oss-20b; the same reference evidence scores claims; the same compliance
 check counts violations (`multiagent_compare.json`, README table).
 
-**Results and discussion.** See the README table "R&D C". The graph spends far fewer tokens per
-job because analysis is rules plus retrieval; the ReAct agent decides from the post alone and
-skips more often. Where a single agent does better (vague posts, where it can reason about
-hidden needs), say so in the viva; we would still not ship it, because its approval and
-grounding guarantees exist only in a prompt.
+**Results.**
+
+| System | Bid/skip accuracy | Unsupported claims / proposal | Violations left | Scams skipped | Tokens / job | p50 s |
+|---|---|---|---|---|---|---|
+| (a) ReAct, all tools | 0.6667 | 1.667 | 0 | 2/2 | 2643.2 | 8.2 |
+| (b) prebuilt supervisor | 0.6667 | 2.667 | 0 | 2/2 | 6618.1 | 39.3 |
+| (c) hand-built graph | 0.75 | 0.0 | 0 | 2/2 | 1472.2 | 1.5 |
+
+**Discussion.** The graph is the most accurate, the cheapest (about 2.5x fewer tokens than the
+ReAct agent and 4.5x fewer than the supervisor) and the only design with zero unsupported claims,
+because verification is a node, not an instruction. The supervisor failed 4 of 12 jobs with
+tool-call format errors from the 20B model (more hand-offs, more chances to break). The single
+agent was never wrong on scams and is simple; it lost by skipping real bids (3 wrong skips),
+because it judged fit from a few searches instead of a requirement-by-requirement matrix. The
+graph's errors were two "watch" verdicts on gold bids and one bid on a gold skip: threshold
+errors, visible in its trace. We would not ship (a): its approval and grounding rules exist only
+in a prompt, and the sample (12 jobs) is small.
 
 ## 6. The change request
 
